@@ -3,7 +3,9 @@ package com.upem.fr.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
+import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -12,7 +14,8 @@ public class Animal {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;
-    public String espèce;
+    @ManyToOne
+    public Espece espece;
     public String nom;
     public String sexe;
     public String  signedistinctif;
@@ -27,8 +30,8 @@ public class Animal {
 
     }
 
-    public Animal(String espèce, String nom, String sexe, String signedistinctif, Date dateArrivee, Date dateDépart) {
-        this.espèce = espèce;
+    public Animal(Espece espece, String nom, String sexe, String signedistinctif, Date dateArrivee, Date dateDépart) {
+        this.espece = espece;
         this.nom = nom;
         this.sexe = sexe;
         this.signedistinctif = signedistinctif;
@@ -42,14 +45,6 @@ public class Animal {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getEspèce() {
-        return espèce;
-    }
-
-    public void setEspèce(String espèce) {
-        this.espèce = espèce;
     }
 
     public String getNom() {
@@ -90,5 +85,29 @@ public class Animal {
 
     public void setDateDépart(Date dateDépart) {
         this.dateDépart = dateDépart;
+    }
+
+    public Espece getEspece() {
+        return espece;
+    }
+
+    public void setEspece(Espece espece) {
+        this.espece = espece;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Animal animal = (Animal) o;
+        if (animal.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), animal.getId());
     }
 }
