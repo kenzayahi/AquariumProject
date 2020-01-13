@@ -1,39 +1,40 @@
 package com.upem.fr.ressource;
 
-import com.upem.fr.model.Animal;
-import com.upem.fr.service.AnimalService;
+import com.upem.fr.model.Espece;
+import com.upem.fr.service.EspeceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+
 @RestController
-public class AnimalRessource {
+public class EspeceRessource {
     @Autowired
-    private AnimalService animalService;
+    private EspeceService ecpeceService;
 
-    @GetMapping("/animaux")
-    public Iterable<Animal> getAll() {
-        return animalService.getAll();
+    @GetMapping("/ecpeces")
+    public Iterable<Espece> getAll() {
+        return ecpeceService.getAll();
     }
 
-    @PostMapping("/animaux")
-    public Animal create(@RequestBody Animal animal) {
-        return animalService.create(animal);
+    @PostMapping("/ecpeces")
+    public Espece create(@RequestBody Espece espece) {
+        return ecpeceService.create(espece);
     }
 
-    @GetMapping("animaux/{id}")
-    public Optional<Animal> getOne(@PathVariable Long id) {
+    @GetMapping("ecpeces/{id}")
+    public Optional<Espece> getOne(@PathVariable Long id) {
         //@PathVariable {id}
-        return animalService.getOne(id);
+        return ecpeceService.getOne(id);
     }
 
-    @DeleteMapping("animaux/{id}")
+    @DeleteMapping("ecpeces/{id}")
     public void delete(@PathVariable Long id) {
-        animalService.delete(id);
+        ecpeceService.delete(id);
     }
 
-    @PostMapping("animaux/{id}")
-    public Animal update(@PathVariable Long id, @RequestBody Animal animal) {
-        return animalService.update(id, animal);
+    @PostMapping("ecpeces/{id}")
+    public Espece update(@PathVariable Long id, @RequestBody Espece espece) {
+        return ecpeceService.update(id, espece);
     }
 }

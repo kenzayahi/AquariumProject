@@ -1,4 +1,6 @@
 package com.upem.fr.model.enumeration;
 
-public class RegimeAlimentaire {
+
+public enum RegimeAlimentaire {
+    alguivore, planctonivore, piscivore
 }

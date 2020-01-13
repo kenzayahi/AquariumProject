@@ -1,37 +1,36 @@
 package com.upem.fr.service;
 
-import com.upem.fr.model.Animal;
-import com.upem.fr.repository.AnimalRepository;
-import com.upem.fr.repository.EcpeceRepository;
+import com.upem.fr.model.Espece;
+import com.upem.fr.repository.EspeceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class EcpeceService {
+public class EspeceService {
     @Autowired
-    private EcpeceRepository ecpeceRepository;
+    private EspeceRepository especeRepository;
 
-    public Iterable<Animal> getAll() {
-        return ecpeceRepository.findAll();
+    public Iterable<Espece> getAll() {
+        return especeRepository.findAll();
     }
 
-    public Optional<Animal> getOne(Long id) {
-        return ecpeceRepository.findById(id);
+    public Optional<Espece> getOne(Long id) {
+        return especeRepository.findById(id);
     }
 
-    public Animal create(Animal animal) {
-        return ecpeceRepository.save(animal);
+    public Espece create(Espece espece) {
+        return especeRepository.save(espece);
     }
 
     public void delete(Long id) {
-        ecpeceRepository.deleteById(id);
+        especeRepository.deleteById(id);
     }
 
-    public Animal update(Long id, Animal animal) {
-        ecpeceRepository.findById(id);
-        animal.setId(id);
-        return ecpeceRepository.save(animal);
+    public Espece update(Long id, Espece espece) {
+        especeRepository.findById(id);
+        espece.setId(id);
+        return especeRepository.save(espece);
     }
 }
