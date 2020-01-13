@@ -30,13 +30,11 @@ public class Animal {
 
     }
 
-    public Animal(Espece espece, String nom, String sexe, String signedistinctif, Date dateArrivee, Date dateDépart) {
+    public Animal(Espece espece, String nom, String sexe, String signedistinctif) {
         this.espece = espece;
         this.nom = nom;
         this.sexe = sexe;
         this.signedistinctif = signedistinctif;
-        this.dateArrivee = dateArrivee;
-        this.dateDépart = dateDépart;
     }
 
     public Long getId() {

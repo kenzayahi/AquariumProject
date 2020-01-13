@@ -17,26 +17,18 @@ import static javax.persistence.GenerationType.AUTO;
 public class Espece {
     @Id
     @GeneratedValue(strategy = AUTO)
-    private Long id;
-    private String espéranceVie;
-    private RegimeAlimentaire regimeAlimentaire;
-    private Boolean menacee;
-    @OneToMany
-    private Set<Animal> animals = new HashSet<>();
+    public Long id;
+    public String espéranceVie;
+    public RegimeAlimentaire regimeAlimentaire;
+    public int menacee;
 
-    public Espece(String espéranceVie, RegimeAlimentaire regimeAlimentaire, Boolean menacee) {
+    public Espece() {
+    }
+    public Espece(String espéranceVie, RegimeAlimentaire regimeAlimentaire, int menacee) {
         this.espéranceVie = espéranceVie;
         this.regimeAlimentaire = regimeAlimentaire;
         this.menacee = menacee;
     }
-
-    public Espece(String espéranceVie) {
-        this.espéranceVie = espéranceVie;
-    }
-
-    public Espece() {
-    }
-
     public Long getId() {
         return id;
     }
@@ -47,14 +39,6 @@ public class Espece {
 
     public String getEspéranceVie() {
         return espéranceVie;
-    }
-
-    public Set<Animal> getAnimals() {
-        return animals;
-    }
-
-    public void setAnimals(Set<Animal> animals) {
-        this.animals = animals;
     }
 
     public void setEspéranceVie(String espéranceVie) {
@@ -69,11 +53,11 @@ public class Espece {
         this.regimeAlimentaire = regimeAlimentaire;
     }
 
-    public Boolean getMenacee() {
+    public int getMenacee() {
         return menacee;
     }
 
-    public void setMenacee(Boolean menacee) {
+    public void setMenacee(int menacee) {
         this.menacee = menacee;
     }
     @Override

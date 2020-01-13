@@ -1,7 +1,9 @@
 package com.upem.fr.ressource;
 
 import com.upem.fr.model.Animal;
+import com.upem.fr.model.Espece;
 import com.upem.fr.service.AnimalService;
+import com.upem.fr.service.EspeceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +12,8 @@ import java.util.Optional;
 public class AnimalRessource {
     @Autowired
     private AnimalService animalService;
+    @Autowired
+    private EspeceService especeService;
 
     @GetMapping("/animaux")
     public Iterable<Animal> getAll() {
@@ -18,6 +22,8 @@ public class AnimalRessource {
 
     @PostMapping("/animaux")
     public Animal create(@RequestBody Animal animal) {
+        Optional<Espece>optionalEspece=(especeService.getOne(animal.getEspece().getId()));
+        animal.setEspece(optionalEspece.get());
         return animalService.create(animal);
     }
 
