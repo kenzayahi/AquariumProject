@@ -4,6 +4,7 @@ import com.upem.fr.model.Bassin;
 import com.upem.fr.model.Espece;
 import com.upem.fr.model.Secteur;
 import com.upem.fr.repository.SecteurRepository;
+import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class SecteurService {
     }
 
     public Optional<Secteur> getOne(Long id) {
-        return secteurRepository.findById(id);
+        return Optional.ofNullable(secteurRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
     public Secteur create(Secteur secteur) {
@@ -30,7 +31,7 @@ public class SecteurService {
     }
 
     public Secteur update(Long id, Secteur secteur) {
-        secteurRepository.findById(id);
+        secteurRepository.findById(id).orElseThrow(NotFoundException::new);
         secteur.setId(id);
         return secteurRepository.save(secteur);
     }

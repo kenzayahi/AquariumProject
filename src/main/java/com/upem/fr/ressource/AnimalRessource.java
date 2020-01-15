@@ -4,9 +4,13 @@ import com.upem.fr.model.Animal;
 import com.upem.fr.model.Espece;
 import com.upem.fr.service.AnimalService;
 import com.upem.fr.service.EspeceService;
+import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.Optional;
 @RestController
 public class AnimalRessource {
@@ -21,7 +25,7 @@ public class AnimalRessource {
     }
 
     @PostMapping("/animaux")
-    public Animal create(@RequestBody Animal animal) {
+    public Animal create(@Valid   @RequestBody Animal animal) {
         Optional<Espece>optionalEspece=(especeService.getOne(animal.getEspece().getId()));
         animal.setEspece(optionalEspece.get());
         return animalService.create(animal);
@@ -29,8 +33,11 @@ public class AnimalRessource {
 
     @GetMapping("animaux/{id}")
     public Optional<Animal> getOne(@PathVariable Long id) {
-        //@PathVariable {id}
-        return animalService.getOne(id);
+        try {
+            return animalService.getOne(id);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
     @DeleteMapping("animaux/{id}")
@@ -39,7 +46,7 @@ public class AnimalRessource {
     }
 
     @PostMapping("animaux/{id}")
-    public Animal update(@PathVariable Long id, @RequestBody Animal animal) {
+    public Animal update( @Valid @PathVariable Long id, @RequestBody Animal animal) {
         return animalService.update(id, animal);
     }
 }

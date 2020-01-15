@@ -1,6 +1,7 @@
 package com.upem.fr.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +12,9 @@ public class Secteur {
     @Id
     @GeneratedValue(strategy = AUTO)
     public Long id;
+    @NotEmpty
     public String nom;
+    @NotEmpty
     public String localisation;
 
     @OneToMany
