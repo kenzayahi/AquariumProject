@@ -1,5 +1,7 @@
 package com.upem.fr.service;
 
+import com.upem.fr.model.Bassin;
+import com.upem.fr.model.Espece;
 import com.upem.fr.model.Secteur;
 import com.upem.fr.repository.SecteurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,11 @@ public class SecteurService {
     public Secteur update(Long id, Secteur secteur) {
         secteurRepository.findById(id);
         secteur.setId(id);
+        return secteurRepository.save(secteur);
+    }
+    public Secteur addBassin(Optional<Secteur> s, Optional<Bassin>bassin){
+        Secteur secteur=s.get();
+        secteur.setBassin(bassin.get());
         return secteurRepository.save(secteur);
     }
 }

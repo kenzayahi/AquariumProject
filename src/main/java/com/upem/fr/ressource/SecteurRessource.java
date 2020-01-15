@@ -23,8 +23,6 @@ public class SecteurRessource {
 
     @PostMapping("/secteurs")
     public Secteur create(@RequestBody Secteur secteur) {
-        Optional<Bassin>optionalBassin=(bassinService.getOne(secteur.getBassins().getId()));
-        secteur.setBassins(optionalBassin.get());
         return secteurService.create(secteur);
     }
 
@@ -42,5 +40,9 @@ public class SecteurRessource {
     @PostMapping("secteurs/{id}")
     public Secteur update(@PathVariable Long id, @RequestBody Secteur secteur) {
         return secteurService.update(id, secteur);
+    }
+    @GetMapping("secteurs/{secteurId}/{bassinId}")
+    public void affectBassin(@PathVariable Long secteurId, @PathVariable Long bassinId){
+        secteurService.addBassin(secteurService.getOne(secteurId),bassinService.getOne(bassinId));
     }
 }

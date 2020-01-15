@@ -2,6 +2,7 @@ package com.upem.fr.ressource;
 
 import com.upem.fr.model.Bassin;
 import com.upem.fr.service.BassinService;
+import com.upem.fr.service.EspeceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,9 @@ import java.util.Optional;
 public class BassinRessource {
     @Autowired
     private BassinService bassinService;
+
+    @Autowired
+    private EspeceService especeService;
 
     @GetMapping("/bassins")
     public Iterable<Bassin> getAll() {
@@ -36,5 +40,10 @@ public class BassinRessource {
     @PostMapping("bassins/{id}")
     public Bassin update(@PathVariable Long id, @RequestBody Bassin bassin) {
         return bassinService.update(id, bassin);
+    }
+
+    @GetMapping("bassins/{bassinId}/{especeId}")
+    public void affectEspece(@PathVariable Long bassinId, @PathVariable Long especeId){
+        bassinService.addEspece(bassinService.getOne(bassinId),especeService.getOne(especeId));
     }
 }

@@ -5,7 +5,10 @@ import com.upem.fr.model.enumeration.Etat;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -17,6 +20,17 @@ public class Bassin {
     public int capaciteMax;
     public long volumeEau;
     public Etat etat;
+
+    @OneToMany
+    public List<Espece> especeList=new ArrayList<>();
+
+    public List<Espece> getEspeceList() {
+        return especeList;
+    }
+
+    public void setEspece(Espece espece) {
+        this.especeList.add(espece);
+    }
 
     public Bassin() {
     }
