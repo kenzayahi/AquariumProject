@@ -81,13 +81,13 @@ class EspeceRessourceTest {
         HttpEntity<Espece> request = new HttpEntity<>(espece);
         this.restTemplate.exchange("http://localhost:" + port + "/especes", HttpMethod.POST, request, Animal.class);
 
-        List animalListBefore= this.restTemplate.getForObject("http://localhost:" + port + "/especes", List.class);
+        List ListBefore= this.restTemplate.getForObject("http://localhost:" + port + "/especes", List.class);
 
         doNothing().when(especeRepository).delete(espece);
         Espece result = this.restTemplate.exchange("http://localhost:" + port + "/especes/1",
                 HttpMethod.DELETE, null, Espece.class).getBody();
-        List animalListAfter = this.restTemplate.getForObject("http://localhost:" + port + "/especes", List.class);
-        assertEquals(animalListAfter.size(), animalListBefore.size());
+        List ListAfter = this.restTemplate.getForObject("http://localhost:" + port + "/especes", List.class);
+        assertEquals(ListAfter.size(), ListBefore.size());
        // assertEquals(result.getMenacee(),espece.getMenacee());
 
 
