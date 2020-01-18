@@ -14,6 +14,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AnimalComponent } from './animal/animal.component';
 import { EspeceComponent } from './espece/espece.component';
 import {HttpClientModule} from "@angular/common/http";
+import { EmployeComponent } from './employe/employe.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
     NavBarComponent,
     AnimalComponent,
     EspeceComponent,
+    EmployeComponent,
   ],
   imports: [
     BrowserModule,
