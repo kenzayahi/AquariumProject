@@ -1,6 +1,8 @@
 package com.upem.fr.ressource;
 
+import com.upem.fr.model.Employe;
 import com.upem.fr.model.Espece;
+import com.upem.fr.service.EmployeService;
 import com.upem.fr.service.EspeceService;
 import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,37 +15,36 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-public class EspeceRessource {
+public class EmployeRessource {
     @Autowired
-    private EspeceService ecpeceService;
+    private EmployeService employeService;
 
-    @GetMapping("/especes")
-    public Iterable<Espece> getAll() {
-        return ecpeceService.getAll();
+    @GetMapping("/employes")
+    public Iterable<Employe> getAll() {
+        return employeService.getAll();
     }
 
-    @PostMapping("/especes")
-    public ResponseEntity<Espece> create(@Valid @RequestBody Espece espece) {
-
-        return new ResponseEntity<>(ecpeceService.create(espece), HttpStatus.CREATED);
+    @PostMapping("/employes")
+    public ResponseEntity<Employe> create(@Valid @RequestBody Employe employe) {
+        return new ResponseEntity<>(employeService.create(employe), HttpStatus.CREATED);
     }
 
-    @GetMapping("especes/{id}")
-    public Optional<Espece> getOne(@PathVariable Long id) {
+    @GetMapping("employes/{id}")
+    public Optional<Employe> getOne(@PathVariable Long id) {
         try {
-            return ecpeceService.getOne(id);
+            return employeService.getOne(id);
         }catch (NotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
         }
     }
 
-    @DeleteMapping("especes/{id}")
+    @DeleteMapping("employes/{id}")
     public void delete(@PathVariable Long id) {
-        ecpeceService.delete(id);
+        employeService.delete(id);
     }
 
-    @PostMapping("especes/{id}")
-    public Espece update(@PathVariable Long id,@Valid @RequestBody Espece espece) {
-        return ecpeceService.update(id, espece);
+    @PostMapping("employes/{id}")
+    public Employe update(@PathVariable Long id, @Valid @RequestBody Employe employe) {
+        return employeService.update(id, employe);
     }
 }
