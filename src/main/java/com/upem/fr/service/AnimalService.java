@@ -2,7 +2,9 @@ package com.upem.fr.service;
 
 import com.upem.fr.model.Animal;
 import com.upem.fr.repository.AnimalRepository;
+import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,10 +19,12 @@ public class AnimalService {
     }
 
     public Optional<Animal> getOne(Long id) {
-        return animalRepository.findById(id);
+
+        return Optional.ofNullable(animalRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
     public Animal create(Animal animal) {
+
         return animalRepository.save(animal);
     }
 
@@ -29,7 +33,8 @@ public class AnimalService {
     }
 
     public Animal update(Long id, Animal animal) {
-        animalRepository.findById(id);
+
+        animalRepository.findById(id).orElseThrow(NotFoundException::new);
         animal.setId(id);
         return animalRepository.save(animal);
     }
