@@ -1,1 +1,24 @@
 <p>animal works!</p>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="header-panel">
+     List des animaux
+    </div>
+    <div class="mat-body">
+      <Button class="btn btn-primary" (click)="onGetAnimaux()">Afficher la list des animaux</Button>
+    </div>
+    <div class="mat-body">
+      <table *ngIf="listAnimaux">
+        <tr>
+          <th>Nom</th><th>Sexe</th>
+        </tr>
+        <tr *ngFor="let animal of listAnimaux">
+          <td>{{animal.nom}}</td>
+          <td>{{animal.sexe}}</td>
+        </tr>
+      </table>
+    </div>
+
+
+  </div>
+</div>
