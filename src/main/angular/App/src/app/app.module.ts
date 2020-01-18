@@ -15,6 +15,7 @@ import { AnimalComponent } from './animal/animal.component';
 import { EspeceComponent } from './espece/espece.component';
 import {HttpClientModule} from "@angular/common/http";
 import { EmployeComponent } from './employe/employe.component';
+import { ActivityComponent } from './activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { EmployeComponent } from './employe/employe.component';
     AnimalComponent,
     EspeceComponent,
     EmployeComponent,
+    ActivityComponent,
   ],
   imports: [
     BrowserModule,
