@@ -15,6 +15,7 @@ import { AnimalComponent } from './animal/animal.component';
 import { EspeceComponent } from './espece/espece.component';
 import {HttpClientModule} from "@angular/common/http";
 import { EmployeComponent } from './employe/employe.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -24,18 +25,19 @@ import { EmployeComponent } from './employe/employe.component';
     EspeceComponent,
     EmployeComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatCardModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
