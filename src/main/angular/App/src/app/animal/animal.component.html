@@ -6,9 +6,11 @@
     </div>
     <div class="mat-body">
       <Button class="btn btn-primary" (click)="onGetAnimaux()">Afficher la list des animaux</Button>
+       <Button class="btn btn-primary" routerLink="/animal/edit"> <mat-icon> add</mat-icon></Button>
     </div>
-    <div class="mat-body">
-      <table *ngIf="listAnimaux">
+
+    <table border="False">
+      <tbody *ngIf="listAnimaux">
         <tr>
           <th>Nom</th><th>Sexe</th>
         </tr>
@@ -16,8 +18,9 @@
           <td>{{animal.nom}}</td>
           <td>{{animal.sexe}}</td>
         </tr>
-      </table>
-    </div>
+
+      </tbody>
+    </table>
 
 
   </div>
