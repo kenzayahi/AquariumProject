@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AnimalService} from "./animal.service";
+import {Animal} from "./animal";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -7,11 +9,23 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./animal.component.css']
 })
 export class AnimalComponent implements OnInit {
+  constructor(private animalService:AnimalService) { }
+
   listAnimaux:any;
-//injecter le service httpClient
-  constructor(private httpClient:HttpClient) { }
 
   ngOnInit() {
+  }
+  onGetanimaux(){
+    console.log("bbbbbbb");
+
+    this.animalService.getAnimaux().subscribe(data=>{
+      console.log("hhhhhhhhhh");
+        this.animaux=data;
+        console.log(data);
+        console.log("finish")
+    },error => {
+      console.log(error);
+    })
   }
 
   onGetAnimaux() {
