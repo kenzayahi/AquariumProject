@@ -1,5 +1,30 @@
 <p>animal works!</p>
 <div class="container">
+<<<<<<< HEAD
+  <div class="panel panel-primary">
+    <div class="header-panel">
+     List des animaux
+    </div>
+    <div class="mat-body">
+      <Button class="btn btn-primary" (click)="onGetAnimaux()">Afficher la list des animaux</Button>
+       <Button class="btn btn-primary" routerLink="/animal/edit"> <mat-icon> add</mat-icon></Button>
+    </div>
+
+    <table border="False">
+      <tbody *ngIf="listAnimaux">
+        <tr>
+          <th>Nom</th><th>Sexe</th>
+        </tr>
+        <tr *ngFor="let animal of listAnimaux">
+          <td>{{animal.nom}}</td>
+          <td>{{animal.sexe}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+
+=======
   <div class="mat-expansion-panel-content">
     <div class="header-panel">List des Animaux</div>
   </div>
@@ -17,5 +42,6 @@
         <td class="table-row-cell">{{animal.espece.menacee}}</td>
       </tr>
     </table>
+>>>>>>> master
   </div>
 </div>
