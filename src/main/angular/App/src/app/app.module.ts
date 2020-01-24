@@ -15,6 +15,7 @@ import { AnimalComponent } from './animal/animal.component';
 import { EspeceComponent } from './espece/espece.component';
 import { HttpClientModule} from "@angular/common/http";
 import { EmployeComponent } from './employe/employe.component';
+import { ActivityComponent } from './activity/activity.component';
 import { MatCardModule} from "@angular/material/card";
 import { AnimalEditComponent} from "./animal/edit/animal-edit.component";
 import {FormsModule} from "@angular/forms";
@@ -27,6 +28,7 @@ import {FormsModule} from "@angular/forms";
     AnimalEditComponent,
     EspeceComponent,
     EmployeComponent,
+    ActivityComponent,
   ],
   imports: [
     BrowserModule,

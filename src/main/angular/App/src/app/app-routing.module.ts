@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {AnimalComponent} from './animal/animal.component';
 import {EspeceComponent} from './espece/espece.component';
 import {EmployeComponent} from "./employe/employe.component";
+import {ActivityComponent} from "./activity/activity.component";
 import {AnimalEditComponent} from "./animal/edit/animal-edit.component";
-
 
 const routes: Routes = [
   {
@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'employe',
     component: EmployeComponent
+  },
+  {
+    path: 'activity',
+    component: ActivityComponent
   },
 
 ];
