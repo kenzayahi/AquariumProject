@@ -4,12 +4,16 @@ import {AnimalComponent} from './animal/animal.component';
 import {EspeceComponent} from './espece/espece.component';
 import {EmployeComponent} from "./employe/employe.component";
 import {ActivityComponent} from "./activity/activity.component";
-
+import {AnimalEditComponent} from "./animal/edit/animal-edit.component";
 
 const routes: Routes = [
   {
     path: 'animal',
     component: AnimalComponent
+  },
+  {
+    path: 'animal/edit',
+    component: AnimalEditComponent
   },
   {
     path: 'espece',

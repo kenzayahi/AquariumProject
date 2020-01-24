@@ -1,0 +1,35 @@
+<p>animal works!</p>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="header-panel">
+     Add Animal
+    </div>
+    <form #animalForm="ngForm" (ngSubmit)="onCreateAnimal(animalForm)">
+          <div class="mat-form-field-flex">
+            <label>Espece</label>
+            <select ngModel name="espece" id="espece" (click)="onGetespeces()">
+              <option [ngValue]="null" disabled></option>
+              <option *ngFor="let espece of especes" [ngValue]="espece">{{espece.regimeAlimentaire}}</option>
+            </select>
+            <label> Nom</label>
+            <input type="text" ngModel
+                   name="nom" id="nom"
+                   class="mat-form-field-autofill-control">
+            <label>Sexe</label>
+            <input type="text" ngModel
+                   name="sexe" id="sexe"
+                   class="mat-form-field-autofill-control">
+            <label>Signe Distinctif</label>
+            <input type="text" ngModel
+                   name="signedistinctif" id="signedistinctif"
+                   class="mat-form-field-autofill-control">
+            <button class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-danger"
+            (click)="reset(animalForm)">Reset</button>
+          </div>
+    </form>
+
+
+
+  </div>
+</div>

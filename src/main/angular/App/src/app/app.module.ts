@@ -13,15 +13,19 @@ import { MatListModule } from '@angular/material/list';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AnimalComponent } from './animal/animal.component';
 import { EspeceComponent } from './espece/espece.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule} from "@angular/common/http";
 import { EmployeComponent } from './employe/employe.component';
 import { ActivityComponent } from './activity/activity.component';
+import { MatCardModule} from "@angular/material/card";
+import { AnimalEditComponent} from "./animal/edit/animal-edit.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     AnimalComponent,
+    AnimalEditComponent,
     EspeceComponent,
     EmployeComponent,
     ActivityComponent,
@@ -36,7 +40,9 @@ import { ActivityComponent } from './activity/activity.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
