@@ -17,7 +17,10 @@ import { HttpClientModule} from "@angular/common/http";
 import { EmployeComponent } from './employe/employe.component';
 import { MatCardModule} from "@angular/material/card";
 import { AnimalEditComponent} from "./animal/edit/animal-edit.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -40,7 +43,11 @@ import {FormsModule} from "@angular/forms";
     MatIconModule,
     MatListModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

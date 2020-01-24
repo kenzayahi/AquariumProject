@@ -1,35 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {NgForm} from "@angular/forms";
+import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
+import {AnimalService} from "../animal.service";
 
 @Component({
   selector: 'app-animal',
   templateUrl: './animal-edit.component.html',
+  styleUrls: ['./animal-edit.component.css']
+
 })
 export class AnimalEditComponent implements OnInit {
-  listAnimaux:any;
-//injecter le service httpClient
+  formGroup: FormGroup;
+  post: any = '';
+
+
   especes: any;
-  constructor(private httpClient:HttpClient) { }
+  constructor(private formBuilder: FormBuilder,private animalService:AnimalService) {
+    this.especes = this.onGetespeces();
+  }
 
   ngOnInit() {
+    this.createForm();
   }
 
-  onCreateAnimal(animalForm:NgForm){
-    console.log(animalForm);
-    console.log(animalForm.submitted);
-    console.log("$$$$$$$$$$$$$$$$fin************")
+  createForm() {
+    this.formGroup = this.formBuilder.group({
+      'name': [null, Validators.required],
+      'sexe': [null, Validators.required],
+      'espece': [null, Validators.required],
+      'signe': [null, Validators.required],
+    });
   }
-  reset(animalForm:NgForm){
-    animalForm.resetForm();
+  onCreateAnimal(){
+    console.log("$$$$$$$$$$$$$$$$fin************");
+    this.animalService
+        .createAnimal(this.formGroup.value);
   }
 
-  onGetespeces() {
-    this.httpClient.get("http://localhost:8080/especes")
-      .subscribe(data=>{
-        this.especes=data;
-      },error => {
-        console.log("error")
-      })
+  reset(){
+    this.formGroup.reset();
+  }
+
+  onGetespeces(){
+    this.animalService
+      .getEspeces()
+      .subscribe(
+        data=>{this.especes=data;},
+        error => {console.log(error);
+        })
   }
 }
+
