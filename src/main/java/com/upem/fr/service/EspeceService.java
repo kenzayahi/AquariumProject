@@ -2,6 +2,7 @@ package com.upem.fr.service;
 
 import com.upem.fr.model.Espece;
 import com.upem.fr.repository.EspeceRepository;
+import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class EspeceService {
     }
 
     public Optional<Espece> getOne(Long id) {
-        return especeRepository.findById(id);
+        return Optional.ofNullable(especeRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
     public Espece create(Espece espece) {
@@ -29,7 +30,7 @@ public class EspeceService {
     }
 
     public Espece update(Long id, Espece espece) {
-        especeRepository.findById(id);
+        especeRepository.findById(id).orElseThrow(NotFoundException::new);
         espece.setId(id);
         return especeRepository.save(espece);
     }

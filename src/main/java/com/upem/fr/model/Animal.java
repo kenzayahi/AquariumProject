@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,8 +17,11 @@ public class Animal {
     private Long id;
     @ManyToOne
     public Espece espece;
+    @NotEmpty
     public String nom;
-    public String sexe;
+    @NotEmpty
+    public String sexe;{}
+    @NotEmpty
     public String  signedistinctif;
     public Date dateArrivee;
     public Date dateDépart;

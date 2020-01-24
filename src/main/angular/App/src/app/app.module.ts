@@ -14,13 +14,15 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AnimalComponent } from './animal/animal.component';
 import { EspeceComponent } from './espece/espece.component';
 import {HttpClientModule} from "@angular/common/http";
-
+import { EmployeComponent } from './employe/employe.component';
+import {MatCardModule} from "@angular/material/card";
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     AnimalComponent,
     EspeceComponent,
+    EmployeComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,9 @@ import {HttpClientModule} from "@angular/common/http";
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

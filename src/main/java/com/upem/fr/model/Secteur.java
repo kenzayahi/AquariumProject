@@ -1,6 +1,9 @@
 package com.upem.fr.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -9,18 +12,28 @@ public class Secteur {
     @Id
     @GeneratedValue(strategy = AUTO)
     public Long id;
+    @NotEmpty
     public String nom;
+    @NotEmpty
     public String localisation;
-    @ManyToOne
-    public Bassin bassins;
+
+    @OneToMany
+    public List<Bassin> bassinList=new ArrayList<>();
 
     public Secteur() {
             }
 
-    public Secteur(String nom, String localisation, Bassin bassins) {
+    public Secteur(String nom, String localisation) {
         this.nom = nom;
         this.localisation = localisation;
-        this.bassins = bassins;
+    }
+
+    public List<Bassin> getBassinList() {
+        return bassinList;
+    }
+
+    public void setBassin(Bassin bassin) {
+        this.bassinList.add(bassin);
     }
 
     public Long getId() {
@@ -55,20 +68,12 @@ public class Secteur {
         return getId().equals(secteur.getId()) &&
                 getNom().equals(secteur.getNom()) &&
                 getLocalisation().equals(secteur.getLocalisation()) &&
-                getBassins().equals(secteur.getBassins());
+                getBassinList().equals(secteur.getBassinList());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNom(), getLocalisation(), getBassins());
-    }
-
-    public Bassin getBassins() {
-        return bassins;
-    }
-
-    public void setBassins(Bassin bassins) {
-        this.bassins = bassins;
+        return Objects.hash(getId(), getNom(), getLocalisation(), getBassinList());
     }
 
 
@@ -78,7 +83,7 @@ public class Secteur {
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", localisation='" + localisation + '\'' +
-                ", bassins=" + bassins +
+                ", bassins=" + bassinList +
                 '}';
     }
 }

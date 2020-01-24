@@ -15,3 +15,22 @@
   top: 0;
   z-index: 1;
 }
+mat-card{
+  background: grey;
+
+}
+.mat-card-cvr{
+  width: 100%;
+  text-align:center;
+}
+.card{
+  margin: 0 auto;
+  width: 40%;
+}
+
+.main-div{
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

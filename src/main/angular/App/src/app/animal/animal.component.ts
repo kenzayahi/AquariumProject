@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AnimalService} from "./animal.service";
 import {Animal} from "./animal";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-animal',
@@ -8,9 +9,9 @@ import {Animal} from "./animal";
   styleUrls: ['./animal.component.css']
 })
 export class AnimalComponent implements OnInit {
-  public animaux: Array<Animal>;
-
   constructor(private animalService:AnimalService) { }
+
+  listAnimaux:any;
 
   ngOnInit() {
   }
@@ -27,4 +28,12 @@ export class AnimalComponent implements OnInit {
     })
   }
 
+  onGetAnimaux() {
+    this.httpClient.get("http://localhost:8080/animaux")
+      .subscribe(data=>{
+        this.listAnimaux=data;
+      },error => {
+        console.log("error")
+      })
+  }
 }

@@ -5,11 +5,8 @@ import com.upem.fr.model.enumeration.RegimeAlimentaire;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import java.util.HashSet;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
-import java.util.Set;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -18,6 +15,7 @@ public class Espece {
     @Id
     @GeneratedValue(strategy = AUTO)
     public Long id;
+    @NotEmpty
     public String espéranceVie;
     public RegimeAlimentaire regimeAlimentaire;
     public int menacee;
