@@ -1,24 +1,21 @@
 <p>animal works!</p>
 <div class="container">
-  <div class="panel panel-primary">
-    <div class="header-panel">
-     List des animaux
-    </div>
-    <div class="mat-body">
-      <Button class="btn btn-primary" (click)="onGetAnimaux()">Afficher la list des animaux</Button>
-    </div>
-    <div class="mat-body">
-      <table *ngIf="listAnimaux">
-        <tr>
-          <th>Nom</th><th>Sexe</th>
-        </tr>
-        <tr *ngFor="let animal of listAnimaux">
-          <td>{{animal.nom}}</td>
-          <td>{{animal.sexe}}</td>
-        </tr>
-      </table>
-    </div>
-
-
+  <div class="mat-expansion-panel-content">
+    <div class="header-panel">List des Animaux</div>
+  </div>
+  <div class="mat-body">
+    <Button class="mat-button" (click)="onGetanimaux()">Afficher</Button>
+  </div>
+  <div class="mat-body">
+    <table *ngIf="animaux" class="mat-table">
+      <tr>
+        <th>Nom</th><th>Sexe</th><th>Espèce</th>
+      </tr>
+      <tr *ngFor="let animal of animaux">
+        <td class="table-row-cell">{{animal.nom}}</td>
+        <td class="table-row-cell">{{animal.sexe}}</td>
+        <td class="table-row-cell">{{animal.espece.menacee}}</td>
+      </tr>
+    </table>
   </div>
 </div>

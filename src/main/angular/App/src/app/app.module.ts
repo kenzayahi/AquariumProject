@@ -16,7 +16,6 @@ import { EspeceComponent } from './espece/espece.component';
 import {HttpClientModule} from "@angular/common/http";
 import { EmployeComponent } from './employe/employe.component';
 import {MatCardModule} from "@angular/material/card";
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,19 +24,20 @@ import {MatCardModule} from "@angular/material/card";
     EspeceComponent,
     EmployeComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        LayoutModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        MatCardModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule
+
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
