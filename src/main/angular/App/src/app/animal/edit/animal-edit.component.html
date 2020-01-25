@@ -1,35 +1,38 @@
-<p>animal works!</p>
-<div class="container">
-  <div class="panel panel-primary">
-    <div class="header-panel">
-     Add Animal
-    </div>
-    <form #animalForm="ngForm" (ngSubmit)="onCreateAnimal(animalForm)">
-          <div class="mat-form-field-flex">
-            <label>Espece</label>
-            <select ngModel name="espece" id="espece" (click)="onGetespeces()">
-              <option [ngValue]="null" disabled></option>
-              <option *ngFor="let espece of especes" [ngValue]="espece">{{espece.regimeAlimentaire}}</option>
-            </select>
-            <label> Nom</label>
-            <input type="text" ngModel
-                   name="nom" id="nom"
-                   class="mat-form-field-autofill-control">
-            <label>Sexe</label>
-            <input type="text" ngModel
-                   name="sexe" id="sexe"
-                   class="mat-form-field-autofill-control">
-            <label>Signe Distinctif</label>
-            <input type="text" ngModel
-                   name="signedistinctif" id="signedistinctif"
-                   class="mat-form-field-autofill-control">
-            <button class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-danger"
-            (click)="reset(animalForm)">Reset</button>
-          </div>
+    <mat-toolbar color="primary">
+      <span class="fill-remaining-space">Add new Animal</span>
+    </mat-toolbar>
+
+    <div class="container" >
+      <form [formGroup]="formGroup" (ngSubmit)="onCreateAnimal()" class="form">
+
+            <mat-form-field class="form-element">
+              <mat-label>Choose Espece</mat-label>
+              <mat-select formControlName="espece">
+                <mat-option *ngFor="let espece of especes" [value]="espece.id">
+                  {{espece.menacee}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+            <input  matInput placeholder="Name"
+                    formControlName="name">
+            </mat-form-field>
+
+
+            <mat-form-field class="form-element">
+              <input matInput placeholder="Sexe"
+                     formControlName="sexe">
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+            <input matInput placeholder="Signe Distinctif"
+                   formControlName="signe">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit</button>
+
+            <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
+
     </form>
-
-
-
-  </div>
-</div>
+    </div>
