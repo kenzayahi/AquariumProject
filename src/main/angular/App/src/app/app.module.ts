@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import {EspeceEditComponent} from "./espece/edit/espece-edit.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {MatInputModule} from "@angular/material/input";
     AnimalComponent,
     AnimalEditComponent,
     EspeceComponent,
+    EspeceEditComponent,
     EmployeComponent,
     ActivityComponent,
   ],

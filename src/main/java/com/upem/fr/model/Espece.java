@@ -15,15 +15,16 @@ public class Espece {
     @Id
     @GeneratedValue(strategy = AUTO)
     public Long id;
+    public String nom;
     @NotEmpty
-    public String espéranceVie;
+    public String esperanceVie;
     public RegimeAlimentaire regimeAlimentaire;
     public int menacee;
 
     public Espece() {
     }
-    public Espece(String espéranceVie, RegimeAlimentaire regimeAlimentaire, int menacee) {
-        this.espéranceVie = espéranceVie;
+    public Espece(String esperanceVie, RegimeAlimentaire regimeAlimentaire, int menacee) {
+        this.esperanceVie = esperanceVie;
         this.regimeAlimentaire = regimeAlimentaire;
         this.menacee = menacee;
     }
@@ -35,12 +36,12 @@ public class Espece {
         this.id = id;
     }
 
-    public String getEspéranceVie() {
-        return espéranceVie;
+    public String getEsperanceVie() {
+        return esperanceVie;
     }
 
-    public void setEspéranceVie(String espéranceVie) {
-        this.espéranceVie = espéranceVie;
+    public void setEsperanceVie(String espéranceVie) {
+        this.esperanceVie = espéranceVie;
     }
 
     public RegimeAlimentaire getRegimeAlimentaire() {
@@ -50,6 +51,9 @@ public class Espece {
     public void setRegimeAlimentaire(RegimeAlimentaire regimeAlimentaire) {
         this.regimeAlimentaire = regimeAlimentaire;
     }
+    public String getNom() { return nom; }
+
+    public void setNom(String nom) { this.nom = nom; }
 
     public int getMenacee() {
         return menacee;

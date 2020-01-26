@@ -2,5 +2,7 @@
 export interface Espece{
   id : number;
   menacee : number;
-  espéranceVie : string
+  nom:string;
+  esperanceVie : string;
+  regimeAlimentaire:string
 }
