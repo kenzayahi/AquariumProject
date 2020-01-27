@@ -23,6 +23,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {EspeceEditComponent} from "./espece/edit/espece-edit.component";
+import {MatSnackBarModule, MatTableModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import {EspeceEditComponent} from "./espece/edit/espece-edit.component";
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

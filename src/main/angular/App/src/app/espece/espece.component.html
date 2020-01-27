@@ -5,18 +5,29 @@
 
     </mat-toolbar>
 
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">Nom</th>
+      <th class="mat-cell">Esperance Vie</th>
+      <th class="mat-cell">Regime Alimentaire</th>
+      <th class="mat-cell">Menacee</th>
+    </tr>
+    <tbody *ngIf="listEspeces">
 
-    <table border="False">
-      <tbody *ngIf="listEspeces">
-      <tr>
-        <th>Nom</th><th>Esperance Vie</th><th>Regime Alimentaire</th><th>Menacee</th>
-      </tr>
-      <tr *ngFor="let espece of listEspeces">
-        <td>{{espece.nom}}</td>
-        <td>{{espece.esperanceVie}}</td>
-        <td>{{espece.regimeAlimentaire}}</td>
-        <td>{{espece.menacee}}</td>
-      </tr>
+    <tr *ngFor="let espece of listEspeces">
+      <td>{{espece.nom}}</td>
+      <td>{{espece.esperanceVie}}</td>
+      <td>{{espece.regimeAlimentaire}}</td>
+      <td>{{espece.menacee}}</td>
+      <td>
+        <a mat-mini-fab (click)="onDeleteEspece(espece.id)" ><mat-icon> delete</mat-icon>
+        </a>
+        <a mat-mini-fab (click)="onUpdateEspece(espece)"><mat-icon> create</mat-icon>
 
-      </tbody>
-    </table>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</mat-card>

@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EspeceService} from '../espece.service';
-import {RegimeAlimentaire} from '../espece';
+import {Espece, RegimeAlimentaire} from '../espece';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-espece',
@@ -11,9 +13,16 @@ import {RegimeAlimentaire} from '../espece';
 export class EspeceEditComponent implements OnInit {
 
   formGroup: FormGroup;
-  regimeAlimentaire=[ RegimeAlimentaire.piscivore,RegimeAlimentaire.alguivore,RegimeAlimentaire.planctonivore]
+  regimeAlimentaire=[ RegimeAlimentaire.piscivore,RegimeAlimentaire.alguivore,RegimeAlimentaire.planctonivore];
 
-  constructor(private formBuilder: FormBuilder,private especeService:EspeceService) {
+  @Output()
+  createEspece= new EventEmitter<Espece>();
+
+  constructor(private formBuilder: FormBuilder,
+              private especeService:EspeceService,
+              protected router: Router,
+              protected snackBar: MatSnackBar,
+  ) {
   }
 
   ngOnInit() {
@@ -29,9 +38,14 @@ export class EspeceEditComponent implements OnInit {
     });
   }
   onCreateEspece(){
-    console.log("$$$$$$$$$$$$$$$$fin************");
-    console.log(this.formGroup.value)
-    this.especeService.createEspece(this.formGroup.value);
+    this.especeService
+        .createEspece(this.formGroup.value)
+        .subscribe(
+          data=>{this.createEspece.emit(this.formGroup.value);
+            this.snackBar.open('L"Espèce a bien été créer', 'OK', { verticalPosition: 'top' });
+            this.router.navigate(['/espece'])},
+          error=>console.log(error)
+        );
   }
 
   reset(){

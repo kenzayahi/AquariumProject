@@ -16,9 +16,14 @@ export class EspeceService {
     return this.httpClient.get<Array<Espece>>('/especes')
   }
 
+  deleteEspece(id: number): Observable<EntityResponseType> {
+    return this.httpClient.delete<Espece>(`'especes'/${id}`, { observe: 'response' });
+  }
   createEspece(espece:Espece): Observable<EntityResponseType> {
-    console.log("creaaaaaaaaaaate")
     return this.httpClient.post<Espece>('/especes', espece, { observe: 'response' });
   }
 
+  updateEspece(espece: Espece): Observable<EntityResponseType> {
+    return this.httpClient.post<Espece>('/especes' + '/' + espece.id, espece, { observe: 'response' });
+  }
 }
