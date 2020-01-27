@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AnimalService} from "../../animal/animal.service";
+import {EspeceService} from '../espece.service';
+import {RegimeAlimentaire} from '../espece';
 
 @Component({
   selector: 'app-espece',
@@ -10,9 +11,9 @@ import {AnimalService} from "../../animal/animal.service";
 export class EspeceEditComponent implements OnInit {
 
   formGroup: FormGroup;
-  post: any = '';
+  regimeAlimentaire=[ RegimeAlimentaire.piscivore,RegimeAlimentaire.alguivore,RegimeAlimentaire.planctonivore]
 
-  constructor(private formBuilder: FormBuilder,private animalService:AnimalService) {
+  constructor(private formBuilder: FormBuilder,private especeService:EspeceService) {
   }
 
   ngOnInit() {
@@ -29,8 +30,8 @@ export class EspeceEditComponent implements OnInit {
   }
   onCreateEspece(){
     console.log("$$$$$$$$$$$$$$$$fin************");
-    this.animalService
-      .createAnimal(this.formGroup.value);
+    console.log(this.formGroup.value)
+    this.especeService.createEspece(this.formGroup.value);
   }
 
   reset(){

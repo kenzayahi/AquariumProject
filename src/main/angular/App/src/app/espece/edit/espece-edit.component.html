@@ -1,31 +1,32 @@
 <mat-toolbar color="primary">
-  <span class="fill-remaining-space">Add new Animal</span>
+  <span class="fill-remaining-space">Add new Espece</span>
 </mat-toolbar>
 
 <div class="container" >
   <form [formGroup]="formGroup" (ngSubmit)="onCreateEspece()" class="form">
 
     <mat-form-field class="form-element">
-      <mat-label>Choose Espece</mat-label>
-
-    </mat-form-field>
-
-    <mat-form-field class="form-element">
-      <input  matInput placeholder="Nom" formControlName="Nom">
+      <input  matInput placeholder="Nom" formControlName="nom">
     </mat-form-field>
 
 
     <mat-form-field class="form-element">
-      <input matInput placeholder="Sexe"
-             formControlName="sexe">
+      <input matInput placeholder="Menacee" formControlName="menacee">
     </mat-form-field>
 
     <mat-form-field class="form-element">
-      <input matInput placeholder="Signe Distinctif"
-             formControlName="signe">
+      <input matInput placeholder="Esperance Vie" formControlName="esperanceVie">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit</button>
+    <mat-form-field class="form-element">
+      <mat-label>Choose Regime Alimentaire</mat-label>
+      <mat-select formControlName="regimeAlimentaire">
+        <mat-option *ngFor="let regime of regimeAlimentaire" [value]="regime.toString()">
+          {{regime.toString()}}
+        </mat-option>
+      </mat-select>    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" >Submit</button>
 
     <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
 

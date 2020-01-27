@@ -1,1 +1,22 @@
-<p>espece works!</p>
+
+    <mat-toolbar color="primary">
+      <a mat-fab routerLink="/espece/edit"><mat-icon> add</mat-icon></a>
+      <span class="fill-remaining-space">Especes</span>
+
+    </mat-toolbar>
+
+
+    <table border="False">
+      <tbody *ngIf="listEspeces">
+      <tr>
+        <th>Nom</th><th>Esperance Vie</th><th>Regime Alimentaire</th><th>Menacee</th>
+      </tr>
+      <tr *ngFor="let espece of listEspeces">
+        <td>{{espece.nom}}</td>
+        <td>{{espece.esperanceVie}}</td>
+        <td>{{espece.regimeAlimentaire}}</td>
+        <td>{{espece.menacee}}</td>
+      </tr>
+
+      </tbody>
+    </table>

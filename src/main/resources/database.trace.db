@@ -1,0 +1,4 @@
+2020-01-27 10:46:56 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Erreur de syntaxe dans l'instruction SQL "SELECT * FROME[*] ESPECE"
+Syntax error in SQL statement "SELECT * FROME[*] ESPECE"; SQL statement:
+SELECT * FROME ESPECE [42000-200]

@@ -12,6 +12,7 @@ export class AnimalComponent implements OnInit {
   listAnimaux:any;
 
   ngOnInit() {
+    this.onGetanimaux()
   }
   onGetanimaux(){
     this.animalService
