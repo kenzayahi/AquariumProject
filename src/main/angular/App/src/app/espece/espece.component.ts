@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {EspeceService} from './espece.service';
 import {Espece} from './espece';
 
@@ -13,6 +13,8 @@ export class EspeceComponent implements OnInit {
 
   listEspeces:any;
 
+  @Output()
+  updateEspece = new EventEmitter<Espece>();
 
   ngOnInit() {
     this.onGetEspeces()
@@ -26,22 +28,13 @@ export class EspeceComponent implements OnInit {
         })
   }
 
-  onDeleteEspece(id: any){
-    this.especeService
-      .deleteEspece(id)
-      .subscribe(
-        data=>{this.listEspeces=data;},
-        error => {console.log(error);
-        })
+  refresh($event: any) {
+    this.especeService.getEspeces().subscribe(
+      data => this.listEspeces = data
 
-  }
 
-  onUpdateEspece(espece: Espece) {
-    this.especeService
-      .updateEspece(espece)
-      .subscribe(
-        data=>{this.listEspeces=data;},
-        error => {console.log(error);
-        })
+    );
+
+
   }
 }

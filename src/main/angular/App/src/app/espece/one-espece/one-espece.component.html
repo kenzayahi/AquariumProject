@@ -1,0 +1,11 @@
+<td>{{espece.nom}}</td>
+<td>{{espece.esperanceVie}}</td>
+<td>{{espece.regimeAlimentaire}}</td>
+<td>{{espece.menacee}}</td>
+<td>
+  <a mat-mini-fab (click)="onDeleteEspece(espece.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab routerLink="update/{{espece.id}}"><mat-icon> create</mat-icon>
+
+  </a>
+</td>

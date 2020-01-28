@@ -15,18 +15,7 @@
     </tr>
     <tbody *ngIf="listEspeces">
 
-    <tr *ngFor="let espece of listEspeces">
-      <td>{{espece.nom}}</td>
-      <td>{{espece.esperanceVie}}</td>
-      <td>{{espece.regimeAlimentaire}}</td>
-      <td>{{espece.menacee}}</td>
-      <td>
-        <a mat-mini-fab (click)="onDeleteEspece(espece.id)" ><mat-icon> delete</mat-icon>
-        </a>
-        <a mat-mini-fab (click)="onUpdateEspece(espece)"><mat-icon> create</mat-icon>
-
-        </a>
-      </td>
+    <tr *ngFor="let espece of listEspeces;" [espece]="espece" (deleteEspece)="refresh($event)">
     </tr>
     </tbody>
   </table>

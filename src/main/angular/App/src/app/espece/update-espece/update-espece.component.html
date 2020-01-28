@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">Upadate Espece {{id}}</span>
+</mat-toolbar>
+<mat-card>
+
+  <div class="container" >
+    <form [formGroup]="formGroup" (ngSubmit)="onUpdateEspece()" class="form" >
+
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Nom" formControlName="nom">
+      </mat-form-field>
+
+
+      <mat-form-field class="form-element">
+        <input matInput type="number" placeholder="Menacee" formControlName="menacee">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Esperance Vie" formControlName="esperanceVie">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Choose Regime Alimentaire</mat-label>
+        <mat-select formControlName="regimeAlimentaire">
+          <mat-option *ngFor="let regime of regimeAlimentaire" [value]="regime.toString()">
+            {{regime.toString()}}
+          </mat-option>
+        </mat-select>    </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" (click)="onUpdateEspece()" [disabled]="!formGroup.valid" routerLink="/espece">Submit</button>
+
+
+    </form>
+  </div>
+
+</mat-card>

@@ -24,6 +24,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {EspeceEditComponent} from "./espece/edit/espece-edit.component";
 import {MatSnackBarModule, MatTableModule} from '@angular/material';
+import { OneEspeceComponent } from './espece/one-espece/one-espece.component';
+import { UpdateEspeceComponent } from './espece/update-espece/update-espece.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import {MatSnackBarModule, MatTableModule} from '@angular/material';
     EspeceEditComponent,
     EmployeComponent,
     ActivityComponent,
+    OneEspeceComponent,
+    UpdateEspeceComponent,
   ],
   imports: [
     BrowserModule,
