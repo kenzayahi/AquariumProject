@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Espece} from "../espece/espece";
+import {BassinService} from "./bassin.service";
 
 @Component({
   selector: 'app-bassin',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BassinComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bassinService:BassinService) { }
+
+  listBassin:any;
+
+  @Output()
+  updateBassin = new EventEmitter<Espece>();
 
   ngOnInit() {
+    this.onGetBassin()
+  }
+  onGetBassin(){
+    this.bassinService
+      .getBassins()
+      .subscribe(
+        data=>{this.listBassin=data;},
+        error => {console.log(error);
+        })
+  }
+
+  refresh($event: any) {
+    this.bassinService.getBassins().subscribe(
+      data => this.listBassin = data
+
+
+    );
+
+
   }
 
 }

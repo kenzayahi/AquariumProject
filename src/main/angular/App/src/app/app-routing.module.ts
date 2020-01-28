@@ -8,6 +8,9 @@ import {AnimalEditComponent} from "./animal/edit/animal-edit.component";
 import {EspeceEditComponent} from "./espece/edit/espece-edit.component";
 import {UpdateEspeceComponent} from "./espece/update-espece/update-espece.component";
 import {UpdateAnimalComponent} from './animal/update-animal/update-animal.component';
+import {BassinComponent} from "./bassin/bassin.component";
+import {BassinEditComponent} from "./bassin/edit/bassin-edit.component";
+import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.component";
 
 const routes: Routes = [
   {
@@ -33,6 +36,18 @@ const routes: Routes = [
   {
     path: 'activity',
     component: ActivityComponent
+  },
+  {
+    path: 'bassin',
+    component: BassinComponent
+  },
+  {
+    path: 'bassin/edit',
+    component: BassinEditComponent
+  },
+  {
+    path: 'bassin/update/:id',
+    component: UpdateBassinComponent
   },
   {
     path: 'espece/update/:id',

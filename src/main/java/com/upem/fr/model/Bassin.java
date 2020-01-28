@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotEmpty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,7 @@ public class Bassin {
     @Id
     @GeneratedValue(strategy = AUTO)
     public Long id;
+    public int numBassin;
     public int capaciteMax;
     public long volumeEau;
     public Etat etat;
@@ -40,6 +40,14 @@ public class Bassin {
         this.capaciteMax = capaciteMax;
         this.volumeEau = volumeEau;
         this.etat = etat;
+    }
+
+    public int getNumBassin() {
+        return numBassin;
+    }
+
+    public void setNumBassin(int numBassin) {
+        this.numBassin = numBassin;
     }
 
     public Long getId() {
