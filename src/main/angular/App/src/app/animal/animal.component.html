@@ -1,13 +1,9 @@
-<p>animal works!</p>
-<div class="container">
-  <div class="panel panel-primary">
-    <div class="header-panel">
-     List des animaux
-    </div>
-    <div class="mat-body">
-      <Button class="btn btn-primary" (click)="onGetanimaux()">Afficher la list des animaux</Button>
-       <Button class="btn btn-primary" routerLink="/animal/edit"> <mat-icon> add</mat-icon></Button>
-    </div>
+
+<mat-toolbar color="primary">
+  <a mat-fab routerLink="/animal/edit"><mat-icon> add</mat-icon></a>
+  <span class="fill-remaining-space">Animaux</span>
+</mat-toolbar>
+
 
     <table border="False">
       <tbody *ngIf="listAnimaux">
@@ -21,5 +17,3 @@
 
       </tbody>
     </table>
-  </div>
-</div>

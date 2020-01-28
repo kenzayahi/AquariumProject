@@ -5,6 +5,8 @@ import {EspeceComponent} from './espece/espece.component';
 import {EmployeComponent} from "./employe/employe.component";
 import {ActivityComponent} from "./activity/activity.component";
 import {AnimalEditComponent} from "./animal/edit/animal-edit.component";
+import {EspeceEditComponent} from "./espece/edit/espece-edit.component";
+import {UpdateEspeceComponent} from "./espece/update-espece/update-espece.component";
 
 const routes: Routes = [
   {
@@ -20,12 +22,20 @@ const routes: Routes = [
     component: EspeceComponent
   },
   {
+    path: 'espece/edit',
+    component: EspeceEditComponent
+  },
+  {
     path: 'employe',
     component: EmployeComponent
   },
   {
     path: 'activity',
     component: ActivityComponent
+  },
+  {
+    path: 'espece/update/:id',
+    component: UpdateEspeceComponent
   },
 
 ];

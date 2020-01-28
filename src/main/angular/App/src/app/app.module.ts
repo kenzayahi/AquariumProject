@@ -22,6 +22,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import {EspeceEditComponent} from "./espece/edit/espece-edit.component";
+import {MatSnackBarModule, MatTableModule} from '@angular/material';
+import { OneEspeceComponent } from './espece/one-espece/one-espece.component';
+import { UpdateEspeceComponent } from './espece/update-espece/update-espece.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +34,11 @@ import {MatInputModule} from "@angular/material/input";
     AnimalComponent,
     AnimalEditComponent,
     EspeceComponent,
+    EspeceEditComponent,
     EmployeComponent,
     ActivityComponent,
+    OneEspeceComponent,
+    UpdateEspeceComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,9 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,22 @@
-<p>espece works!</p>
+
+    <mat-toolbar color="primary">
+      <a mat-fab routerLink="/espece/edit"><mat-icon> add</mat-icon></a>
+      <span class="fill-remaining-space">Especes</span>
+
+    </mat-toolbar>
+
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">Nom</th>
+      <th class="mat-cell">Esperance Vie</th>
+      <th class="mat-cell">Regime Alimentaire</th>
+      <th class="mat-cell">Menacee</th>
+    </tr>
+    <tbody *ngIf="listEspeces">
+
+    <tr *ngFor="let espece of listEspeces;" [espece]="espece" (deleteEspece)="refresh($event)">
+    </tr>
+    </tbody>
+  </table>
+</mat-card>

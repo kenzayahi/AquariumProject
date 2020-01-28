@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {EspeceService} from './espece.service';
+import {Espece} from './espece';
 
 @Component({
   selector: 'app-espece',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EspeceComponent implements OnInit {
 
-  constructor() { }
+  constructor(private especeService:EspeceService) { }
+
+  listEspeces:any;
+
+  @Output()
+  updateEspece = new EventEmitter<Espece>();
 
   ngOnInit() {
+    this.onGetEspeces()
+  }
+  onGetEspeces(){
+    this.especeService
+      .getEspeces()
+      .subscribe(
+        data=>{this.listEspeces=data;},
+        error => {console.log(error);
+        })
   }
 
+  refresh($event: any) {
+    this.especeService.getEspeces().subscribe(
+      data => this.listEspeces = data
+
+
+    );
+
+
+  }
 }
