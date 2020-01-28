@@ -22,4 +22,11 @@ export class AnimalComponent implements OnInit {
             error => {console.log(error);
     })
   }
+
+  refresh($event:any) {
+    this.animalService.getAnimaux().subscribe(
+      data => this.listAnimaux = data)
+
+
+  }
 }

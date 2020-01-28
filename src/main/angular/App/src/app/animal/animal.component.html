@@ -4,16 +4,22 @@
   <span class="fill-remaining-space">Animaux</span>
 </mat-toolbar>
 
+<mat-card class="card">
 
-    <table border="False">
-      <tbody *ngIf="listAnimaux">
+    <table border="true">
         <tr>
-          <th>Nom</th><th>Sexe</th>
+          <th class="mat-cell">Nom</th>
+          <th class="mat-cell">Sexe</th>
+          <th class="mat-cell">Espece</th>
+          <th class="mat-cell">Date Arrivee</th>
+          <th class="mat-cell">Date Depart</th>
+          <th class="mat-cell">Signe Distinctif</th>
         </tr>
-        <tr *ngFor="let animal of listAnimaux">
-          <td>{{animal.nom}}</td>
-          <td>{{animal.sexe}}</td>
-        </tr>
+      <tbody *ngIf="listAnimaux">
+
+
+      <tr *ngFor="let animal of listAnimaux;" [animal]="animal" (deleteAnimal)="refresh($event)"></tr>
 
       </tbody>
     </table>
+</mat-card>

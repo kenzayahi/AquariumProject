@@ -1,5 +1,7 @@
 package com.upem.fr.model;
 
+import com.upem.fr.model.enumeration.Sexe;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,12 +21,10 @@ public class Animal {
     public Espece espece;
     @NotEmpty
     public String nom;
-    @NotEmpty
-    public String sexe;{}
-    @NotEmpty
+    public Sexe sexe;
     public String  signedistinctif;
     public Date dateArrivee;
-    public Date dateDépart;
+    public Date dateDepart;
 
     public Animal() {
     }
@@ -34,7 +34,7 @@ public class Animal {
 
     }
 
-    public Animal(Espece espece, String nom, String sexe, String signedistinctif) {
+    public Animal(Espece espece, String nom, Sexe sexe, String signedistinctif) {
         this.espece = espece;
         this.nom = nom;
         this.sexe = sexe;
@@ -57,11 +57,11 @@ public class Animal {
         this.nom = nom;
     }
 
-    public String getSexe() {
+    public Sexe getSexe() {
         return sexe;
     }
 
-    public void setSexe(String sexe) {
+    public void setSexe(Sexe sexe) {
         this.sexe = sexe;
     }
 
@@ -81,12 +81,12 @@ public class Animal {
         this.dateArrivee = dateArrivee;
     }
 
-    public Date getDateDépart() {
-        return dateDépart;
+    public Date getDateDepart() {
+        return dateDepart;
     }
 
-    public void setDateDépart(Date dateDépart) {
-        this.dateDépart = dateDépart;
+    public void setDateDepart(Date dateDepart) {
+        this.dateDepart = dateDepart;
     }
 
     public Espece getEspece() {

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AnimalService} from "../animal.service";
+import {Espece} from '../../espece/espece';
+import {MatSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
+import {Sexe} from '../animal';
 
 @Component({
   selector: 'app-animal',
@@ -11,11 +14,19 @@ import {AnimalService} from "../animal.service";
 })
 export class AnimalEditComponent implements OnInit {
   formGroup: FormGroup;
-  post: any = '';
+  sexe=[ Sexe.femmelle,Sexe.male];
 
+
+  @Output()
+  createAnimal= new EventEmitter<Espece>();
 
   especes: any;
-  constructor(private formBuilder: FormBuilder,private animalService:AnimalService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private animalService:AnimalService,
+    protected snackBar: MatSnackBar,
+    protected router:Router,
+  ) {
     this.especes = this.onGetespeces();
   }
 
@@ -25,16 +36,24 @@ export class AnimalEditComponent implements OnInit {
 
   createForm() {
     this.formGroup = this.formBuilder.group({
-      'name': [null, Validators.required],
+      'nom': [null, Validators.required],
       'sexe': [null, Validators.required],
       'espece': [null, Validators.required],
-      'signe': [null, Validators.required],
+      'signedistinctif': [null, Validators.required],
+      'dateArrivee':[null, Validators.required],
+      'dateDepart':[null, Validators.required],
     });
   }
   onCreateAnimal(){
-    console.log("$$$$$$$$$$$$$$$$fin************");
     this.animalService
-        .createAnimal(this.formGroup.value);
+        .createAnimal(this.formGroup.value)
+        .subscribe(
+          data=>{this.createAnimal.emit(this.formGroup.value);
+                       this.snackBar.open('L"animal a bien été créer','OK',{verticalPosition:'top'});
+                       this.router.navigate(['/animal'])},
+          error=>{this.snackBar.open('Error :'+error.toString(),'OK',{verticalPosition:'top'});
+                        console.log(error)}
+  );
   }
 
   reset(){

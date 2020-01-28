@@ -7,6 +7,7 @@ import {ActivityComponent} from "./activity/activity.component";
 import {AnimalEditComponent} from "./animal/edit/animal-edit.component";
 import {EspeceEditComponent} from "./espece/edit/espece-edit.component";
 import {UpdateEspeceComponent} from "./espece/update-espece/update-espece.component";
+import {UpdateAnimalComponent} from './animal/update-animal/update-animal.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'espece/update/:id',
     component: UpdateEspeceComponent
+  },
+  {
+    path: 'animal/update/:id',
+    component: UpdateAnimalComponent
   },
 
 ];
