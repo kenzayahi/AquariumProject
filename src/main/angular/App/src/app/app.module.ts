@@ -26,6 +26,8 @@ import {EspeceEditComponent} from "./espece/edit/espece-edit.component";
 import {MatSnackBarModule, MatTableModule} from '@angular/material';
 import { OneEspeceComponent } from './espece/one-espece/one-espece.component';
 import { UpdateEspeceComponent } from './espece/update-espece/update-espece.component';
+import {OneAnimalComponent} from './animal/one-animal/one-animal.component';
+import {UpdateAnimalComponent} from './animal/update-animal/update-animal.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { UpdateEspeceComponent } from './espece/update-espece/update-espece.comp
     ActivityComponent,
     OneEspeceComponent,
     UpdateEspeceComponent,
+    OneAnimalComponent,
+    UpdateAnimalComponent
   ],
   imports: [
     BrowserModule,

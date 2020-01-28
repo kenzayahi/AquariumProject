@@ -1,8 +1,15 @@
 import {Espece} from "../espece/espece";
 
+export enum Sexe {
+  male='male',
+  femmelle='femmelle'
+}
 export interface Animal{
   id : number;
   nom : string;
-  sexe:string;
+  sexe: Sexe;
   espece : Espece;
+  dateArrivee :Date;
+  dateDepart :Date;
+  signedistinctif:string
 }
