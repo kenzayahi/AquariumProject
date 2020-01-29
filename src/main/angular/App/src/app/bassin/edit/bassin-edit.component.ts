@@ -6,7 +6,7 @@ import {Bassin, Etat} from "../bassin";
 import {BassinService} from "../bassin.service";
 
 @Component({
-  selector: 'app-espece',
+  selector: 'app-bassin',
   templateUrl: './bassin-edit.component.html',
   styleUrls: ['./bassin-edit.component.css']
 })

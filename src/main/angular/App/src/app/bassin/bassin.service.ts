@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Espece} from "../espece/espece";
 import {Bassin} from "./bassin";
 
 type EntityResponseType = HttpResponse<Bassin>;

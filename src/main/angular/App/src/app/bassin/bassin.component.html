@@ -15,7 +15,7 @@
     </tr>
     <tbody *ngIf="listBassin">
 
-    <tr *ngFor="let bassin of listBassin;" [espece]="bassin" (deleteBassin)="refresh($event)">
+    <tr *ngFor="let bassin of listBassin;" [bassin]="bassin" (deleteBassin)="refresh($event)">
     </tr>
     </tbody>
   </table>

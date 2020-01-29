@@ -22,12 +22,20 @@ const routes: Routes = [
     component: AnimalEditComponent
   },
   {
+    path: 'animal/update/:id',
+    component: UpdateAnimalComponent
+  },
+  {
     path: 'espece',
     component: EspeceComponent
   },
   {
     path: 'espece/edit',
     component: EspeceEditComponent
+  },
+  {
+    path: 'espece/update/:id',
+    component: UpdateEspeceComponent
   },
   {
     path: 'employe',
@@ -49,14 +57,8 @@ const routes: Routes = [
     path: 'bassin/update/:id',
     component: UpdateBassinComponent
   },
-  {
-    path: 'espece/update/:id',
-    component: UpdateEspeceComponent
-  },
-  {
-    path: 'animal/update/:id',
-    component: UpdateAnimalComponent
-  },
+
+
 
 ];
 

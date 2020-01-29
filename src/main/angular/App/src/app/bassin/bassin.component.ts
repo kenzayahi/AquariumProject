@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Espece} from "../espece/espece";
 import {BassinService} from "./bassin.service";
+import {Bassin} from './bassin';
 
 @Component({
   selector: 'app-bassin',
@@ -14,7 +14,7 @@ export class BassinComponent implements OnInit {
   listBassin:any;
 
   @Output()
-  updateBassin = new EventEmitter<Espece>();
+  updateBassin = new EventEmitter<Bassin>();
 
   ngOnInit() {
     this.onGetBassin()
