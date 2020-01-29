@@ -1,0 +1,11 @@
+<td>{{bassin.numBassin}}</td>
+<td>{{bassin.capaciteMax}}</td>
+<td>{{bassin.volumeEau}}</td>
+<td>{{bassin.etat}}</td>
+<td>
+  <a mat-mini-fab (click)="onDeleteBassin(bassin.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab routerLink="update/{{bassin.id}}"><mat-icon> create</mat-icon>
+
+  </a>
+</td>

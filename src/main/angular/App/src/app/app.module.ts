@@ -28,6 +28,10 @@ import { OneEspeceComponent } from './espece/one-espece/one-espece.component';
 import { UpdateEspeceComponent } from './espece/update-espece/update-espece.component';
 import {OneAnimalComponent} from './animal/one-animal/one-animal.component';
 import {UpdateAnimalComponent} from './animal/update-animal/update-animal.component';
+import { BassinComponent } from './bassin/bassin.component';
+import {BassinEditComponent} from "./bassin/edit/bassin-edit.component";
+import {OneBassinComponent} from "./bassin/one-bassin/one-bassin.component";
+import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.component";
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import {UpdateAnimalComponent} from './animal/update-animal/update-animal.compon
     OneEspeceComponent,
     UpdateEspeceComponent,
     OneAnimalComponent,
-    UpdateAnimalComponent
+    UpdateAnimalComponent,
+    BassinComponent,
+    BassinEditComponent,
+    OneBassinComponent,
+    UpdateBassinComponent
   ],
   imports: [
     BrowserModule,
