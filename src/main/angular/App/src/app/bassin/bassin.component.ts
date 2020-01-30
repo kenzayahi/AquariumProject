@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BassinService} from "./bassin.service";
-import {Bassin} from './bassin';
+import {Bassin} from '../model/bassin';
 
 @Component({
   selector: 'app-bassin',
