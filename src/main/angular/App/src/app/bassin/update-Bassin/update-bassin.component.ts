@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
-import {Bassin, Etat} from "../bassin";
+import {Bassin, Etat} from "../../model/bassin";
 import {BassinService} from "../bassin.service";
 
 @Component({

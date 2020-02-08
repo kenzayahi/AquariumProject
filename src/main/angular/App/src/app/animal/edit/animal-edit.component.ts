@@ -1,10 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AnimalService} from "../animal.service";
-import {Espece} from '../../espece/espece';
+import {Espece} from '../../model/espece';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
-import {Sexe} from '../animal';
+import {Sexe} from '../../model/animal';
 
 @Component({
   selector: 'app-animal',
@@ -45,6 +45,7 @@ export class AnimalEditComponent implements OnInit {
     });
   }
   onCreateAnimal(){
+    console.log(this.formGroup.value);
     this.animalService
         .createAnimal(this.formGroup.value)
         .subscribe(

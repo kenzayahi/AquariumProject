@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Bassin} from "../bassin";
+import {Bassin} from "../../model/bassin";
 import {BassinService} from "../bassin.service";
 
 @Component({

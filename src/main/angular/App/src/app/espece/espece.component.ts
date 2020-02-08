@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {EspeceService} from './espece.service';
-import {Espece} from './espece';
+import {Espece} from '../model/espece';
 
 @Component({
   selector: 'app-espece',

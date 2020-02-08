@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EspeceService} from '../espece.service';
-import {Espece, RegimeAlimentaire} from '../espece';
+import {Espece, RegimeAlimentaire} from '../../model/espece';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 
