@@ -11,5 +11,5 @@ export interface Espece{
   nom:string;
   esperanceVie : string;
   regimeAlimentaire:RegimeAlimentaire;
- // animalList :Array<Animal>
+  animalList :Array<Animal>
 }
