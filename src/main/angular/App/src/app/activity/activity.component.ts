@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Activity} from "../model/activity";
+import {ActivityService} from "./activity.service";
 
 @Component({
   selector: 'app-activity',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivityComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private activityService:ActivityService) { }
+
+  listActivity:any;
+
+  @Output()
+  updateActivity = new EventEmitter<Activity>();
 
   ngOnInit() {
+  }
+
+  refresh($event: any) {
+    this.activityService.getActivities().subscribe(
+      data => this.listActivity = data
+    );
+
+
   }
 
 }

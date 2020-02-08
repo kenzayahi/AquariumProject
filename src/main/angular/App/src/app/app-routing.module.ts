@@ -13,6 +13,8 @@ import {BassinEditComponent} from "./bassin/edit/bassin-edit.component";
 import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.component";
 import {EmployeEditComponent} from './employe/edit/employe-edit.component';
 import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.component';
+import {ActivityEditComponent} from "./activity/edit/activity-edit.component";
+import {UpdateActivityComponent} from "./activity/update-activity/update-activity.component";
 
 const routes: Routes = [
   {
@@ -54,6 +56,14 @@ const routes: Routes = [
   {
     path: 'activity',
     component: ActivityComponent
+  },
+  {
+    path: 'activity/edit',
+    component: ActivityEditComponent
+  },
+  {
+    path: 'activity/update/:id',
+    component: UpdateActivityComponent
   },
   {
     path: 'bassin',
