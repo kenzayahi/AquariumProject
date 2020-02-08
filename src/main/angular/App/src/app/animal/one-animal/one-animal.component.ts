@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Animal} from '../animal';
+import {Animal} from '../../model/animal';
 import {AnimalService} from '../animal.service';
 
 @Component({

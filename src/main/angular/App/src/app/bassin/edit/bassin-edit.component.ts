@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
-import {Bassin, Etat} from "../bassin";
+import {Bassin, Etat} from "../../model/bassin";
 import {BassinService} from "../bassin.service";
 
 @Component({

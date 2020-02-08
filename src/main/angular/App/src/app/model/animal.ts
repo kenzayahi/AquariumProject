@@ -1,4 +1,4 @@
-import {Espece} from "../espece/espece";
+import {Espece} from "./espece";
 
 export enum Sexe {
   male='male',
