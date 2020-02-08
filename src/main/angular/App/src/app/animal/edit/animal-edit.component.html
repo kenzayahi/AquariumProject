@@ -8,7 +8,7 @@
     <mat-form-field class="form-element">
       <mat-label>Choose Espece</mat-label>
       <mat-select formControlName="espece">
-        <mat-option *ngFor="let espece of especes" [value]="espece">
+        <mat-option *ngFor="let espece of especes" [value]="espece.id">
           {{espece.menacee}}
         </mat-option>
       </mat-select>

@@ -11,6 +11,9 @@ import {UpdateAnimalComponent} from './animal/update-animal/update-animal.compon
 import {BassinComponent} from "./bassin/bassin.component";
 import {BassinEditComponent} from "./bassin/edit/bassin-edit.component";
 import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.component";
+import {SecteurComponent} from "./secteur/secteur.component";
+import {SecteurEditComponent} from "./secteur/edit/secteur-edit.component";
+import {UpdateSecteurComponent} from "./secteur/update-secteur/update-secteur.component";
 
 const routes: Routes = [
   {
@@ -24,6 +27,18 @@ const routes: Routes = [
   {
     path: 'animal/update/:id',
     component: UpdateAnimalComponent
+  },
+  {
+    path: 'secteur',
+    component: SecteurComponent
+  },
+  {
+    path: 'secteur/edit',
+    component: SecteurEditComponent
+  },
+  {
+    path: 'secteur/update/:id',
+    component: UpdateSecteurComponent
   },
   {
     path: 'espece',

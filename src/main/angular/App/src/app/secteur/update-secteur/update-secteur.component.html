@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">Upadate Secteur {{id}}</span>
+</mat-toolbar>
+<mat-card>
+
+  <div class="container" >
+    <form [formGroup]="formGroup" (ngSubmit)="onUpdateEspece()" class="form" >
+
+      <mat-form-field class="form-element">
+        <input  matInput placeholder="Nom" formControlName="nom">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput type="text" placeholder="Localisation" formControlName="localisation">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" (click)="onUpdateEspece()" [disabled]="!formGroup.valid" routerLink="/secteur">Submit</button>
+
+
+    </form>
+  </div>
+
+</mat-card>

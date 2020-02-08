@@ -32,6 +32,10 @@ import { BassinComponent } from './bassin/bassin.component';
 import {BassinEditComponent} from "./bassin/edit/bassin-edit.component";
 import {OneBassinComponent} from "./bassin/one-bassin/one-bassin.component";
 import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.component";
+import { SecteurComponent } from './secteur/secteur.component';
+import { SecteurEditComponent } from './secteur/edit/secteur-edit.component';
+import { OneSecteurComponent } from './secteur/one-secteur/one-secteur.component';
+import { UpdateSecteurComponent } from './secteur/update-secteur/update-secteur.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,11 @@ import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.compon
     BassinComponent,
     BassinEditComponent,
     OneBassinComponent,
-    UpdateBassinComponent
+    UpdateBassinComponent,
+    SecteurComponent,
+    SecteurEditComponent,
+    OneSecteurComponent,
+    UpdateSecteurComponent
   ],
   imports: [
     BrowserModule,
