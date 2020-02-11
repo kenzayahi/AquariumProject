@@ -31,10 +31,26 @@ public class AnimalRessource {
         return animalService.create(animal);
     }
 
+    @PostMapping("/animaux_bis/{id}")
+    public Animal createBis(@Valid   @RequestBody Animal animal, @PathVariable Long id) {
+        Optional<Espece>optionalEspece=(especeService.getOne(id));
+        animal.setEspece(optionalEspece.get());
+        return animalService.create(animal);
+    }
+
     @GetMapping("animaux/{id}")
     public Optional<Animal> getOne(@PathVariable Long id) {
         try {
             return animalService.getOne(id);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
+    }
+
+    @GetMapping("animaux_get_espece/{id}")
+    public Optional<Espece> getOneEspece(@PathVariable Long id) {
+        try {
+            return especeService.getOne((animalService.getOne(id)).get().espece.id);
         }catch (NotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
         }
@@ -45,8 +61,9 @@ public class AnimalRessource {
         animalService.delete(id);
     }
 
-    @PostMapping("animaux/{id}")
-    public Animal update( @Valid @PathVariable Long id, @RequestBody Animal animal) {
+    @PostMapping("animaux/{id}/{id2}")
+    public Animal update( @Valid @PathVariable Long id,@Valid @PathVariable Long id2, @RequestBody Animal animal) {
+        animal.espece = this.especeService.getOne(id2).get();
         return animalService.update(id, animal);
     }
 }

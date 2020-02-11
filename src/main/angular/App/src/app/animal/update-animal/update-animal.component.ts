@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Animal, Sexe} from '../../model/animal';
 import {AnimalService} from '../animal.service';
+import {Espece} from "../../model/espece";
 
 @Component({
   selector: 'app-update-animal',
@@ -27,30 +28,50 @@ export class UpdateAnimalComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.animalService.getAnimal(this.id).subscribe(data => {
 
-        this.formGroup = new FormGroup({
-          nom: new FormControl(data.nom),
-          sexe: new FormControl(data.sexe),
-          dateArrivee: new FormControl(data.dateArrivee),
-          dateDepart: new FormControl(data.dateDepart),
-          signedistinctif: new FormControl(data.signedistinctif),
-          espece: new FormControl(data.espece.nom),
+    this.animalService.getEspeceFromAnimal(this.id).subscribe(
 
-        });
+      data2 => {
+
+
+        this.animalService.getAnimal(this.id).subscribe(data => {
+            console.log(data),
+              this.formGroup = new FormGroup({
+                nom: new FormControl(data.nom),
+                sexe: new FormControl(data.sexe),
+                dateArrivee: new FormControl(''),
+                dateDepart: new FormControl(''),
+                signedistinctif: new FormControl(data.signedistinctif),
+                espece: new FormControl(data2.id)
+
+
+              });
+          }
+        );
       }
-    );
+    )
+
+
   }
 
   onUpdateAnimal() {
     let animal: Animal =  this.formGroup.value;
     animal.id = this.id;
-    this.animalService.updateAnimal(animal).subscribe(
-      data => this.updateAnimal.emit(animal),
-      error => console.log(error)
-    );
+    console.log(this.formGroup.value)
+    let idEspece = this.formGroup.get('espece').value;
+    console.log("id " + idEspece)
+    console.log(this.formGroup.get('sexe').value)
+          animal.espece = null;
+        this.animalService.updateAnimalBis(animal, idEspece.id).subscribe(
+          data => this.updateAnimal.emit(animal),
+          error => console.log(error)
+        );
 
-  }
+      }
+
+
+
+
   reset(){
     this.formGroup.reset();
   }
