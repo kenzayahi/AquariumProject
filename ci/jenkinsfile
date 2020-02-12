@@ -6,12 +6,17 @@ pipeline {
                 sh'mvn clean package'
             }
         }
-        stage ('Copy Jar') {
+        stage ('Copy App') {
             steps {
                 sh'sh -c "cp target/fr-0.0.1-SNAPSHOT.jar /home/kenyahi/Documents/DeOps/bin/"'
             }
         }
-        stage ('Deploy Jar') {
+        stage ('Shutdown Current App') {
+            steps {
+                sh'sh -c "curl -x POST http://localhost:8080/actuator/shutdown'
+            }
+        }
+        stage ('Deploy App') {
             steps {
                 sh'sh -c "java -jar /home/kenyahi/Documents/DeOps/bin/fr-0.0.1-SNAPSHOT.jar > /home/kenyahi/Documents/DeOps/bin/out.log &"'
             }
