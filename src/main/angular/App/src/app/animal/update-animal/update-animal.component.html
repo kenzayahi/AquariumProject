@@ -1,61 +1,14 @@
 <mat-toolbar color="primary">
-  <span class="fill-remaining-space">Update Animal {{id}}</span>
+  <span class="fill-remaining-space">Update Animal {{this.id}}</span>
 </mat-toolbar>
 
-<div class="container">
-  <form [formGroup]="formGroup" class="form">
-<!--
-   <div class="item">
-      <label>
-        Id :
-        <input type="text" formControlName="id" disabled>
-      </label>
-    </div>
-    <div class="item">
-      <label>
-        Nom :
-        <input type="text" formControlName="nom">
-      </label>
-    </div>
-    <div class="item">
-      <label>
-        Sexe :
-        <select formControlName="sexe">
-          <option *ngFor="let sexe of sexe" [value]="sexe" >{{sexe.toString()}}</option>
-        </select>
-      </label>
-    </div>
-    <div class="item">
-      <label>
-        Espèce :
-        <select formControlName="espece">
-          <option *ngFor="let espece of especes" [value]="espece.id" >{{espece.nom}}</option>
-        </select>
-      </label>
-    </div>
-    <div class="item">
-      <label>
-        Signe distinctif :
-        <input type="text" formControlName="signedistinctif">
-      </label>
-    </div>
-    <div class="item">
-      <label>
-        Date d'arrivée :
-        <input type="date" formControlName="dateArrivee">
-      </label>
-    </div>
-    <div class="item">
-      <label>
-        Date départ :
-        <input type="date" formControlName="dateDepart">
-      </label>
-    </div>
-    <div class="button">
-      <button (click)="onUpdateAnimal()" type="submit" class="button" [disabled]="!formGroup.valid">Changer</button>
+<div class="container" >
+  <form [formGroup]="formGroup" (ngSubmit)="onUpdateAnimal()" class="form" *ngIf="formGroup">
 
-    </div>
-    -->
+    <mat-form-field class="form-element">
+      <input  matInput placeholder="Nom" formControlName="nom">
+    </mat-form-field>
+
     <mat-form-field class="form-element">
       <mat-label>Choose Espece</mat-label>
       <mat-select formControlName="espece">
@@ -92,6 +45,7 @@
     <button mat-raised-button color="primary" (click)="onUpdateAnimal()" type="submit" class="button" [disabled]="!formGroup.valid">Submit</button>
 
     <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
+
 
   </form>
 </div>

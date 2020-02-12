@@ -31,7 +31,6 @@ export class AnimalService {
   }
 
   createAnimal(animal:Animal):Observable<Animal>{
-    console.log(animal)
     return this.httpClient.post<Animal>('/animaux',animal);
 
   }

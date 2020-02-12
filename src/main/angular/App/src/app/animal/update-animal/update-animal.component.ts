@@ -15,6 +15,7 @@ export class UpdateAnimalComponent implements OnInit {
   sexe=[ Sexe.femmelle,Sexe.male];
 
   id:number;
+  nom:string;
   formGroup: FormGroup;
   especes: any;
   @Output()
@@ -35,8 +36,8 @@ export class UpdateAnimalComponent implements OnInit {
 
 
         this.animalService.getAnimal(this.id).subscribe(data => {
-            console.log(data),
               this.formGroup = new FormGroup({
+               id: new FormControl(this.id),
                 nom: new FormControl(data.nom),
                 sexe: new FormControl(data.sexe),
                 dateArrivee: new FormControl(''),
@@ -46,6 +47,7 @@ export class UpdateAnimalComponent implements OnInit {
 
 
               });
+              this.nom = data.nom;
           }
         );
       }
@@ -57,12 +59,9 @@ export class UpdateAnimalComponent implements OnInit {
   onUpdateAnimal() {
     let animal: Animal =  this.formGroup.value;
     animal.id = this.id;
-    console.log(this.formGroup.value)
     let idEspece = this.formGroup.get('espece').value;
-    console.log("id " + idEspece)
-    console.log(this.formGroup.get('sexe').value)
           animal.espece = null;
-        this.animalService.updateAnimalBis(animal, idEspece.id).subscribe(
+        this.animalService.updateAnimalBis(animal, idEspece).subscribe(
           data => this.updateAnimal.emit(animal),
           error => console.log(error)
         );

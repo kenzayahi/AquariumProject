@@ -48,9 +48,9 @@ public class AnimalRessource {
     }
 
     @GetMapping("animaux_get_espece/{id}")
-    public Optional<Espece> getOneEspece(@PathVariable Long id) {
+    public Optional<Espece> getEspece(@PathVariable Long id) {
         try {
-            return especeService.getOne((animalService.getOne(id)).get().espece.id);
+            return especeService.getOne(animalService.getOne(id).get().getEspece().getId());
         }catch (NotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
         }
