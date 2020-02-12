@@ -11,5 +11,10 @@ pipeline {
                 sh'sh -c "cp target/fr-0.0.1-SNAPSHOT.jar /home/kenyahi/Documents/DeOps/bin/"'
             }
         }
+        stage ('Deploy Jar') {
+            steps {
+                sh'sh -c "java -jar /home/kenyahi/Documents/DeOps/bin/fr-0.0.1-SNAPSHOT.jar"'
+            }
+        }
     }
 }
