@@ -3,22 +3,22 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                sh'mvn clean package'
+                bat'mvn clean package'
             }
         }
         stage ('Copy App') {
             steps {
-                sh'sh -c "cp target/fr-0.0.1-SNAPSHOT.jar /C/outils/bin/"'
+                bat'sh -c "cp target/fr-0.0.1-SNAPSHOT.jar /C/outils/bin/"'
             }
         }
         stage ('Shutdown Current App') {
             steps {
-                sh'sh -c "curl -x POST http://localhost:8080/actuator/shutdown"'
+                bat'sh -c "curl -x POST http://localhost:8080/actuator/shutdown"'
             }
         }
         stage ('Deploy App') {
             steps {
-                sh'sh -c "java -jar  /C/outils/bin/fr-0.0.1-SNAPSHOT.jar >  /C/outils/bin/out.log &"'
+                bat'sh -c "java -jar  /C/outils/bin/fr-0.0.1-SNAPSHOT.jar >  /C/outils/bin/out.log &"'
             }
         }
     }
