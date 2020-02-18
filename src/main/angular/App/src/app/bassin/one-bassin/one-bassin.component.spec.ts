@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {OneBassinComponent} from "./one-bassin.component";
 
-describe('OneBassinComponent', () => {
+describe('OneEmployeComponent', () => {
   let component: OneBassinComponent;
   let fixture: ComponentFixture<OneBassinComponent>;
 

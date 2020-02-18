@@ -61,7 +61,7 @@ export class UpdateAnimalComponent implements OnInit {
     animal.id = this.id;
     let idEspece = this.formGroup.get('espece').value;
           animal.espece = null;
-        this.animalService.updateAnimalBis(animal, idEspece).subscribe(
+        this.animalService.updateAnimal(animal, idEspece).subscribe(
           data => this.updateAnimal.emit(animal),
           error => console.log(error)
         );

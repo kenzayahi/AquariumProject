@@ -24,15 +24,8 @@ public class AnimalRessource {
         return animalService.getAll();
     }
 
-    @PostMapping("/animaux")
-    public Animal create(@Valid   @RequestBody Animal animal) {
-        Optional<Espece>optionalEspece=(especeService.getOne(animal.getEspece().getId()));
-        animal.setEspece(optionalEspece.get());
-        return animalService.create(animal);
-    }
-
-    @PostMapping("/animaux_bis/{id}")
-    public Animal createBis(@Valid   @RequestBody Animal animal, @PathVariable Long id) {
+    @PostMapping("/animaux/{id}")
+    public Animal create(@Valid   @RequestBody Animal animal, @PathVariable Long id) {
         Optional<Espece>optionalEspece=(especeService.getOne(id));
         animal.setEspece(optionalEspece.get());
         return animalService.create(animal);
@@ -61,9 +54,10 @@ public class AnimalRessource {
         animalService.delete(id);
     }
 
+
     @PostMapping("animaux/{id}/{id2}")
-    public Animal update( @Valid @PathVariable Long id,@Valid @PathVariable Long id2, @RequestBody Animal animal) {
-        animal.espece = this.especeService.getOne(id2).get();
+    public Animal update( @Valid @PathVariable Long id, @Valid @PathVariable Long id2, @RequestBody Animal animal) {
+        animal.espece = especeService.getOne(id2).get();
         return animalService.update(id, animal);
     }
 }

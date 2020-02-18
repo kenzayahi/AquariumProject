@@ -25,30 +25,22 @@ export class AnimalService {
   getAnimal(id: number) : Observable<Animal> {
     return this.httpClient.get<Animal>('/animaux/' + id);
   }
-
   getEspeceFromAnimal(id: number) : Observable<Espece> {
     return this.httpClient.get<Espece>('/animaux_get_espece/' + id);
   }
 
-  createAnimal(animal:Animal):Observable<Animal>{
-    return this.httpClient.post<Animal>('/animaux',animal);
 
-  }
-
-  createAnimalBis(animal:Animal, id : number):Observable<Animal>{
+  createAnimal(animal:Animal, id : number):Observable<Animal>{
     console.log(animal)
-    return this.httpClient.post<Animal>('/animaux_bis/' + id,animal);
+    return this.httpClient.post<Animal>('/animaux/' + id,animal);
 
   }
 
   deleteAnimal(id: number): Observable<HttpResponse<Animal>> {
     return this.httpClient.delete<Animal>('/animaux/' + id, { observe: 'response' });
   }
-  updateAnimal(animal: Animal): Observable<HttpResponse<Animal>> {
-    return this.httpClient.post<Animal>('/animaux' + '/' + animal.id, animal, { observe: 'response' });
-  }
 
-updateAnimalBis(animal: Animal, idEspece : number): Observable<HttpResponse<Animal>> {
+ updateAnimal(animal: Animal, idEspece : number): Observable<HttpResponse<Animal>> {
   return this.httpClient.post<Animal>('/animaux' + '/' + animal.id + '/' + idEspece, animal, { observe: 'response' });
 }
 

@@ -11,6 +11,8 @@ import {UpdateAnimalComponent} from './animal/update-animal/update-animal.compon
 import {BassinComponent} from "./bassin/bassin.component";
 import {BassinEditComponent} from "./bassin/edit/bassin-edit.component";
 import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.component";
+import {EmployeEditComponent} from './employe/edit/employe-edit.component';
+import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.component';
 
 const routes: Routes = [
   {
@@ -40,6 +42,14 @@ const routes: Routes = [
   {
     path: 'employe',
     component: EmployeComponent
+  },
+  {
+    path: 'employe/edit',
+    component: EmployeEditComponent
+  },
+  {
+    path: 'employe/update/:id',
+    component: UpdateEmployeComponent
   },
   {
     path: 'activity',

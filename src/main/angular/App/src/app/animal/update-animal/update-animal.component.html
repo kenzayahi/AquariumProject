@@ -13,7 +13,7 @@
       <mat-label>Choose Espece</mat-label>
       <mat-select formControlName="espece">
         <mat-option *ngFor="let espece of especes" [value]="espece.id">
-          {{espece.id}}
+          {{espece.nom}}
         </mat-option>
       </mat-select>
     </mat-form-field>
