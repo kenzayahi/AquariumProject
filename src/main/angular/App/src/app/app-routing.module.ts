@@ -14,6 +14,8 @@ import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.compon
 import {SecteurComponent} from "./secteur/secteur.component";
 import {SecteurEditComponent} from "./secteur/edit/secteur-edit.component";
 import {UpdateSecteurComponent} from "./secteur/update-secteur/update-secteur.component";
+import {EmployeEditComponent} from './employe/edit/employe-edit.component';
+import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.component';
 
 const routes: Routes = [
   {
@@ -55,6 +57,14 @@ const routes: Routes = [
   {
     path: 'employe',
     component: EmployeComponent
+  },
+  {
+    path: 'employe/edit',
+    component: EmployeEditComponent
+  },
+  {
+    path: 'employe/update/:id',
+    component: UpdateEmployeComponent
   },
   {
     path: 'activity',

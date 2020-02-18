@@ -36,6 +36,9 @@ import { SecteurComponent } from './secteur/secteur.component';
 import { SecteurEditComponent } from './secteur/edit/secteur-edit.component';
 import { OneSecteurComponent } from './secteur/one-secteur/one-secteur.component';
 import { UpdateSecteurComponent } from './secteur/update-secteur/update-secteur.component';
+import {EmployeEditComponent} from './employe/edit/employe-edit.component';
+import {OneEmployeComponent} from './employe/one-employe/one-employe.component';
+import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,9 @@ import { UpdateSecteurComponent } from './secteur/update-secteur/update-secteur.
     SecteurEditComponent,
     OneSecteurComponent,
     UpdateSecteurComponent
+    EmployeEditComponent,
+    OneEmployeComponent,
+    UpdateEmployeComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {EspeceService} from "../espece.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import {Espece, RegimeAlimentaire} from "../espece";
+import {Espece, RegimeAlimentaire} from "../../model/espece";
 
 @Component({
   selector: 'app-update-espece',

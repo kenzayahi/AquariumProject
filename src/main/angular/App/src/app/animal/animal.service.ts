@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Animal} from "./animal";
-import {Espece} from "../espece/espece";
+import {Animal} from "../model/animal";
+import {Espece} from "../model/espece";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,10 @@ export class AnimalService {
     return this.httpClient.get<Animal>('/animaux/' + id);
   }
 
+    getEspeceFromAnimal(id: number) : Observable<Espece> {
+      return this.httpClient.get<Espece>('/animaux_get_espece/' + id);
+    }
+
   createAnimal(animal:Animal):Observable<Animal>{
     return this.httpClient.post<Animal>('/animaux',animal);
 
@@ -36,5 +40,9 @@ export class AnimalService {
   }
   updateAnimal(animal: Animal): Observable<HttpResponse<Animal>> {
     return this.httpClient.post<Animal>('/animaux' + '/' + animal.id, animal, { observe: 'response' });
+  }
+
+  updateAnimalBis(animal: Animal, idEspece : number): Observable<HttpResponse<Animal>> {
+    return this.httpClient.post<Animal>('/animaux' + '/' + animal.id + '/' + idEspece, animal, { observe: 'response' });
   }
 }
