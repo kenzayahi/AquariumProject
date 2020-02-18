@@ -4,6 +4,7 @@ import com.upem.fr.model.Animal;
 import com.upem.fr.model.Espece;
 import com.upem.fr.repository.AnimalRepository;
 import com.upem.fr.service.AnimalService;
+import com.upem.fr.service.EspeceService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.upem.fr.model.enumeration.RegimeAlimentaire.piscivore;
+import static com.upem.fr.model.enumeration.Sexe.male;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
@@ -34,6 +36,8 @@ class AnimalRessourceTest {
     @MockBean
     private AnimalService animalService;
     @MockBean
+    private EspeceService especeService;
+    @MockBean
     private AnimalRepository animalRepository;
     @Autowired
     private TestRestTemplate restTemplate;
@@ -47,9 +51,13 @@ class AnimalRessourceTest {
 
     @Test
     void create() {
-        Animal animal = new Animal("Requin");
+        Espece espece = new Espece("Poisson", piscivore, 0);
+        espece.setId(2L);
+        Animal animal = new Animal(espece,"Requin", male, "aucun");
         animal.setId(1L);
+        System.out.println(animal);
         when(animalService.create(animal)).thenReturn(animal);
+        when(especeService.getOne(2L)).thenReturn(Optional.of(espece));
 
         Animal result = this.restTemplate.postForObject("http://localhost:" + port + "/animaux", animal, Animal.class);
         assertEquals(animal, result);
@@ -58,7 +66,7 @@ class AnimalRessourceTest {
     @Test
     void getOne() {
         Espece espece = new Espece("Poisson", piscivore, 0);
-        Animal animal = new Animal(espece,"Requin", "mal", "aucun");
+        Animal animal = new Animal(espece,"Requin", male, "aucun");
         animal.setId(1L);
         when(animalService.getOne(1L)).thenReturn(Optional.of(animal));
         HttpEntity<Animal> request = new HttpEntity<>(animal);
@@ -73,7 +81,7 @@ class AnimalRessourceTest {
     void delete() {
 
         Espece espece = new Espece("Poisson", piscivore, 0);
-        Animal animal = new Animal(espece,"Requin", "mal", "aucun");
+        Animal animal = new Animal(espece,"Requin", male, "aucun");
         animal.setId(1L);
 
         when(animalService.getOne(1L)).thenReturn(Optional.of(animal));
@@ -96,10 +104,10 @@ class AnimalRessourceTest {
     @Test
     void update() {
         Espece espece = new Espece("Poisson", piscivore, 0);
-        Animal animal = new Animal(espece,"Requin", "mal", "aucun");
+        Animal animal = new Animal(espece,"Requin", male, "aucun");
         animal.setId(1L);
         when(animalService.create(animal)).thenReturn(animal);
-        Animal animal2 = new Animal(espece,"Requin", "mal", "aucun");
+        Animal animal2 = new Animal(espece,"Requin", male, "aucun");
         animal2.setId(2L);
         when(animalService.update(1L, animal2)).thenReturn(animal2);
 

@@ -2,6 +2,7 @@ package com.upem.fr.ressource;
 
 import com.upem.fr.model.Animal;
 import com.upem.fr.model.Bassin;
+import com.upem.fr.model.Espece;
 import com.upem.fr.repository.AnimalRepository;
 import com.upem.fr.repository.BassinRepository;
 import com.upem.fr.service.AnimalService;
@@ -51,7 +52,7 @@ class BassinRessourceTest {
         bassin.setId(1L);
         when(bassinService.create(bassin)).thenReturn(bassin);
 
-        Animal result = this.restTemplate.postForObject("http://localhost:" + port + "/bassins", bassin, Animal.class);
+        Bassin result = this.restTemplate.postForObject("http://localhost:" + port + "/bassins", bassin, Bassin.class);
         assertEquals(bassin, result);
     }
 

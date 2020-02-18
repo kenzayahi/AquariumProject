@@ -70,7 +70,9 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-			<groupId>org.opentest4j</groupId>
+		<dependency>
+
+		<groupId>org.opentest4j</groupId>
 			<artifactId>opentest4j</artifactId>
 			<version>1.1.1</version>
 		</dependency>
