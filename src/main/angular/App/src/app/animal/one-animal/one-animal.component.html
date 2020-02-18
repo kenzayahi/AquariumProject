@@ -1,0 +1,14 @@
+<td>{{animal.nom}}</td>
+<td>{{animal.sexe}}</td>
+<td>{{animal.espece.nom}}</td>
+<td>{{animal.dateArrivee}}</td>
+<td>{{animal.dateDepart}}</td>
+<td>{{animal.signedistinctif}}</td>
+
+<td>
+  <a mat-mini-fab (click)="onDeleteAnimal(animal.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab routerLink="update/{{animal.id}}"><mat-icon> create</mat-icon>
+
+  </a>
+</td>

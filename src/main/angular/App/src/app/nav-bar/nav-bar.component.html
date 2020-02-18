@@ -6,8 +6,12 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item  routerLink="/">Accueil</a>
-      <a mat-list-item routerLink="/espece">Especes</a>
       <a mat-list-item  routerLink="/animal">Animal</a>
+      <a mat-list-item routerLink="/espece">Especes</a>
+      <a mat-list-item routerLink="/bassin">Bassin</a>
+      <a mat-list-item routerLink="/employe">Employe</a>
+
+
 
     </mat-nav-list>
   </mat-sidenav>
@@ -26,8 +30,9 @@
         alt="Logo"
         src="../assets/fish_13458.ico"
       />    </mat-toolbar>
-    <!-- Add Content Here -->
-    <router-outlet></router-outlet>
+
+
+      <router-outlet></router-outlet>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

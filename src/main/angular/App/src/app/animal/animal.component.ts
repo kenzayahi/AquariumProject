@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AnimalService} from "./animal.service";
 
 @Component({
   selector: 'app-animal',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./animal.component.css']
 })
 export class AnimalComponent implements OnInit {
+  constructor(private animalService:AnimalService) { }
 
-  constructor() { }
+  listAnimaux:any;
 
   ngOnInit() {
+    this.onGetanimaux()
+  }
+  onGetanimaux(){
+    this.animalService
+        .getAnimaux()
+        .subscribe(
+          data=>{this.listAnimaux=data;},
+            error => {console.log(error);
+    })
   }
 
+  refresh($event:any) {
+    this.animalService.getAnimaux().subscribe(
+      data => this.listAnimaux = data)
+
+
+  }
 }

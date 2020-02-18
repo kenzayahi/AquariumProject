@@ -1,0 +1,22 @@
+
+<mat-toolbar color="primary">
+  <a mat-fab routerLink="/bassin/edit"><mat-icon> add</mat-icon></a>
+  <span class="fill-remaining-space">Bassin</span>
+
+</mat-toolbar>
+
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">Numéro Bassin</th>
+      <th class="mat-cell">Capacite Max</th>
+      <th class="mat-cell">Volume Eau</th>
+      <th class="mat-cell">Etat</th>
+    </tr>
+    <tbody *ngIf="listBassin">
+
+    <tr *ngFor="let bassin of listBassin;" [bassin]="bassin" (deleteBassin)="refresh($event)">
+    </tr>
+    </tbody>
+  </table>
+</mat-card>

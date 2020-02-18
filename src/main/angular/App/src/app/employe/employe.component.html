@@ -1,0 +1,24 @@
+
+<mat-toolbar color="primary">
+  <a mat-fab routerLink="/employe/edit"><mat-icon> add</mat-icon></a>
+  <span class="fill-remaining-space">Employe</span>
+
+</mat-toolbar>
+
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">Nom</th>
+      <th class="mat-cell">Prénom</th>
+      <th class="mat-cell">Date Naissance</th>
+      <th class="mat-cell">Num Sécurite</th>
+      <th class="mat-cell">Adress</th>
+
+    </tr>
+    <tbody *ngIf="listEmploye">
+
+    <tr *ngFor="let employe of listEmploye;" [employe]="employe" (deleteEmploye)="refresh($event)">
+    </tr>
+    </tbody>
+  </table>
+</mat-card>
