@@ -1,6 +1,5 @@
 package com.upem.fr.ressource;
 
-import com.upem.fr.model.Bassin;
 import com.upem.fr.model.Secteur;
 import com.upem.fr.service.BassinService;
 import com.upem.fr.service.SecteurService;
