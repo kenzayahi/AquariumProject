@@ -13,7 +13,12 @@ pipeline {
         }
         stage ('Shutdown Current App') {
             steps {
-                sh'sh -c "curl -x POST http://localhost:8080/actuator/shutdown"'
+                try {
+                    sh'sh -c "curl -x POST http://localhost:8080/actuator/shutdown"'
+                }catch(Exception e){
+
+                }
+
             }
         }
         stage ('Deploy App') {
