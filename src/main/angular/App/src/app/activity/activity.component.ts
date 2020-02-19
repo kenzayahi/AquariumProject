@@ -10,22 +10,29 @@ import {ActivityService} from "./activity.service";
 export class ActivityComponent implements OnInit {
 
 
-  constructor(private activityService:ActivityService) { }
+  constructor(private activityService: ActivityService) { }
 
-  listActivity:any;
+  listActivity: any;
 
   @Output()
   updateActivity = new EventEmitter<Activity>();
 
   ngOnInit() {
+    this.onGetActivity();
+  }
+  onGetActivity() {
+    this.activityService
+      .getActivities()
+      .subscribe(
+        data => {this.listActivity = data;
+        },
+        error => {console.log(error);
+        });
   }
 
   refresh($event: any) {
     this.activityService.getActivities().subscribe(
-      data => this.listActivity = data
-    );
-
-
+      data => this.listActivity = data);
   }
 
 }

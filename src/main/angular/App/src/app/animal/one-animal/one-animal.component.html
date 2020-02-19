@@ -1,10 +1,9 @@
 <td>{{animal.nom}}</td>
-<td>{{animal.espece}}</td>
 <td>{{animal.sexe}}</td>
-<td>{{animal.dateArrivee}}</td>
-<td>{{animal.dateArrivee}}</td>
-<td>{{animal.dateDepart}}</td>
-<td>{{animal.signedistinctif}}</td>
+<td *ngIf="animal.espece">{{animal.espece.nom}}</td>
+<td>{{animal.dateArrivee |date}}</td>
+<td>{{animal.dateDepart |date}}</td>
+<td>{{animal.signedistinctif }}</td>
 
 <td>
   <a mat-mini-fab (click)="onDeleteAnimal(animal.id)" ><mat-icon> delete</mat-icon>

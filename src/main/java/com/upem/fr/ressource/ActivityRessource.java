@@ -29,9 +29,9 @@ public class ActivityRessource {
         return activityService.getAll();
     }
 
-    @PostMapping("/activities")
-    public Activity create(@Valid   @RequestBody Activity activity) {
-        Optional<Employe>employe=(employeService.getOne(activity.getResponsable().getId()));
+    @PostMapping("/activitiesCreate/{idEmploye}")
+    public Activity create(@Valid   @RequestBody Activity activity,@PathVariable Long idEmploye) {
+        Optional<Employe>employe=(employeService.getOne(idEmploye));
         activity.setResponsable(employe.get());
         return activityService.create(activity);
     }

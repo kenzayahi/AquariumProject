@@ -4,6 +4,9 @@ import {Router} from "@angular/router";
 import {Activity, TypeActivity} from "../../model/activity";
 import {ActivityService} from "../activity.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Employe} from "../../model/employe";
+import {EmployeService} from "../../employe/employe.service";
+import {Animal} from "../../model/animal";
 
 @Component({
   selector: 'app-edit',
@@ -15,14 +18,18 @@ export class ActivityEditComponent implements OnInit {
   formGroup: FormGroup;
   type=[ TypeActivity.bilan,TypeActivity.entretien,TypeActivity.nourrissage];
 
+  employes: Array<Employe>;
+
   @Output()
-  createActivity= new EventEmitter<Activity>();
+  createActivity = new EventEmitter<Activity>();
 
   constructor(private formBuilder: FormBuilder,
-              private activityService:ActivityService,
+              private activityService: ActivityService,
+              private employeService: EmployeService,
               protected router: Router,
               protected snackBar: MatSnackBar,
   ) {
+    this.onGetEmploye();
   }
 
   ngOnInit() {
@@ -39,11 +46,17 @@ export class ActivityEditComponent implements OnInit {
     });
   }
   onCreateBassin(){
+    let activity : Activity = this.formGroup.value;
+    activity.isPublic = this.formGroup.value('isPublic');
+    let idREsponsable = this.formGroup.get('responsable').value
+    activity.responsable = null;
+
     this.activityService
-      .createActivity(this.formGroup.value)
+      .createActivity(activity, idREsponsable)
       .subscribe(
         data=>{this.createActivity.emit(this.formGroup.value);
           this.snackBar.open('L"activité  a bien été créer', 'OK', { verticalPosition: 'top' });
+          console.log(data);
           this.router.navigate(['/activity'])},
         error=>console.log(error)
       );
@@ -51,6 +64,15 @@ export class ActivityEditComponent implements OnInit {
 
   reset(){
     this.formGroup.reset();
+  }
+
+  onGetEmploye(){
+    this.employeService
+      .getEmployes()
+      .subscribe(
+        data => {this.employes = data;},
+        error => {console.log(error);
+        });
   }
 
 }

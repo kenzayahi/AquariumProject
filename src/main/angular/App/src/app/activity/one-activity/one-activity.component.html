@@ -1,7 +1,7 @@
 <td>{{activity.type}}</td>
-<td>{{activity.dateDebut}}</td>
-<td>{{activity.dateFin}}</td>
-<td>{{activity.responsable}}</td>
+<td>{{activity.dateDebut |date}}</td>
+<td>{{activity.dateFin |date}}</td>
+<td>{{activity.responsable.nom}}</td>
 <td>{{activity.isPublic}}</td>
 <td>
   <a mat-mini-fab (click)="onDeleteActivity(activity.id)" ><mat-icon> delete</mat-icon>

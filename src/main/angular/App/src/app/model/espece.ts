@@ -1,3 +1,5 @@
+import {Animal} from "./animal";
+
 export enum RegimeAlimentaire {
   alguivore='alguivore',
   planctonivore='planctonivore',
@@ -8,5 +10,6 @@ export interface Espece{
   menacee : number;
   nom:string;
   esperanceVie : string;
-  regimeAlimentaire:RegimeAlimentaire
+  regimeAlimentaire:RegimeAlimentaire;
+  animalList :Array<Animal>
 }
