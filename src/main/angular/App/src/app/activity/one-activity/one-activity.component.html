@@ -2,8 +2,8 @@
 <td>{{activity.dateDebut |date}}</td>
 <td>{{activity.dateFin |date}}</td>
 <td>{{activity.responsable.nom}}</td>
-<td *ngIf="activity.isPublic" > Public</td>
-<td *ngIf="!activity.isPublic" > Privé</td>
+<td *ngIf="activity.accessible" > Public</td>
+<td *ngIf="!activity.accessible" > Privé</td>
 <td>
   <a mat-mini-fab (click)="onDeleteActivity(activity.id)" ><mat-icon> delete</mat-icon>
   </a>

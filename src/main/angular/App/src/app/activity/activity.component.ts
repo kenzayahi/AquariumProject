@@ -24,8 +24,7 @@ export class ActivityComponent implements OnInit {
     this.activityService
       .getActivities()
       .subscribe(
-        data => {this.listActivity = data,
-        console.log("parent",data);
+        data => {this.listActivity = data
         },
         error => {console.log(error);
         });

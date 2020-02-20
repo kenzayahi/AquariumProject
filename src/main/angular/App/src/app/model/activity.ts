@@ -9,6 +9,6 @@ export interface Activity{
   dateDebut : Date;
   dateFin : Date;
   type : TypeActivity;
-  isPublic : boolean;
+  accessible : boolean;
   responsable : Employe;
 }

@@ -27,7 +27,7 @@ export class ActivityService {
     return this.httpClient.post<Activity>('/activitiesCreate/'+idEmploye, activity, { observe: 'response' });
   }
 
-  updateActivity(activity: Activity): Observable<EntityResponseType> {
-      return this.httpClient.post<Activity>('/activities' + '/' + activity.id, activity, { observe: 'response' });
+  updateActivity(activity: Activity, idResponsable : number): Observable<EntityResponseType> {
+      return this.httpClient.post<Activity>('/activities' + '/' + activity.id + '/' + idResponsable, activity, { observe: 'response' });
   }
 }

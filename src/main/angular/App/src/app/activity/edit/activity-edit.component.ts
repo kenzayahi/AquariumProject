@@ -42,7 +42,7 @@ export class ActivityEditComponent implements OnInit {
       'dateDebut': [null, Validators.required],
       'dateFin': [null, Validators.required],
       'responsable': [null, Validators.required],
-      'isPublic': [null, Validators.required],
+      'accessible': [null, Validators.required],
     });
   }
   onCreateActivity(){

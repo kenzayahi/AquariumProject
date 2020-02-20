@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {Activity, TypeActivity} from "../../model/activity";
 import {ActivityService} from "../activity.service";
+import {Employe} from "../../model/employe";
 
 @Component({
   selector: 'app-update-activity',
@@ -16,6 +17,7 @@ export class UpdateActivityComponent implements OnInit {
   formGroup: FormGroup;
   @Output()
   updateActivity=new EventEmitter<Activity>();
+  private responsable: Employe;
   constructor(private activityService : ActivityService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -27,8 +29,9 @@ export class UpdateActivityComponent implements OnInit {
           dateDebut: new FormControl(data.dateDebut),
           dateFin : new FormControl(data.dateFin),
           responsable : new FormControl(data.responsable.nom),
-          isPublic: new FormControl(data.isPublic)
+          accessible: new FormControl(data.accessible)
         }),
+          this.responsable = data.responsable;
           // tslint:disable-next-line:no-unused-expression
         this.formGroup.get('responsable').disabled;
       }
@@ -37,8 +40,10 @@ export class UpdateActivityComponent implements OnInit {
 
   onUpdateActivity() {
     let activity: Activity =  this.formGroup.value;
+    let idResponsable = this.responsable.id;
+    activity.responsable = null;
     activity.id = this.id;
-    this.activityService.updateActivity(activity).subscribe(
+    this.activityService.updateActivity(activity, idResponsable).subscribe(
       data => this.updateActivity.emit(activity),
       error => console.log(error)
     );
