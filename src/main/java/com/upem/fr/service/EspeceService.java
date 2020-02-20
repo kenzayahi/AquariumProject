@@ -38,7 +38,7 @@ public class EspeceService {
 
     public Espece addAnimalToList(Optional<Espece> e,Animal animal){
         Espece espece=e.get();
-        espece.setAnimalList(animal);
+        espece.addAnimalList(animal);
         return especeRepository.save(espece);
     }
 

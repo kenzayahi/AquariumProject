@@ -17,15 +17,15 @@ public class Espece {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "especeId")
-    public Long id;
-    public String nom;
+    private Long id;
+    private String nom;
     @NotEmpty
-    public String esperanceVie;
-    public RegimeAlimentaire regimeAlimentaire;
-    public int menacee;
+    private String esperanceVie;
+    private RegimeAlimentaire regimeAlimentaire;
+    private int menacee;
     @JsonIgnoreProperties(value = {"espece"},allowSetters = true)
     @OneToMany(mappedBy = "espece",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    public List<Animal>animalList= new ArrayList<>();
+    private List<Animal>animalList= new ArrayList<>();
 
     public Espece() {
     }
@@ -73,7 +73,11 @@ public class Espece {
         return animalList;
     }
 
-    public void setAnimalList(Animal animal) {
+    public void setAnimalList(List<Animal> lst) {
+        this.animalList = lst;
+    }
+
+    public void addAnimalList(Animal animal) {
         this.animalList.add(animal);
     }
 
@@ -90,5 +94,17 @@ public class Espece {
             return false;
         }
         return Objects.equals(getId(), espece.getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Espece{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", esperanceVie='" + esperanceVie + '\'' +
+                ", regimeAlimentaire=" + regimeAlimentaire +
+                ", menacee=" + menacee +
+                ", animalList=" + animalList +
+                '}';
     }
 }

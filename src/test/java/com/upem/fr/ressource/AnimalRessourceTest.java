@@ -21,7 +21,6 @@ import java.util.Optional;
 
 import static com.upem.fr.model.enumeration.RegimeAlimentaire.piscivore;
 import static com.upem.fr.model.enumeration.Sexe.male;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -31,7 +30,6 @@ import static org.mockito.Mockito.when;
 class AnimalRessourceTest {
     @LocalServerPort
     private int port;
-
 
     @MockBean
     private AnimalService animalService;
@@ -58,8 +56,7 @@ class AnimalRessourceTest {
         System.out.println(animal);
         when(animalService.create(animal)).thenReturn(animal);
         when(especeService.getOne(2L)).thenReturn(Optional.of(espece));
-
-        Animal result = this.restTemplate.postForObject("http://localhost:" + port + "/animaux", animal, Animal.class);
+        Animal result = this.restTemplate.postForObject("http://localhost:" + port + "/animaux/"+espece.getId(), animal, Animal.class);
         assertEquals(animal, result);
     }
 
@@ -72,7 +69,6 @@ class AnimalRessourceTest {
         HttpEntity<Animal> request = new HttpEntity<>(animal);
         this.restTemplate.exchange("http://localhost:" + port + "/animaux",
                 HttpMethod.POST, request, Animal.class);
-
         Animal resultGet = this.restTemplate.getForObject("http://localhost:" + port + "/animaux/1", Animal.class);
         assertEquals(animal, resultGet);
     }
@@ -83,38 +79,33 @@ class AnimalRessourceTest {
         Espece espece = new Espece("Poisson", piscivore, 0);
         Animal animal = new Animal(espece,"Requin", male, "aucun");
         animal.setId(1L);
-
         when(animalService.getOne(1L)).thenReturn(Optional.of(animal));
         HttpEntity<Animal> request = new HttpEntity<>(animal);
         this.restTemplate.exchange("http://localhost:" + port + "/animaux", HttpMethod.POST, request, Animal.class);
-
         List animalListBefore= this.restTemplate.getForObject("http://localhost:" + port + "/animaux", List.class);
-
         doNothing().when(animalRepository).delete(animal);
         Animal result = this.restTemplate.exchange("http://localhost:" + port + "/animaux/1",
                 HttpMethod.DELETE, null, Animal.class).getBody();
         List animalListAfter = this.restTemplate.getForObject("http://localhost:" + port + "/animaux", List.class);
-
-       assertEquals(animalListAfter.size(), animalListBefore.size());
-
-       // assertThat(animalListAfter).hasSize(animalListBefore.size() - 1);
+        assertEquals(animalListAfter.size(), animalListBefore.size());
 
     }
 
     @Test
     void update() {
         Espece espece = new Espece("Poisson", piscivore, 0);
+        espece.setId(8L);
         Animal animal = new Animal(espece,"Requin", male, "aucun");
         animal.setId(1L);
         when(animalService.create(animal)).thenReturn(animal);
         Animal animal2 = new Animal(espece,"Requin", male, "aucun");
         animal2.setId(2L);
         when(animalService.update(1L, animal2)).thenReturn(animal2);
-
+        when(especeService.getOne(8L)).thenReturn(Optional.of(espece));
         this.restTemplate.postForObject("http://localhost:" + port + "/animaux", animal, Animal.class);
         HttpEntity<Animal> request = new HttpEntity<>(animal2);
 
-        Animal result = this.restTemplate.exchange("http://localhost:" + port + "/animaux/1",
+        Animal result = this.restTemplate.exchange("http://localhost:" + port + "/animaux/1/8",
                 HttpMethod.POST, request, Animal.class).getBody();
 
         assertEquals(result, animal2);
