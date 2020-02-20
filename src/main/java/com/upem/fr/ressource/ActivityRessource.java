@@ -26,13 +26,14 @@ public class ActivityRessource {
 
     @GetMapping("/activities")
     public Iterable<Activity> getAll() {
+        activityService.getAll().forEach(x -> System.out.println(x));
         return activityService.getAll();
     }
 
-    @PostMapping("/activities")
-    public Activity create(@Valid   @RequestBody Activity activity) {
-        Optional<Employe>employe=(employeService.getOne(activity.getResponsable().getId()));
-        activity.setResponsable(employe.get());
+    @PostMapping("/activitiesCreate/{idEmploye}")
+    public Activity create(@Valid   @RequestBody Activity activity,@PathVariable Long idResponsable) {
+        Optional<Employe>responsable=(employeService.getOne(idResponsable));
+        activity.setResponsable(responsable.get());
         return activityService.create(activity);
     }
 
@@ -50,8 +51,10 @@ public class ActivityRessource {
         activityService.delete(id);
     }
 
-    @PostMapping("activities/{id}")
-    public Activity update( @Valid @PathVariable Long id, @RequestBody Activity activity) {
+    @PostMapping("activities/{id}/{idResponsable}")
+    public Activity update( @Valid @PathVariable Long id, @Valid @PathVariable Long idResponsable, @RequestBody Activity activity) {
+        Optional<Employe> responsable =(employeService.getOne(idResponsable));
+        activity.setResponsable(responsable.get());
         return activityService.update(id, activity);
     }
 }

@@ -46,10 +46,10 @@ export class AnimalEditComponent implements OnInit {
   }
   onCreateAnimal(){
     let animal : Animal = this.formGroup.value;
-    let id = animal.espece.id;
+    let idEspece = animal.espece.id;
     animal.espece = null;
     this.animalService
-        .createAnimal(animal, id)
+        .createAnimal(animal, idEspece)
         .subscribe(
           data=>{this.createAnimal.emit(animal);
                        this.snackBar.open('L"animal a bien été créer','OK',{verticalPosition:'top'});

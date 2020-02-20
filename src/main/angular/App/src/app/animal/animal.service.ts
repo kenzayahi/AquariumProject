@@ -13,12 +13,10 @@ export class AnimalService {
 
 
   getAnimaux() : Observable<Array<Animal>> {
-    console.log("hey");
     return this.httpClient.get<Array<Animal>>('/animaux')
   }
 
   getEspeces() : Observable<Array<Espece>> {
-    console.log("hey");
     return this.httpClient.get<Array<Espece>>('/especes')
   }
 
@@ -28,14 +26,10 @@ export class AnimalService {
   getEspeceFromAnimal(id: number) : Observable<Espece> {
     return this.httpClient.get<Espece>('/animaux_get_espece/' + id);
   }
-
-
-  createAnimal(animal:Animal, id : number):Observable<Animal>{
-    console.log(animal)
-    return this.httpClient.post<Animal>('/animaux/' + id,animal);
+  createAnimal(animal:Animal, idEspece : number):Observable<Animal>{
+    return this.httpClient.post<Animal>('/animaux/' + idEspece,animal);
 
   }
-
   deleteAnimal(id: number): Observable<HttpResponse<Animal>> {
     return this.httpClient.delete<Animal>('/animaux/' + id, { observe: 'response' });
   }

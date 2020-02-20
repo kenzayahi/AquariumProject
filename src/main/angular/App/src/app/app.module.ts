@@ -35,6 +35,9 @@ import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.compon
 import {EmployeEditComponent} from './employe/edit/employe-edit.component';
 import {OneEmployeComponent} from './employe/one-employe/one-employe.component';
 import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.component';
+import { ActivityEditComponent } from './activity/edit/activity-edit.component';
+import { OneActivityComponent } from './activity/one-activity/one-activity.component';
+import { UpdateActivityComponent } from './activity/update-activity/update-activity.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.co
     UpdateBassinComponent,
     EmployeEditComponent,
     OneEmployeComponent,
-    UpdateEmployeComponent
+    UpdateEmployeComponent,
+    ActivityEditComponent,
+    OneActivityComponent,
+    UpdateActivityComponent
   ],
   imports: [
     BrowserModule,
