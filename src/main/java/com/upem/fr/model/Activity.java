@@ -18,16 +18,16 @@ public class Activity {
     private TypeActivity type;
     private Date dateDebut;
     private Date dateFin;
-    private boolean isPublic;
+    private boolean accessible;
     @ManyToOne
     private Employe responsable;
 
-    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, boolean isPublic, Employe responsable) {
+    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, boolean accessible, Employe responsable) {
         this.id = id;
         this.type = type;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.isPublic = isPublic;
+        this.accessible = accessible;
         this.responsable = responsable;
     }
 
@@ -66,12 +66,12 @@ public class Activity {
         this.dateFin = dateFin;
     }
 
-    public boolean getPublic() {
-        return isPublic;
+    public boolean getAccessible() {
+        return accessible;
     }
 
-    public void setPublic(boolean aPublic) {
-        isPublic = aPublic;
+    public void setAccessible(boolean accessible) {
+        this.accessible = accessible;
     }
 
     public Employe getResponsable() {
@@ -91,13 +91,13 @@ public class Activity {
                 type == activity.type &&
                 dateDebut.equals(activity.dateDebut) &&
                 dateFin.equals(activity.dateFin) &&
-                isPublic == ((Activity) o).isPublic &&
+                accessible == ((Activity) o).accessible &&
                 responsable.equals(activity.responsable);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, dateDebut, dateFin, isPublic, responsable);
+        return Objects.hash(id, type, dateDebut, dateFin, accessible, responsable);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class Activity {
                 ", type=" + type +
                 ", dateDebut=" + dateDebut +
                 ", dateFin=" + dateFin +
-                ", isPublic=" + isPublic +
+                ", accessible=" + accessible +
                 ", responsable=" + responsable +
                 '}';
     }

@@ -31,10 +31,9 @@ public class ActivityRessource {
     }
 
     @PostMapping("/activitiesCreate/{idEmploye}")
-    public Activity create(@Valid   @RequestBody Activity activity,@PathVariable Long idEmploye) {
-        Optional<Employe>employe=(employeService.getOne(idEmploye));
-        activity.setResponsable(employe.get());
-        System.out.println(activity);
+    public Activity create(@Valid   @RequestBody Activity activity,@PathVariable Long idResponsable) {
+        Optional<Employe>responsable=(employeService.getOne(idResponsable));
+        activity.setResponsable(responsable.get());
         return activityService.create(activity);
     }
 
@@ -52,8 +51,10 @@ public class ActivityRessource {
         activityService.delete(id);
     }
 
-    @PostMapping("activities/{id}")
-    public Activity update( @Valid @PathVariable Long id, @RequestBody Activity activity) {
+    @PostMapping("activities/{id}/{idResponsable}")
+    public Activity update( @Valid @PathVariable Long id, @Valid @PathVariable Long idResponsable, @RequestBody Activity activity) {
+        Optional<Employe> responsable =(employeService.getOne(idResponsable));
+        activity.setResponsable(responsable.get());
         return activityService.update(id, activity);
     }
 }
