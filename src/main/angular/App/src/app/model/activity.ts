@@ -8,7 +8,7 @@ export interface Activity{
   id : number;
   dateDebut : Date;
   dateFin : Date;
-  isPublic:boolean;
   type : TypeActivity;
+  isPublic : boolean;
   responsable : Employe;
 }

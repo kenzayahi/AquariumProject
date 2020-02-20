@@ -25,10 +25,12 @@ export class UpdateActivityComponent implements OnInit {
         this.formGroup = new FormGroup({
           type: new FormControl(data.type),
           dateDebut: new FormControl(data.dateDebut),
-          dateFin: new FormControl(data.dateFin),
-          responsable: new FormControl(data.responsable),
+          dateFin : new FormControl(data.dateFin),
+          responsable : new FormControl(data.responsable.nom),
           isPublic: new FormControl(data.isPublic)
-        });
+        }),
+          // tslint:disable-next-line:no-unused-expression
+        this.formGroup.get('responsable').disabled;
       }
     );
   }

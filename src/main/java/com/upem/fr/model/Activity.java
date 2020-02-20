@@ -18,11 +18,11 @@ public class Activity {
     private TypeActivity type;
     private Date dateDebut;
     private Date dateFin;
-    private Boolean isPublic;
+    private boolean isPublic;
     @ManyToOne
     private Employe responsable;
 
-    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, Boolean isPublic, Employe responsable) {
+    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, boolean isPublic, Employe responsable) {
         this.id = id;
         this.type = type;
         this.dateDebut = dateDebut;
@@ -66,11 +66,11 @@ public class Activity {
         this.dateFin = dateFin;
     }
 
-    public Boolean getPublic() {
+    public boolean getPublic() {
         return isPublic;
     }
 
-    public void setPublic(Boolean aPublic) {
+    public void setPublic(boolean aPublic) {
         isPublic = aPublic;
     }
 
@@ -91,7 +91,7 @@ public class Activity {
                 type == activity.type &&
                 dateDebut.equals(activity.dateDebut) &&
                 dateFin.equals(activity.dateFin) &&
-                isPublic.equals(activity.isPublic) &&
+                isPublic == ((Activity) o).isPublic &&
                 responsable.equals(activity.responsable);
     }
 

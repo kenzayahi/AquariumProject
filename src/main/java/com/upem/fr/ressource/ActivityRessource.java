@@ -26,6 +26,7 @@ public class ActivityRessource {
 
     @GetMapping("/activities")
     public Iterable<Activity> getAll() {
+        activityService.getAll().forEach(x -> System.out.println(x));
         return activityService.getAll();
     }
 
@@ -33,6 +34,7 @@ public class ActivityRessource {
     public Activity create(@Valid   @RequestBody Activity activity,@PathVariable Long idEmploye) {
         Optional<Employe>employe=(employeService.getOne(idEmploye));
         activity.setResponsable(employe.get());
+        System.out.println(activity);
         return activityService.create(activity);
     }
 

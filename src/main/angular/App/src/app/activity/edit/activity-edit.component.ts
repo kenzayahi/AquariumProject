@@ -45,12 +45,12 @@ export class ActivityEditComponent implements OnInit {
       'isPublic': [null, Validators.required],
     });
   }
-  onCreateBassin(){
+  onCreateActivity(){
     let activity : Activity = this.formGroup.value;
-    activity.isPublic = this.formGroup.value('isPublic');
-    let idREsponsable = this.formGroup.get('responsable').value
+    let idREsponsable = this.formGroup.get('responsable').value;
     activity.responsable = null;
 
+    console.log(activity)
     this.activityService
       .createActivity(activity, idREsponsable)
       .subscribe(
