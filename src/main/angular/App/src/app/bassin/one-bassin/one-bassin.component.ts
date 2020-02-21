@@ -11,6 +11,9 @@ export class OneBassinComponent implements OnInit {
   @Input()
   bassin: Bassin;
 
+  @Input()
+  role:any;
+
   @Output()
   deleteBassin = new EventEmitter<Bassin>();
   constructor(private bassinService: BassinService) { }
@@ -27,4 +30,7 @@ export class OneBassinComponent implements OnInit {
         })
   }
 
+  affectEspece() {
+    console.log("affecter espèce");
+  }
 }

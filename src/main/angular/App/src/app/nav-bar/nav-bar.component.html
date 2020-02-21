@@ -11,7 +11,7 @@
       <div *ngIf="isSimpleEmpoye"><a mat-list-item routerLink="/bassin">Bassin</a></div>
       <div *ngIf="isGestionnaire"><a mat-list-item  routerLink="/animal">Gestion Animal</a></div>
       <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/espece">Gestion Especes</a></div>
-      <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/bassin">Gestion Bassin</a></div>
+      <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/bassin/{{role}}">Gestion Bassin</a></div>
       <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/employe">Gestion Employe</a></div>
       <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/activity">Gestion Activity</a></div>
       <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/gestionNouriture">Gestion Nouriture</a></div>

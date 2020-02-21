@@ -20,6 +20,7 @@ export class NavBarComponent {
   isSimpleEmpoye= false;
   nom:string;
   prenom:string;
+  role:string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -29,11 +30,12 @@ export class NavBarComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
   ngOnInit() {
+    this.role=this.employe.roleEmploye;
     this.nom=this.employe.nom;
     this.prenom=this.employe.prenom;
-    if(this.employe.roleEmploye==RoleEmploye.gestionnaire){
+    if(this.role==RoleEmploye.gestionnaire){
       this.isGestionnaire=true;
-    }else if(this.employe.roleEmploye==RoleEmploye.simpleEmploye){
+    }else if(this.role==RoleEmploye.simpleEmploye){
       this.isSimpleEmpoye=true;
     }
   }

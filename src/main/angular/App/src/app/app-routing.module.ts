@@ -71,15 +71,15 @@ const routes: Routes = [
     component: UpdateActivityComponent
   },
   {
-    path: 'bassin',
+    path: 'bassin/:role',
     component: BassinComponent
   },
   {
-    path: 'bassin/edit',
+    path: 'bassin/:role/edit',
     component: BassinEditComponent
   },
   {
-    path: 'bassin/update/:id',
+    path: 'bassin/update/:role/:id',
     component: UpdateBassinComponent
   },
 
