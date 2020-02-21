@@ -1,10 +1,13 @@
 package com.upem.fr.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.upem.fr.model.enumeration.RoleEmploye;
 
+import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -13,15 +16,35 @@ import static javax.persistence.GenerationType.AUTO;
 public class Employe {
     @Id
     @GeneratedValue(strategy = AUTO)
+    @Column(name = "employeId")
     private Long id;
     private String nom;
     private String prenom;
     private String adress;
     private Date dateNaissance;
     private int numSecurite;
+    private String email;
+    private String password;
+    private RoleEmploye roleEmploye;
+    @OneToMany
+    private List<Secteur> secteursAffectees = new ArrayList<>();
+/*
+    @JsonIgnoreProperties(value = {"employe"},allowSetters = true)
+    @OneToMany(mappedBy = "employe",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<Bassin> bassinsresponsable = new ArrayList<>();*/
 
     public Employe() {
     }
+
+    public Employe(String nom, String prenom, String adress, String email, String password, RoleEmploye roleEmploye) {
+        this.nom=nom;
+        this.prenom=prenom;
+        this.adress=adress;
+        this.email=email;
+        this.password=password;
+        this.roleEmploye=roleEmploye;
+    }
+
 
     public Long getId() {
         return id;
@@ -71,6 +94,46 @@ public class Employe {
         this.numSecurite = numSecurite;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public RoleEmploye getRoleEmploye() {
+        return roleEmploye;
+    }
+
+    public void setRoleEmploye(RoleEmploye roleEmploye) {
+        this.roleEmploye = roleEmploye;
+    }
+
+    public List<Secteur> getSecteursAffectees() {
+        return secteursAffectees;
+    }
+
+    public void setSecteursAffectees(List<Secteur> secteursAffectees) {
+        this.secteursAffectees = secteursAffectees;
+    }
+/*
+    public List<Bassin> getBassinsresponsable() {
+        return bassinsresponsable;
+    }
+
+    public void setBassinsresponsable(List<Bassin> bassinsresponsable) {
+        this.bassinsresponsable = bassinsresponsable;
+    }*/
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,12 +144,14 @@ public class Employe {
                 getNom().equals(employe.getNom()) &&
                 getPrenom().equals(employe.getPrenom()) &&
                 getAdress().equals(employe.getAdress()) &&
-                getDateNaissance().equals(employe.getDateNaissance());
+                getDateNaissance().equals(employe.getDateNaissance()) &&
+                getEmail().equals(employe.getEmail()) &&
+                getPassword().equals(employe.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNom(), getPrenom(), getAdress(), getDateNaissance(), getNumSecurite());
+        return Objects.hash(getId(), getNom(), getPrenom(), getAdress(), getDateNaissance(), getNumSecurite(), getEmail(), getPassword());
     }
 
     @Override
@@ -98,6 +163,8 @@ public class Employe {
                 ", adress='" + adress + '\'' +
                 ", dateNaissance=" + dateNaissance +
                 ", numSecurite=" + numSecurite +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

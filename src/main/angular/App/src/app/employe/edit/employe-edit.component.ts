@@ -35,6 +35,8 @@ export class EmployeEditComponent implements OnInit {
       'numSecurite': [null, Validators.required],
       'adress': [null, Validators.required],
       'dateNaissance': [null, Validators.required],
+      'email': [null, Validators.required],
+      'password': [null, Validators.required],
 
     });
   }

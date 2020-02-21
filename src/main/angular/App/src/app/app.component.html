@@ -1,1 +1,7 @@
-<app-nav-bar></app-nav-bar>
+<div *ngIf="!isConnected">
+  <app-authetification (loginEvent)="getAthentification($event)"></app-authetification>
+</div>
+
+<div *ngIf=" isConnected">
+  <app-nav-bar [RoleEmploye]="roleEmploye"></app-nav-bar>
+</div>

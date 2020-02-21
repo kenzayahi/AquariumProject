@@ -38,6 +38,7 @@ import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.co
 import { ActivityEditComponent } from './activity/edit/activity-edit.component';
 import { OneActivityComponent } from './activity/one-activity/one-activity.component';
 import { UpdateActivityComponent } from './activity/update-activity/update-activity.component';
+import { AuthetificationComponent } from './authetification/authetification.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { UpdateActivityComponent } from './activity/update-activity/update-activ
     UpdateEmployeComponent,
     ActivityEditComponent,
     OneActivityComponent,
-    UpdateActivityComponent
+    UpdateActivityComponent,
+    AuthetificationComponent
   ],
   imports: [
     BrowserModule,

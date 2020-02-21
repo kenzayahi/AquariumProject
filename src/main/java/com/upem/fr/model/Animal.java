@@ -114,9 +114,4 @@ public class Animal {
         }
         return Objects.equals(getId(), animal.getId());
     }
-    @JsonProperty("especeId")
-    private void ignoreespeceId(Long especeId){
-        this.espece=new Espece();
-        espece.setId(especeId);
-    }
 }
