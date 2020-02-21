@@ -1,6 +1,7 @@
 package com.upem.fr.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.upem.fr.model.enumeration.RoleEmploye;
 
 import javax.persistence.*;
 
@@ -24,12 +25,26 @@ public class Employe {
     private int numSecurite;
     private String email;
     private String password;
+    private RoleEmploye roleEmploye;
     @OneToMany
     private List<Secteur> secteursAffectees = new ArrayList<>();
-
+/*
     @JsonIgnoreProperties(value = {"employe"},allowSetters = true)
     @OneToMany(mappedBy = "employe",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Bassin> bassinsresponsable = new ArrayList<>();
+    private List<Bassin> bassinsresponsable = new ArrayList<>();*/
+
+    public Employe() {
+    }
+
+    public Employe(String nom, String prenom, String adress, String email, String password, RoleEmploye roleEmploye) {
+        this.nom=nom;
+        this.prenom=prenom;
+        this.adress=adress;
+        this.email=email;
+        this.password=password;
+        this.roleEmploye=roleEmploye;
+    }
+
 
     public Long getId() {
         return id;
@@ -95,6 +110,14 @@ public class Employe {
         this.password = password;
     }
 
+    public RoleEmploye getRoleEmploye() {
+        return roleEmploye;
+    }
+
+    public void setRoleEmploye(RoleEmploye roleEmploye) {
+        this.roleEmploye = roleEmploye;
+    }
+
     public List<Secteur> getSecteursAffectees() {
         return secteursAffectees;
     }
@@ -102,14 +125,14 @@ public class Employe {
     public void setSecteursAffectees(List<Secteur> secteursAffectees) {
         this.secteursAffectees = secteursAffectees;
     }
-
+/*
     public List<Bassin> getBassinsresponsable() {
         return bassinsresponsable;
     }
 
     public void setBassinsresponsable(List<Bassin> bassinsresponsable) {
         this.bassinsresponsable = bassinsresponsable;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {

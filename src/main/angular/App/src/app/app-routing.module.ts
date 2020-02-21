@@ -15,8 +15,13 @@ import {EmployeEditComponent} from './employe/edit/employe-edit.component';
 import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.component';
 import {ActivityEditComponent} from "./activity/edit/activity-edit.component";
 import {UpdateActivityComponent} from "./activity/update-activity/update-activity.component";
+import {AuthetificationComponent} from "./authetification/authetification.component";
 
 const routes: Routes = [
+  {
+    path: 'authentificate',
+    component: AuthetificationComponent
+  },
   {
     path: 'animal',
     component: AnimalComponent
