@@ -1,11 +1,10 @@
 package com.upem.fr.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.upem.fr.model.enumeration.Etat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,10 @@ public class Bassin {
     public int capaciteMax;
     public long volumeEau;
     public Etat etat;
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JsonIgnoreProperties(value = {"animal"},allowSetters = true)
+    private Employe employeResponsable;
 
     @OneToMany
     public List<Espece> especeList=new ArrayList<>();
@@ -80,6 +83,18 @@ public class Bassin {
 
     public void setEtat(Etat etat) {
         this.etat = etat;
+    }
+
+    public Employe getEmployeResponsable() {
+        return employeResponsable;
+    }
+
+    public void setEmployeResponsable(Employe employeResponsable) {
+        this.employeResponsable = employeResponsable;
+    }
+
+    public void setEspeceList(List<Espece> especeList) {
+        this.especeList = especeList;
     }
 
     @Override

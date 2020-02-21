@@ -1,3 +1,5 @@
+import {Bassin} from "./bassin";
+
 export interface Employe{
   id : number;
   nom:string;
@@ -5,6 +7,9 @@ export interface Employe{
   prenom:string;
   adress : string;
   dateNaissance:Date
+  email:string;
+  password:string;
+  bassinsresponsable: Array<Bassin>;
 }
 
 

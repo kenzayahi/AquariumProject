@@ -25,7 +25,9 @@ export class UpdateEmployeComponent implements OnInit {
           prenom: new FormControl(data.prenom),
           dateNaissance: new FormControl(data.dateNaissance),
           adress: new FormControl(data.adress),
-          numSecurite: new FormControl(data.numSecurite)
+          numSecurite: new FormControl(data.numSecurite),
+          email:new FormControl(data.email),
+          password:new FormControl(data.password),
         });
       }
     );
