@@ -5,14 +5,16 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item  routerLink="/">Accueil</a>
-      <a mat-list-item  routerLink="/animal">Animal</a>
-      <a mat-list-item routerLink="/espece">Especes</a>
-      <a mat-list-item routerLink="/bassin">Bassin</a>
-      <a mat-list-item routerLink="/employe">Employe</a>
-      <a mat-list-item routerLink="/activity">Activity</a>
-
-
+      <div *ngIf="isSimpleEmpoye"><a mat-list-item  routerLink="/">Accueil</a></div>
+      <div *ngIf="isSimpleEmpoye"><a mat-list-item  routerLink="/animal">Animal</a></div>
+      <div *ngIf="isSimpleEmpoye"><a mat-list-item routerLink="/espece">Especes</a></div>
+      <div *ngIf="isSimpleEmpoye"><a mat-list-item routerLink="/bassin">Bassin</a></div>
+      <div *ngIf="isGestionnaire"><a mat-list-item  routerLink="/animal">Gestion Animal</a></div>
+      <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/espece">Gestion Especes</a></div>
+      <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/bassin">Gestion Bassin</a></div>
+      <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/employe">Gestion Employe</a></div>
+      <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/activity">Gestion Activity</a></div>
+      <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/gestionNouriture">Gestion Nouriture</a></div>
 
 
     </mat-nav-list>
@@ -28,7 +30,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <img
-        width="40"
+        width="50"
         alt="Logo"
         src="../assets/fish_13458.ico"
       />    </mat-toolbar>

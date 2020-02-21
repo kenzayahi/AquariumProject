@@ -19,6 +19,8 @@ public class AquariumProjectApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
    		employeService.create(new Employe("Yahi","Kenza","1 rue de l'eglise","kenza","yahi", RoleEmploye.gestionnaire));
+		employeService.create(new Employe("Milan","Milan","1 rue de republique","milan","milan", RoleEmploye.simpleEmploye));
+
 	}
 
 }
