@@ -10,11 +10,17 @@ export class AppComponent {
   title = 'App';
   isConnected=false;
   roleEmploye: any;
-  EmployeConnecter:Employe;
+  employeConnecter:Employe;
 
   getAthentification($event: Employe) {
-     this.EmployeConnecter=$event;
-     this.roleEmploye=this.EmployeConnecter.roleEmploye;
+     this.employeConnecter=$event;
+     this.roleEmploye=this.employeConnecter.roleEmploye;
      this.isConnected=true;
+  }
+
+  disconnect($event: boolean) {
+    if($event==true){
+      this.isConnected=false;
+    }
   }
 }

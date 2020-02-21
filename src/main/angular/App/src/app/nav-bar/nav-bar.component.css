@@ -34,3 +34,18 @@ mat-card{
   justify-content: center;
   align-items: center;
 }
+
+mat-toolbar .span{
+  display: inline-block;
+  position: absolute;
+  color: white;
+  text-decoration: none;
+  right: 7%;
+}
+mat-toolbar .disconnect{
+  display: inline-block;
+  position: absolute;
+  right : 0;
+  color: white;
+  text-decoration: none;
+}

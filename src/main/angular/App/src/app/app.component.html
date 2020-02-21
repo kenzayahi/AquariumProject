@@ -3,5 +3,5 @@
 </div>
 
 <div *ngIf=" isConnected">
-  <app-nav-bar [RoleEmploye]="roleEmploye"></app-nav-bar>
+  <app-nav-bar (disconnectEvent)="disconnect($event)" [employe]="employeConnecter"></app-nav-bar>
 </div>

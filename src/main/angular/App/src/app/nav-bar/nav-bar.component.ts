@@ -1,9 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {Validators} from "@angular/forms";
-import {RoleEmploye} from "../model/employe";
+import {Employe, RoleEmploye} from "../model/employe";
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,12 +11,15 @@ import {RoleEmploye} from "../model/employe";
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-
+  @Output()
+  private disconnectEvent=new EventEmitter<boolean>()
   @Input()
-  RoleEmploye:any;
+  employe:Employe;
 
   isGestionnaire= false;
   isSimpleEmpoye= false;
+  nom:string;
+  prenom:string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -26,14 +29,16 @@ export class NavBarComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
   ngOnInit() {
-    if(this.RoleEmploye==RoleEmploye.gestionnaire){
+    this.nom=this.employe.nom;
+    this.prenom=this.employe.prenom;
+    if(this.employe.roleEmploye==RoleEmploye.gestionnaire){
       this.isGestionnaire=true;
-    }else if(this.RoleEmploye==RoleEmploye.simpleEmploye){
-      console.log(this.RoleEmploye);
-      console.log(this.isSimpleEmpoye);
+    }else if(this.employe.roleEmploye==RoleEmploye.simpleEmploye){
       this.isSimpleEmpoye=true;
-      console.log(this.isSimpleEmpoye);
-
     }
+  }
+
+  desconnect() {
+    this.disconnectEvent.emit(true);
   }
 }

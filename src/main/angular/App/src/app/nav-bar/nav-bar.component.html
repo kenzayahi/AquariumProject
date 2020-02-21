@@ -33,8 +33,15 @@
         width="50"
         alt="Logo"
         src="../assets/fish_13458.ico"
-      />    </mat-toolbar>
-
+      />
+      <span class="span" >
+        <a routerLink="/profil">{{prenom}}</a><a routerLink="/profil">{{nom}}</a>
+      </span>
+      <br>
+      <span class="disconnect">
+        <a (click)="desconnect()"><img width="75%" src="assets/img/logout.png" alt="logout" /></a>
+      </span>
+    </mat-toolbar>
 
       <router-outlet></router-outlet>
 

@@ -50,7 +50,8 @@ export class ActivityEditComponent implements OnInit {
     let idREsponsable = this.formGroup.get('responsable').value;
     activity.responsable = null;
 
-    console.log(activity)
+    console.log(activity);
+    console.log(idREsponsable);
     this.activityService
       .createActivity(activity, idREsponsable)
       .subscribe(
