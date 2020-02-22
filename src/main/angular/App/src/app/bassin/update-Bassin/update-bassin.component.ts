@@ -33,6 +33,13 @@ export class UpdateBassinComponent implements OnInit {
               private route: ActivatedRoute,
               private dialog: MatDialog,
               private especeService:EspeceService) { }
+  refreshList(){
+    this.bassinService.getBassin(this.id).subscribe(data => {
+        this.listEspece=data.especeList;
+
+      }
+    );
+  }
 
   ngOnInit() {
     this.onGetespeces();
@@ -83,17 +90,30 @@ export class UpdateBassinComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.idEspece = result.data;
       this.bassinService
-        .affecteEspece(id,this.idEspece)
+        .affecteEspece(id, this.idEspece)
         .subscribe(
           data=>{this.affectespece.emit(true);
-                       this.onGetespeces()},
+                       this.onGetespeces();
+                       this.refreshList();
+          },
           error => {console.log("errrrrrror"+error)}
         );
     });
   }
 
   deleteEspeceBassin($event: Espece) {
-    this.onGetespeces();
 
+    let espece = $event;
+    this.bassinService
+      .deleteEspece(this.id, espece.id)
+      .subscribe(
+        data=> {
+
+          this.onGetespeces();
+          this.refreshList();
+
+        },
+        error => {console.log(error);
+        })
   }
 }

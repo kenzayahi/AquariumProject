@@ -20,13 +20,9 @@ export class EspeceBassinComponent implements OnInit {
   ngOnInit() {
   }
 
-  onDeleteEspece(id: any){
-    this.bassinService
-      .deleteEspece(id,this.especeBassin.id)
-      .subscribe(
-        data=> this.deleteEspeceInBassin.emit(this.especeBassin),
-        error => {console.log(error);
-        })
+  onDeleteEspece(id: any) {
+    this.deleteEspeceInBassin.emit(this.especeBassin);
   }
+
 
 }

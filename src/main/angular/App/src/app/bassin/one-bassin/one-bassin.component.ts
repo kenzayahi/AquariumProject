@@ -37,6 +37,8 @@ export class OneBassinComponent implements OnInit {
     let s : string = ""
     for(let i = 0; i < especeList.length; i++){
       s += especeList[i].nom ;
+      if(i != especeList.length - 1)
+        s+= "/ " ;
     }
     return s
   }
