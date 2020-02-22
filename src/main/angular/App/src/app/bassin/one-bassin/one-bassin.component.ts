@@ -14,24 +14,14 @@ import {EspeceService} from "../../espece/espece.service";
 export class OneBassinComponent implements OnInit {
   @Input()
   bassin: Bassin;
-
   @Input()
   role:any;
-
-  idEspece:number;
-
-  especes:Array<Espece>;
-
   @Output()
   deleteBassin = new EventEmitter<Bassin>();
-
-  @Output()
-  affectespece = new EventEmitter<Boolean>();
 
   constructor(private bassinService: BassinService,private dialog:MatDialog,private especeService:EspeceService) { }
 
   ngOnInit() {
-    this.onGetespeces();
   }
 
   onDeleteBassin(id: any){
@@ -42,37 +32,6 @@ export class OneBassinComponent implements OnInit {
         error => {console.log(error);
         })
   }
-
-  affectEspece(id:any) :void {
-    const  dialogConfig  =  new  MatDialogConfig ( ) ;
-    dialogConfig . disableClose  =  true ;
-    dialogConfig . id  =  "composant modal" ;
-    dialogConfig .height  =  "350 px" ;
-    dialogConfig . width  =  "600px" ;
-  const dialogRef = this.dialog.open(DialogOverviewComponent,{
-    width:"350",height:"600",
-    data:this.especes,
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-  this.idEspece = result.data;
-  this.bassinService
-    .affecteEspece(id,this.idEspece)
-    .subscribe(
-      data=>{this.affectespece.emit(true),console.log(data)},
-      error => {console.log("errrrrrror"+error)}
-      );
-});
-}
-
-  onGetespeces(){
-     this.especeService
-       .getEspeces()
-       .subscribe(
-         data=>{this.especes=data},
-         error => {console.log("errrrrrror"+error);
-         })
-   }
 
   afficher(especeList: Array<Espece>):string {
     let s : string = ""

@@ -4,9 +4,6 @@
 <td>{{bassin.etat}}</td>
 <td *ngIf="bassin.especeList">{{afficher(bassin.especeList)}}</td>
 <td *ngIf="bassin.especeList">{{nombreAnimaux(bassin.especeList)}}</td>
-<td *ngIf="role">
-  <button mat-button (click)="affectEspece(bassin.id)">affectEspece</button>
-</td>
 
 <td>
   <a mat-mini-fab (click)="onDeleteBassin(bassin.id)" ><mat-icon> delete</mat-icon>

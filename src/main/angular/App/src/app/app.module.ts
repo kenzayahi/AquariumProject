@@ -41,6 +41,7 @@ import { UpdateActivityComponent } from './activity/update-activity/update-activ
 import { AuthetificationComponent } from './authetification/authetification.component';
 import { DialogOverviewComponent } from './bassin/dialog-overview/dialog-overview.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {EspeceBassinComponent} from "./bassin/update-Bassin/one-espece/one-espece.component";
 
 @NgModule({
   exports: [DialogOverviewComponent],
@@ -69,7 +70,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     OneActivityComponent,
     UpdateActivityComponent,
     AuthetificationComponent,
-    DialogOverviewComponent
+    DialogOverviewComponent,
+    EspeceBassinComponent
   ],
   imports: [
     BrowserModule,

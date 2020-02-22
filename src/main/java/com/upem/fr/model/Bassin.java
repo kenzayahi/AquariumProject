@@ -35,6 +35,9 @@ public class Bassin {
     public void setEspece(Espece espece) {
         this.especeList.add(espece);
     }
+    public void setEspeceRemove(Espece espece) {
+        this.especeList.remove(espece);
+    }
 
     public Bassin() {
     }

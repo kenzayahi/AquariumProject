@@ -4,6 +4,9 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Bassin, Etat} from "../../model/bassin";
 import {BassinService} from "../bassin.service";
 import {Espece} from "../../model/espece";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {DialogOverviewComponent} from "../dialog-overview/dialog-overview.component";
+import {EspeceService} from "../../espece/espece.service";
 
 @Component({
   selector: 'app-update-bassin',
@@ -18,9 +21,21 @@ export class UpdateBassinComponent implements OnInit {
   @Output()
   updateBassin=new EventEmitter<Bassin>();
   private role: string;
-  constructor(private bassinService : BassinService, private route: ActivatedRoute) { }
+  idEspece:number;
+  especes:Array<Espece>;
+  @Output()
+  deleteBassin = new EventEmitter<Bassin>();
+  @Output()
+  affectespece = new EventEmitter<Boolean>();
+
+
+  constructor(private bassinService : BassinService,
+              private route: ActivatedRoute,
+              private dialog: MatDialog,
+              private especeService:EspeceService) { }
 
   ngOnInit() {
+    this.onGetespeces();
     this.id = this.route.snapshot.params['id'];
     this.role = this.route.snapshot.params['role'];
     this.bassinService.getBassin(this.id).subscribe(data => {
@@ -44,6 +59,41 @@ export class UpdateBassinComponent implements OnInit {
       data => this.updateBassin.emit(bassin),
       error => console.log(error)
     );
+
+  }
+  onGetespeces(){
+    this.especeService
+      .getEspeces()
+      .subscribe(
+        data=>{this.especes=data},
+        error => {console.log("errrrrrror"+error);
+        })
+  }
+  affectEspece(id:any) :void {
+    const  dialogConfig  =  new  MatDialogConfig ( ) ;
+    dialogConfig . disableClose  =  true ;
+    dialogConfig . id  =  "composant modal" ;
+    dialogConfig .height  =  "350 px" ;
+    dialogConfig . width  =  "600px" ;
+    const dialogRef = this.dialog.open(DialogOverviewComponent,{
+      width:"350",height:"600",
+      data:this.especes,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.idEspece = result.data;
+      this.bassinService
+        .affecteEspece(id,this.idEspece)
+        .subscribe(
+          data=>{this.affectespece.emit(true);
+                       this.onGetespeces()},
+          error => {console.log("errrrrrror"+error)}
+        );
+    });
+  }
+
+  deleteEspeceBassin($event: Espece) {
+    this.onGetespeces();
 
   }
 }

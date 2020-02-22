@@ -25,7 +25,26 @@
           <mat-option *ngFor="let e of etat" [value]="e.toString()">
             {{e.toString()}}
           </mat-option>
-        </mat-select>    </mat-form-field>
+        </mat-select>
+      </mat-form-field>
+
+      <td *ngIf="role">
+        <button mat-raised-button color="primary" (click)="affectEspece(id)">Affecter Espece</button>
+      </td>
+      <table border="true" >
+        <tr >
+          <th class="mat-cell">Nom</th>
+          <th class="mat-cell">Esperance Vie</th>
+          <th class="mat-cell">Regime Alimentaire</th>
+          <th class="mat-cell">Menacee</th>
+          <th class="mat-cell">Nombres Animaux</th>
+        </tr>
+        <tbody *ngIf="listEspece">
+
+        <tr *ngFor="let espece of listEspece;" (deleteEspeceInBassin)="deleteEspeceBassin($event)" [especeBassin]="espece" >
+        </tr>
+        </tbody>
+      </table>
 
       <button mat-raised-button color="primary" type="submit" (click)="onUpdateBassin()" [disabled]="!formGroup.valid" routerLink="/bassin/{{role}}">
         Submit</button>
