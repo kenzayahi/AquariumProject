@@ -39,8 +39,12 @@ import { ActivityEditComponent } from './activity/edit/activity-edit.component';
 import { OneActivityComponent } from './activity/one-activity/one-activity.component';
 import { UpdateActivityComponent } from './activity/update-activity/update-activity.component';
 import { AuthetificationComponent } from './authetification/authetification.component';
+import { DialogOverviewComponent } from './bassin/dialog-overview/dialog-overview.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
+  exports: [DialogOverviewComponent],
+  entryComponents: [DialogOverviewComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -64,7 +68,8 @@ import { AuthetificationComponent } from './authetification/authetification.comp
     ActivityEditComponent,
     OneActivityComponent,
     UpdateActivityComponent,
-    AuthetificationComponent
+    AuthetificationComponent,
+    DialogOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +89,8 @@ import { AuthetificationComponent } from './authetification/authetification.comp
     ReactiveFormsModule,
     MatInputModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

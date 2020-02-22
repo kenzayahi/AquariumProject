@@ -31,19 +31,27 @@ export class BassinComponent implements OnInit {
     this.bassinService
       .getBassins()
       .subscribe(
-        data=>{this.listBassin=data;},
+        data=>{this.listBassin=data;console.log(data)},
         error => {console.log(error);
         })
   }
 
   refresh($event: any) {
     this.bassinService.getBassins().subscribe(
-      data => this.listBassin = data
-
-
+      data => {this.listBassin = data;
+      console.log("after Refreche"+data);}
     );
 
 
   }
 
+  AffectEspece($event: Boolean) {
+    if($event==true){
+      console.log($event);
+      this.bassinService.getBassins().subscribe(
+        data => {this.listBassin = data;
+          console.log("after Refreche"+data);}
+      );
+    }
+  }
 }

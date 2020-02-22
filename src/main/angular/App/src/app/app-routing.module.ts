@@ -79,7 +79,7 @@ const routes: Routes = [
     component: BassinEditComponent
   },
   {
-    path: 'bassin/update/:role/:id',
+    path: 'bassin/:role/update/:id',
     component: UpdateBassinComponent
   },
 

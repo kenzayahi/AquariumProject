@@ -12,10 +12,12 @@
       <th class="mat-cell">Capacite Max</th>
       <th class="mat-cell">Volume Eau</th>
       <th class="mat-cell">Etat</th>
+      <th class="mat-cell">Especes</th>
+      <th class="mat-cell">Nombres Animaux</th>
     </tr>
     <tbody *ngIf="listBassin">
 
-    <tr *ngFor="let bassin of listBassin;" [bassin]="bassin"  [role]="role" (deleteBassin)="refresh($event)">
+    <tr *ngFor="let bassin of listBassin;" [bassin]="bassin"  [role]="role" (affectespece)="AffectEspece($event)" (deleteBassin)="refresh($event)" >
     </tr>
     </tbody>
   </table>
