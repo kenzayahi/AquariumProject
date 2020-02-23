@@ -42,10 +42,12 @@ import { AuthetificationComponent } from './authetification/authetification.comp
 import { DialogOverviewComponent } from './bassin/dialog-overview/dialog-overview.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {EspeceBassinComponent} from "./bassin/update-Bassin/one-espece/one-espece.component";
+import { DialogOverviewEmployeComponent } from './employe/dialog-overview-employe/dialog-overview-employe.component';
+import { OneBassinModifComponent } from './employe/update-Employe/one-bassin-modif/one-bassin-modif.component';
 
 @NgModule({
-  exports: [DialogOverviewComponent],
-  entryComponents: [DialogOverviewComponent],
+  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent],
+  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -71,7 +73,9 @@ import {EspeceBassinComponent} from "./bassin/update-Bassin/one-espece/one-espec
     UpdateActivityComponent,
     AuthetificationComponent,
     DialogOverviewComponent,
-    EspeceBassinComponent
+    EspeceBassinComponent,
+    DialogOverviewEmployeComponent,
+    OneBassinModifComponent
   ],
   imports: [
     BrowserModule,

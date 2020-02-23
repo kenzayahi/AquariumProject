@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Employe} from '../model/employe';
+import {Bassin} from "../model/bassin";
 
 
 type EntityResponseType = HttpResponse<Employe>;
@@ -30,5 +31,16 @@ export class EmployeService {
 
   updateEmploye(employe: Employe): Observable<EntityResponseType> {
     return this.httpClient.post<Employe>('/employes' + '/' + employe.id, employe, { observe: 'response' });
+  }
+
+
+  affecteBassin(idEmploye: number, idBassin: number) : Observable<Array<Employe>>{
+    return this.httpClient.get<Array<Employe>>('/employesAddBassin/'+ idEmploye+'/'+idBassin);
+
+  }
+
+  deleteBassin(idEmploye: number, idBassin: number) : Observable<Array<Employe>>{
+    return this.httpClient.get<Array<Employe>>('/employesRemoveBassin/'+ idEmploye+'/'+idBassin);
+
   }
 }
