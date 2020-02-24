@@ -2,8 +2,8 @@ package com.upem.fr.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -12,9 +12,7 @@ public class Calendrier {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;
-    private long jourMois;
-    private long mois;
-    private long annee;
+    private Date date;
     @OneToOne
     private Employe employe;
 
@@ -25,9 +23,6 @@ public class Calendrier {
     }
 
     public Calendrier(long jourMois, long mois, long année, List<Activity> activities) {
-        this.jourMois = jourMois;
-        this.mois = mois;
-        this.annee = année;
         this.activities = activities;
     }
 
@@ -37,31 +32,6 @@ public class Calendrier {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-
-    public long getJourMois() {
-        return jourMois;
-    }
-
-    public void setJourMois(long jourMois) {
-        this.jourMois = jourMois;
-    }
-
-    public long getMois() {
-        return mois;
-    }
-
-    public void setMois(long mois) {
-        this.mois = mois;
-    }
-
-    public long getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(long annee) {
-        this.annee = annee;
     }
 
     public List<Activity> getActivities() {
@@ -84,21 +54,5 @@ public class Calendrier {
         this.employe = employe;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Calendrier)) return false;
-        Calendrier that = (Calendrier) o;
-        return getJourMois() == that.getJourMois() &&
-                getMois() == that.getMois() &&
-                getAnnee() == that.getAnnee() &&
-                getId().equals(that.getId()) &&
-                getActivities().equals(that.getActivities());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getJourMois(), getMois(), getAnnee(), getActivities());
-    }
 
 }

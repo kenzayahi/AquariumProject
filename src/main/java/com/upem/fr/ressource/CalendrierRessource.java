@@ -59,12 +59,12 @@ public class CalendrierRessource {
     }
 
     @GetMapping("calendrierAddActivity/{calendrierId}/{activityId}")
-    public Iterable<Calendrier> affectBassin(@PathVariable Long calendrierId, @PathVariable Long activityId) {
+    public Iterable<Calendrier> affectActivity(@PathVariable Long calendrierId, @PathVariable Long activityId) {
         calendrierService.addActivity(calendrierService.getOne(calendrierId), activityService.getOne(activityId));
         return calendrierService.getAll();
     }
     @GetMapping("calendrierRemoveActivity/{calendrierId}/{activityId}")
-    public Iterable<Calendrier> deleteBassin(@PathVariable Long calendrierId, @PathVariable Long activityId) {
+    public Iterable<Calendrier> deleteActivity(@PathVariable Long calendrierId, @PathVariable Long activityId) {
         calendrierService.removeActivity(calendrierService.getOne(calendrierId), activityService.getOne(activityId));
         return calendrierService.getAll();
     }

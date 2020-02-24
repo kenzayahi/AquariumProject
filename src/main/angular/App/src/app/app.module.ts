@@ -44,6 +44,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {EspeceBassinComponent} from "./bassin/update-Bassin/one-espece/one-espece.component";
 import { DialogOverviewEmployeComponent } from './employe/dialog-overview-employe/dialog-overview-employe.component';
 import { OneBassinModifComponent } from './employe/update-Employe/one-bassin-modif/one-bassin-modif.component';
+import {UpdateCalendrierComponent} from './calendrier/update-calendrier.component';
+import {OneCalendrierComponent} from './calendrier/one-calendrier/one-calendrier.component';
+import {CalendrierEditComponent} from './calendrier/edit/calendrier-edit.component';
 
 @NgModule({
   exports: [DialogOverviewComponent, DialogOverviewEmployeComponent],
@@ -75,7 +78,11 @@ import { OneBassinModifComponent } from './employe/update-Employe/one-bassin-mod
     DialogOverviewComponent,
     EspeceBassinComponent,
     DialogOverviewEmployeComponent,
-    OneBassinModifComponent
+    OneBassinModifComponent,
+    UpdateCalendrierComponent,
+    CalendrierEditComponent,
+    UpdateCalendrierComponent,
+    OneCalendrierComponent
   ],
   imports: [
     BrowserModule,
