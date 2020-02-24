@@ -20,10 +20,10 @@ public class Bassin {
     public int capaciteMax;
     public long volumeEau;
     public Etat etat;
-  /*  @JsonBackReference
+   @JsonBackReference
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JsonIgnoreProperties(value = {"bassin"},allowSetters = true)
-    private Employe employeResponsable;*/
+    private Employe employeResponsable;
 
     @OneToMany
     public List<Espece> especeList=new ArrayList<>();
@@ -34,6 +34,9 @@ public class Bassin {
 
     public void setEspece(Espece espece) {
         this.especeList.add(espece);
+    }
+    public void setEspeceRemove(Espece espece) {
+        this.especeList.remove(espece);
     }
 
     public Bassin() {
@@ -85,13 +88,13 @@ public class Bassin {
         this.etat = etat;
     }
 
-   /* public Employe getEmployeResponsable() {
+    public Employe getEmployeResponsable() {
         return employeResponsable;
     }
 
     public void setEmployeResponsable(Employe employeResponsable) {
         this.employeResponsable = employeResponsable;
-    }*/
+    }
 
     public void setEspeceList(List<Espece> especeList) {
         this.especeList = especeList;

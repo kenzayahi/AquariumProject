@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {Validators} from "@angular/forms";
 import {Employe, RoleEmploye} from "../model/employe";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,8 +19,10 @@ export class NavBarComponent {
 
   isGestionnaire= false;
   isSimpleEmpoye= false;
+  isResponsableBassin=false;
   nom:string;
   prenom:string;
+  role:string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -27,14 +30,18 @@ export class NavBarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,private route:Router) {}
   ngOnInit() {
+    this.route.navigate(['']);
+    this.role=this.employe.roleEmploye;
     this.nom=this.employe.nom;
     this.prenom=this.employe.prenom;
-    if(this.employe.roleEmploye==RoleEmploye.gestionnaire){
+    if(this.role==RoleEmploye.gestionnaire){
       this.isGestionnaire=true;
-    }else if(this.employe.roleEmploye==RoleEmploye.simpleEmploye){
+    }else if(this.role==RoleEmploye.simpleEmploye){
       this.isSimpleEmpoye=true;
+    }else if(this.role==RoleEmploye.responsableBassin){
+      this.isResponsableBassin=true;
     }
   }
 

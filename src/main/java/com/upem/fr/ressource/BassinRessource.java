@@ -51,7 +51,13 @@ public class BassinRessource {
     }
 
     @GetMapping("bassins/{bassinId}/{especeId}")
-    public void affectEspece(@PathVariable Long bassinId, @PathVariable Long especeId) {
+    public Iterable<Bassin> affectEspece(@PathVariable Long bassinId, @PathVariable Long especeId) {
         bassinService.addEspece(bassinService.getOne(bassinId), especeService.getOne(especeId));
+        return bassinService.getAll();
+    }
+    @GetMapping("deleteEspece/{bassinId}/{especeId}")
+    public Iterable<Bassin> deleteEspece(@PathVariable Long bassinId, @PathVariable Long especeId) {
+        bassinService.removeEspece(bassinService.getOne(bassinId), especeService.getOne(especeId));
+        return bassinService.getAll();
     }
 }

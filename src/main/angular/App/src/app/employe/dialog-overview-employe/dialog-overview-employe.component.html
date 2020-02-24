@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Choose Bassin</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formGroup" *ngIf="formGroup" class="form">
+
+    <mat-form-field class="form-element">
+      <mat-select formControlName="bassin">
+        <mat-option *ngFor="let bassin of data" [value]="bassin.id">
+          {{bassin.numBassin}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="doAction()" cdkFocusInitial>Ok</button>
+  </form>
+</div>

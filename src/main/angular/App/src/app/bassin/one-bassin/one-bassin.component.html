@@ -2,6 +2,9 @@
 <td>{{bassin.capaciteMax}}</td>
 <td>{{bassin.volumeEau}}</td>
 <td>{{bassin.etat}}</td>
+<td *ngIf="bassin.especeList">{{afficher(bassin.especeList)}}</td>
+<td *ngIf="bassin.especeList">{{nombreAnimaux(bassin.especeList)}}</td>
+
 <td>
   <a mat-mini-fab (click)="onDeleteBassin(bassin.id)" ><mat-icon> delete</mat-icon>
   </a>

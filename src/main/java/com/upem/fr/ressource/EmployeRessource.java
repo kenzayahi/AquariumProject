@@ -1,7 +1,9 @@
 package com.upem.fr.ressource;
 
+import com.upem.fr.model.Bassin;
 import com.upem.fr.model.Employe;
 import com.upem.fr.model.Espece;
+import com.upem.fr.service.BassinService;
 import com.upem.fr.service.EmployeService;
 import com.upem.fr.service.EspeceService;
 import com.upem.fr.service.errors.NotFoundException;
@@ -18,6 +20,9 @@ import java.util.Optional;
 public class EmployeRessource {
     @Autowired
     private EmployeService employeService;
+
+    @Autowired
+    private BassinService bassinService;
 
     @GetMapping("/employes")
     public Iterable<Employe> getAll() {
@@ -46,5 +51,16 @@ public class EmployeRessource {
     @PostMapping("employes/{id}")
     public Employe update(@PathVariable Long id, @Valid @RequestBody Employe employe) {
         return employeService.update(id, employe);
+    }
+
+    @GetMapping("employesAddBassin/{employesId}/{bassinId}")
+    public Iterable<Employe> affectBassin(@PathVariable Long employesId, @PathVariable Long bassinId) {
+        employeService.addBassin(employeService.getOne(employesId), bassinService.getOne(bassinId));
+        return employeService.getAll();
+    }
+    @GetMapping("employesRemoveBassin/{employesId}/{bassinId}")
+    public Iterable<Employe> deleteBassin(@PathVariable Long employesId, @PathVariable Long bassinId) {
+        employeService.removeBassin(employesId, bassinService.getOne(bassinId));
+        return employeService.getAll();
     }
 }

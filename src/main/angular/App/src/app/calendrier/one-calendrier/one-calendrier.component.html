@@ -1,0 +1,10 @@
+<td>{{calendrier.employe}}</td>
+<td>{{calendrier.date}}</td>
+
+<td>
+  <a mat-mini-fab (click)="onDeleteCalendrier(calendrier.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab routerLink="update/{{calendrier.id}}"><mat-icon> create</mat-icon>
+
+  </a>
+</td>

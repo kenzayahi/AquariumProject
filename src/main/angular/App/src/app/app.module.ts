@@ -39,8 +39,18 @@ import { ActivityEditComponent } from './activity/edit/activity-edit.component';
 import { OneActivityComponent } from './activity/one-activity/one-activity.component';
 import { UpdateActivityComponent } from './activity/update-activity/update-activity.component';
 import { AuthetificationComponent } from './authetification/authetification.component';
+import { DialogOverviewComponent } from './bassin/dialog-overview/dialog-overview.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {EspeceBassinComponent} from "./bassin/update-Bassin/one-espece/one-espece.component";
+import { DialogOverviewEmployeComponent } from './employe/dialog-overview-employe/dialog-overview-employe.component';
+import { OneBassinModifComponent } from './employe/update-Employe/one-bassin-modif/one-bassin-modif.component';
+import {UpdateCalendrierComponent} from './calendrier/update-calendrier.component';
+import {OneCalendrierComponent} from './calendrier/one-calendrier/one-calendrier.component';
+import {CalendrierEditComponent} from './calendrier/edit/calendrier-edit.component';
 
 @NgModule({
+  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent],
+  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -64,7 +74,15 @@ import { AuthetificationComponent } from './authetification/authetification.comp
     ActivityEditComponent,
     OneActivityComponent,
     UpdateActivityComponent,
-    AuthetificationComponent
+    AuthetificationComponent,
+    DialogOverviewComponent,
+    EspeceBassinComponent,
+    DialogOverviewEmployeComponent,
+    OneBassinModifComponent,
+    UpdateCalendrierComponent,
+    CalendrierEditComponent,
+    UpdateCalendrierComponent,
+    OneCalendrierComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +102,8 @@ import { AuthetificationComponent } from './authetification/authetification.comp
     ReactiveFormsModule,
     MatInputModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

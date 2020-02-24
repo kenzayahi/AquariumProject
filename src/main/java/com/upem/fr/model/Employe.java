@@ -28,10 +28,10 @@ public class Employe {
     private RoleEmploye roleEmploye;
     @OneToMany
     private List<Secteur> secteursAffectees = new ArrayList<>();
-/*
+
     @JsonIgnoreProperties(value = {"employe"},allowSetters = true)
-    @OneToMany(mappedBy = "employe",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Bassin> bassinsresponsable = new ArrayList<>();*/
+    @OneToMany(mappedBy = "employeResponsable",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<Bassin> bassinsresponsable = new ArrayList<>();
 
     public Employe() {
     }
@@ -125,14 +125,14 @@ public class Employe {
     public void setSecteursAffectees(List<Secteur> secteursAffectees) {
         this.secteursAffectees = secteursAffectees;
     }
-/*
+
     public List<Bassin> getBassinsresponsable() {
         return bassinsresponsable;
     }
 
     public void setBassinsresponsable(List<Bassin> bassinsresponsable) {
         this.bassinsresponsable = bassinsresponsable;
-    }*/
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -166,5 +166,10 @@ public class Employe {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void addBassin(Bassin bassin) {
+        this.bassinsresponsable.add(bassin);
+
     }
 }
