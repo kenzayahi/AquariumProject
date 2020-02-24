@@ -1,5 +1,5 @@
-<td>{{calendrier.employe}}</td>
-<td>{{calendrier.date}}</td>
+<td>{{calendrier.employe.nom + "  " + calendrier.employe.prenom}}</td>
+<td>{{calendrier.date | date}}</td>
 
 <td>
   <a mat-mini-fab (click)="onDeleteCalendrier(calendrier.id)" ><mat-icon> delete</mat-icon>

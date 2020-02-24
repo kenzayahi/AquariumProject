@@ -17,6 +17,9 @@ export class EmployeService {
   getEmployes() : Observable<Array<Employe>> {
     return this.httpClient.get<Array<Employe>>('/employes');
   }
+  getSimpleEmployes() : Observable<Array<Employe>> {
+    return this.httpClient.get<Array<Employe>>('/simpleEmployes');
+  }
 
   getEmploye(id: number) : Observable<Employe> {
     return this.httpClient.get<Employe>('/employes/' + id);

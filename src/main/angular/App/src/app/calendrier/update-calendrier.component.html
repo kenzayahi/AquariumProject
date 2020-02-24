@@ -1,6 +1,6 @@
 
 <mat-toolbar color="primary">
-  <a mat-fab routerLink="/calendrier/{{role}}/edit"><mat-icon> add</mat-icon></a>
+  <div *ngIf="isResponsable"><a mat-fab routerLink="/calendrier/{{role}}/edit"><mat-icon> add</mat-icon></a></div>
   <span class="fill-remaining-space">Calendrier</span>
 
 </mat-toolbar>

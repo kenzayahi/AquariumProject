@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -34,6 +35,14 @@ public class Calendrier {
         this.id = id;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public List<Activity> getActivities() {
         return activities;
     }
@@ -54,5 +63,29 @@ public class Calendrier {
         this.employe = employe;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Calendrier)) return false;
+        Calendrier that = (Calendrier) o;
+        return Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getDate(), that.getDate()) &&
+                Objects.equals(getEmploye(), that.getEmploye()) &&
+                Objects.equals(getActivities(), that.getActivities());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getDate(), getEmploye(), getActivities());
+    }
+
+    @Override
+    public String toString() {
+        return "Calendrier{" +
+                "id=" + id +
+                ", date=" + date +
+                ", employe=" + employe +
+                ", activities=" + activities +
+                '}';
+    }
 }

@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.Optional;
 
-@Resource
+@RestController
 public class CalendrierRessource {
     @Autowired
     private CalendrierService calendrierService;
@@ -39,7 +39,7 @@ public class CalendrierRessource {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
         }
     }
-    @GetMapping("calendrier/{employe}")
+    @GetMapping("calendrierByEmploye/{employe}")
     public Iterable<Calendrier> getAllByEmploye(@PathVariable Employe employe) {
         try {
             return calendrierService.getAllByEmploye(employe);

@@ -29,6 +29,11 @@ public class EmployeRessource {
         return employeService.getAll();
     }
 
+    @GetMapping("/simpleEmployes")
+    public Iterable<Employe> getAllsimpleEmployes() {
+        return employeService.getAllsimpleEmployes();
+    }
+
     @PostMapping("/employes")
     public ResponseEntity<Employe> create(@Valid @RequestBody Employe employe) {
         return new ResponseEntity<>(employeService.create(employe), HttpStatus.CREATED);
