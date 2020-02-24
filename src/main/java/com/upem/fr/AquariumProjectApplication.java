@@ -28,6 +28,8 @@ public class AquariumProjectApplication implements CommandLineRunner {
 		if(sum ==0) {
 			employeService.create(new Employe("Yahi", "Kenza", "1 rue de l'eglise", "kenza", "yahi", RoleEmploye.gestionnaire));
 			employeService.create(new Employe("Milan", "Milan", "1 rue de republique", "milan", "milan", RoleEmploye.simpleEmploye));
+			employeService.create(new Employe("Dilya", "Dilya", "15 rue de republique", "dilya", "dilya", RoleEmploye.responsableBassin));
+
 		}
 	}
 

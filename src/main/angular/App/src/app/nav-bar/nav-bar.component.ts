@@ -19,6 +19,7 @@ export class NavBarComponent {
 
   isGestionnaire= false;
   isSimpleEmpoye= false;
+  isResponsableBassin=false;
   nom:string;
   prenom:string;
   role:string;
@@ -39,6 +40,8 @@ export class NavBarComponent {
       this.isGestionnaire=true;
     }else if(this.role==RoleEmploye.simpleEmploye){
       this.isSimpleEmpoye=true;
+    }else if(this.role==RoleEmploye.responsableBassin){
+      this.isResponsableBassin=true;
     }
   }
 
