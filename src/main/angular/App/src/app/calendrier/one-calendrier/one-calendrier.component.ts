@@ -4,6 +4,9 @@ import {Calendrier} from '../../model/calendrier';
 import {CalendrierService} from '../calendrier.service';
 import {ActivityService} from '../../activity/activity.service';
 import {Activity} from '../../model/activity';
+import {RoleEmploye} from "../../model/employe";
+import {ActivatedRoute} from "@angular/router";
+import {EmployeService} from "../../employe/employe.service";
 
 @Component({
   selector: 'tr [calendrier]',
@@ -18,10 +21,38 @@ export class OneCalendrierComponent implements OnInit {
   role:any;
   @Output()
   deleteCalendrier = new EventEmitter<Calendrier>();
+  idEmploye: any;
+  employe: any;
+  isResponsable:boolean;
+  isSimpleEmploye:boolean;
 
-  constructor(private calendrierService: CalendrierService,private dialog:MatDialog,private activityService:ActivityService) { }
+  constructor(private calendrierService: CalendrierService,
+              private dialog:MatDialog,
+              private activityService:ActivityService,
+              private route:ActivatedRoute,
+              private employeService:EmployeService
+              ) { }
 
   ngOnInit() {
+      this.init();
+  }
+  // noinspection DuplicatedCode
+  init() {
+    this.idEmploye = this.route.snapshot.params['idEmploye'];
+    this.employe = this.employeService.getEmploye(this.idEmploye).subscribe(
+      data => {
+        this.employe = data;
+        this.role = this.employe.roleEmploye;
+        if (this.role == RoleEmploye.responsableBassin) {
+          this.isResponsable = true;
+        } else if (this.role == RoleEmploye.simpleEmploye) {
+          this.isSimpleEmploye = true;
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   onDeleteCalendrier(id: any){

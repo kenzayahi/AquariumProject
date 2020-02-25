@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface CalendrierRepository extends CrudRepository<Calendrier,Long> {
-    List<Calendrier> findAllByEmploye(Employe employe);
+    List<Calendrier> findAllByEmploye_Id(long idEmploye);
 
 }

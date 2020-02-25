@@ -48,8 +48,8 @@ public class CalendrierService {
         return calendrierRepository.save(calendrier);
     }
 
-    public Iterable<Calendrier> getAllByEmploye(Employe employe) {
-        return Optional.ofNullable(calendrierRepository.findAllByEmploye(employe)).orElseThrow(NotFoundException::new);
+    public Iterable<Calendrier> getAllByEmploye(long idEmploye) {
+        return Optional.ofNullable(calendrierRepository.findAllByEmploye_Id(idEmploye)).orElseThrow(NotFoundException::new);
 
     }
 }

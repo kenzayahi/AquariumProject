@@ -23,6 +23,7 @@ export class NavBarComponent {
   nom:string;
   prenom:string;
   role:string;
+  idEmploye:number;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -36,6 +37,8 @@ export class NavBarComponent {
     this.role=this.employe.roleEmploye;
     this.nom=this.employe.nom;
     this.prenom=this.employe.prenom;
+    this.idEmploye=this.employe.id;
+    console.log(this.idEmploye);
     if(this.role==RoleEmploye.gestionnaire){
       this.isGestionnaire=true;
     }else if(this.role==RoleEmploye.simpleEmploye){

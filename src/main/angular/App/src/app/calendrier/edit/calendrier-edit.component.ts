@@ -5,7 +5,7 @@ import {Calendrier} from "../../model/calendrier";
 import {CalendrierService} from "../calendrier.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {EmployeService} from "../../employe/employe.service";
-import {Employe} from "../../model/employe";
+import {Employe, RoleEmploye} from "../../model/employe";
 
 @Component({
   selector: 'app-edit',
@@ -20,6 +20,10 @@ export class CalendrierEditComponent implements OnInit {
   @Output()
   createCalendrier= new EventEmitter<Calendrier>();
   private role: any;
+  idEmploye: any;
+  employe: any;
+  isResponsable:boolean;
+  isSimpleEmploye:boolean;
 
   constructor(private formBuilder: FormBuilder,
               private calendrierService:CalendrierService,
@@ -31,9 +35,26 @@ export class CalendrierEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.role = this.route.snapshot.params['role'];
+    this.init();
     this.onGetsimpleEmploye();
     this.createForm();
+  }
+  init() {
+    this.idEmploye = this.route.snapshot.params['idEmploye'];
+    this.employe = this.employeService.getEmploye(this.idEmploye).subscribe(
+      data => {
+        this.employe = data;
+        this.role = this.employe.roleEmploye;
+        if (this.role == RoleEmploye.responsableBassin) {
+          this.isResponsable = true;
+        } else if (this.role == RoleEmploye.simpleEmploye) {
+          this.isSimpleEmploye = true;
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   createForm() {
@@ -48,7 +69,7 @@ export class CalendrierEditComponent implements OnInit {
       .subscribe(
         data=>{this.createCalendrier.emit(this.formGroup.value);
           this.snackBar.open('Le Calendrier a bien été créer', 'OK', { verticalPosition: 'top' });
-          this.router.navigate(['/calendrier/'+this.role])},
+          this.router.navigate(['/calendrier/'+this.idEmploye])},
         error=>console.log(error)
       );
   }

@@ -39,12 +39,12 @@ public class CalendrierRessource {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
         }
     }
-    @GetMapping("calendrierByEmploye/{employe}")
-    public Iterable<Calendrier> getAllByEmploye(@PathVariable Employe employe) {
+    @GetMapping("calendrierByEmploye/{idEmploye}")
+    public Iterable<Calendrier> getAllByEmploye(@PathVariable long idEmploye) {
         try {
-            return calendrierService.getAllByEmploye(employe);
+            return calendrierService.getAllByEmploye(idEmploye);
         }catch (NotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  employe  "+  employe  +  " inconnu");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  employe  "+  idEmploye  +  " inconnu");
         }
     }
 
