@@ -28,11 +28,8 @@ export class UpdateActivityComponent implements OnInit {
           type: new FormControl(data.type),
           dateDebut: new FormControl(data.dateDebut),
           dateFin : new FormControl(data.dateFin),
-          responsable : new FormControl(data.responsable.nom),
           accessible: new FormControl(data.accessible)
         }),
-          this.responsable = data.responsable;
-          // tslint:disable-next-line:no-unused-expression
         this.formGroup.get('responsable').disabled;
       }
     );
@@ -40,10 +37,8 @@ export class UpdateActivityComponent implements OnInit {
 
   onUpdateActivity() {
     let activity: Activity =  this.formGroup.value;
-    let idResponsable = this.responsable.id;
-    activity.responsable = null;
     activity.id = this.id;
-    this.activityService.updateActivity(activity, idResponsable).subscribe(
+    this.activityService.updateActivity(activity).subscribe(
       data => this.updateActivity.emit(activity),
       error => console.log(error)
     );

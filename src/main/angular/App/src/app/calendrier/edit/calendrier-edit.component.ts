@@ -60,7 +60,6 @@ export class CalendrierEditComponent implements OnInit {
   createForm() {
     this.formGroup = this.formBuilder.group({
       'employe': [null, Validators.required],
-      'date': [null, Validators.required],
     });
   }
   onCreateCalendrier(){
@@ -72,10 +71,6 @@ export class CalendrierEditComponent implements OnInit {
           this.router.navigate(['/calendrier/'+this.idEmploye])},
         error=>console.log(error)
       );
-  }
-
-  reset(){
-    this.formGroup.reset();
   }
   onGetsimpleEmploye(){
     this.employeService

@@ -53,7 +53,6 @@ export class CalendrierUpdateComponent implements OnInit {
           this.listActivities=data.activities;
             this.formGroup = new FormGroup({
               id: new FormControl(this.id),
-              date: new FormControl(data.date),
               employe: new FormControl(data2.id),
             });
           }
@@ -88,10 +87,6 @@ export class CalendrierUpdateComponent implements OnInit {
       data => {this.updateCalendrier.emit(calendrier)},
         error => console.log(error)
     );
-  }
-
-  reset(){
-    this.formGroup.reset();
   }
 
   affectActivity(id: number) :void{

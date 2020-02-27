@@ -6,7 +6,7 @@
   <mat-form-field class="form-element">
     <mat-select formControlName="activity">
         <mat-option *ngFor="let activity of data" [value]="activity.id">
-          {{activity.type +"/"+activity.responsable.nom}}
+          {{activity.type +"/"+activity.dateDebut+"/"+activity.dateFin}}
         </mat-option>
     </mat-select>
   </mat-form-field>

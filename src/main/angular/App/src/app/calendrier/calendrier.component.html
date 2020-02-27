@@ -8,8 +8,7 @@
 <mat-card class="card">
   <table border="true" >
     <tr >
-      <th class="mat-cell">Employe</th>
-      <th class="mat-cell">Date</th>
+      <th *ngIf="isResponsable && listCalendrier" class="mat-cell">Employe</th>
       <th class="mat-cell">List Activity</th>
 
     </tr>
@@ -20,7 +19,7 @@
     </tbody>
     <tbody *ngIf="isSimpleEmploye && employeCalendrier">
 
-    <tr *ngFor="let c of employeCalendrier;" [calendrier]="c"  [role]="role">
+    <tr *ngFor="let c of employeCalendrier;" [calendrierEmploye]="c"  [role]="role">
     </tr>
     </tbody>
   </table>

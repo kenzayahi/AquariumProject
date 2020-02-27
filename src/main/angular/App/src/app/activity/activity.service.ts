@@ -23,11 +23,11 @@ export class ActivityService {
   deleteActivity(id: number): Observable<EntityResponseType> {
     return this.httpClient.delete<Activity>('/activities/' + id, { observe: 'response' });
   }
-  createActivity(activity:Activity,idEmploye:number): Observable<EntityResponseType> {
-    return this.httpClient.post<Activity>('/activitiesCreate/'+idEmploye, activity, { observe: 'response' });
+  createActivity(activity:Activity): Observable<EntityResponseType> {
+    return this.httpClient.post<Activity>('/activitiesCreate', activity, { observe: 'response' });
   }
 
-  updateActivity(activity: Activity, idResponsable : number): Observable<EntityResponseType> {
-      return this.httpClient.post<Activity>('/activities' + '/' + activity.id + '/' + idResponsable, activity, { observe: 'response' });
+  updateActivity(activity: Activity): Observable<EntityResponseType> {
+      return this.httpClient.post<Activity>('/activities' + '/' + activity.id , activity, { observe: 'response' });
   }
 }

@@ -1,16 +1,11 @@
 package com.upem.fr.ressource;
 
 import com.upem.fr.model.Activity;
-import com.upem.fr.model.Animal;
-import com.upem.fr.model.Employe;
-import com.upem.fr.model.Espece;
 import com.upem.fr.service.ActivityService;
-import com.upem.fr.service.AnimalService;
-import com.upem.fr.service.EmployeService;
-import com.upem.fr.service.EspeceService;
 import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -21,8 +16,6 @@ import java.util.Optional;
 public class ActivityRessource {
     @Autowired
     private ActivityService activityService;
-    @Autowired
-    private EmployeService employeService;
 
     @GetMapping("/activities")
     public Iterable<Activity> getAll() {
@@ -30,11 +23,10 @@ public class ActivityRessource {
         return activityService.getAll();
     }
 
-    @PostMapping("/activitiesCreate/{idEmploye}")
-    public Activity create(@Valid   @RequestBody Activity activity,@PathVariable Long idEmploye) {
-        Optional<Employe>responsable=(employeService.getOne(idEmploye));
-        activity.setResponsable(responsable.get());
-        return activityService.create(activity);
+    @PostMapping("/activitiesCreate")
+    public ResponseEntity<Activity> create(@Valid   @RequestBody Activity activity) {
+        return new ResponseEntity<>(activityService.create(activity), HttpStatus.CREATED);
+
     }
 
     @GetMapping("activities/{id}")
@@ -51,10 +43,8 @@ public class ActivityRessource {
         activityService.delete(id);
     }
 
-    @PostMapping("activities/{id}/{idResponsable}")
-    public Activity update( @Valid @PathVariable Long id, @Valid @PathVariable Long idResponsable, @RequestBody Activity activity) {
-        Optional<Employe> responsable =(employeService.getOne(idResponsable));
-        activity.setResponsable(responsable.get());
+    @PostMapping("activities/{id}")
+    public Activity update( @Valid @PathVariable Long id, @RequestBody Activity activity) {
         return activityService.update(id, activity);
     }
 }

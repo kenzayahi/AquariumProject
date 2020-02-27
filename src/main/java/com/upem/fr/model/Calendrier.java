@@ -13,7 +13,6 @@ public class Calendrier {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;
-    private Date date;
     @OneToOne
     private Employe employe;
 
@@ -35,12 +34,8 @@ public class Calendrier {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
     }
 
     public List<Activity> getActivities() {
@@ -69,21 +64,19 @@ public class Calendrier {
         if (!(o instanceof Calendrier)) return false;
         Calendrier that = (Calendrier) o;
         return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getDate(), that.getDate()) &&
                 Objects.equals(getEmploye(), that.getEmploye()) &&
                 Objects.equals(getActivities(), that.getActivities());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDate(), getEmploye(), getActivities());
+        return Objects.hash(getId(), getEmploye(), getActivities());
     }
 
     @Override
     public String toString() {
         return "Calendrier{" +
                 "id=" + id +
-                ", date=" + date +
                 ", employe=" + employe +
                 ", activities=" + activities +
                 '}';

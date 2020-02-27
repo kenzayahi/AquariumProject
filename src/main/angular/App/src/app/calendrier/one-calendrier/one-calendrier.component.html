@@ -1,6 +1,26 @@
 <td>{{calendrier.employe.nom + "  " + calendrier.employe.prenom}}</td>
-<td>{{calendrier.date | date}}</td>
-<td *ngIf="calendrier.activities">{{afficher(calendrier.activities)}}</td>
+<td>
+  <table border="false" >
+    <tbody *ngIf="calendrier.activities">
+    <tr *ngIf="calendrier.activities">
+      <th class="mat-cell">Type</th>
+      <th class="mat-cell">Date Debut</th>
+      <th class="mat-cell">Date Fin</th>
+      <th class="mat-cell">Accessible</th>
+    </tr>
+    <tr *ngIf="!calendrier.activities">
+      <th class="mat-cell">Veuiller affecter des activitées</th>
+    </tr>
+    <tr *ngFor="let activity of calendrier.activities;">
+      <th class="mat-cell">{{activity.type}}</th>
+      <th class="mat-cell">{{activity.dateDebut | date:'medium'}}</th>
+      <th class="mat-cell">{{activity.dateFin | date:'medium'}}</th>
+      <th class="mat-cell">{{activity.accessible}}</th>
+    </tr>
+    </tbody>
+
+  </table>
+</td>
 
 <td *ngIf="isResponsable">
   <a mat-mini-fab (click)="onDeleteCalendrier(calendrier.id)" ><mat-icon> delete</mat-icon>

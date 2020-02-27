@@ -1,11 +1,13 @@
 package com.upem.fr.model;
 
+import com.upem.fr.model.enumeration.TypeActivity;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import com.upem.fr.model.enumeration.TypeActivity;
+import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -19,16 +21,15 @@ public class Activity {
     private Date dateDebut;
     private Date dateFin;
     private boolean accessible;
-    @ManyToOne
-    private Employe responsable;
+    @OneToMany
+    private List<Calendrier> calendrierList;
 
-    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, boolean accessible, Employe responsable) {
+    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, boolean accessible) {
         this.id = id;
         this.type = type;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.accessible = accessible;
-        this.responsable = responsable;
     }
 
     public Activity() {
@@ -40,6 +41,14 @@ public class Activity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Calendrier> getCalendrierList() {
+        return calendrierList;
+    }
+
+    public void setCalendrierList(List<Calendrier> calendrierList) {
+        this.calendrierList = calendrierList;
     }
 
     public TypeActivity getType() {
@@ -74,14 +83,6 @@ public class Activity {
         this.accessible = accessible;
     }
 
-    public Employe getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(Employe responsable) {
-        this.responsable = responsable;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,13 +92,12 @@ public class Activity {
                 type == activity.type &&
                 dateDebut.equals(activity.dateDebut) &&
                 dateFin.equals(activity.dateFin) &&
-                accessible == ((Activity) o).accessible &&
-                responsable.equals(activity.responsable);
+                accessible == ((Activity) o).accessible;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, dateDebut, dateFin, accessible, responsable);
+        return Objects.hash(id, type, dateDebut, dateFin, accessible);
     }
 
     @Override
@@ -108,7 +108,6 @@ public class Activity {
                 ", dateDebut=" + dateDebut +
                 ", dateFin=" + dateFin +
                 ", accessible=" + accessible +
-                ", responsable=" + responsable +
                 '}';
     }
 }

@@ -10,5 +10,4 @@ export interface Activity{
   dateFin : Date;
   type : TypeActivity;
   accessible : boolean;
-  responsable : Employe;
 }

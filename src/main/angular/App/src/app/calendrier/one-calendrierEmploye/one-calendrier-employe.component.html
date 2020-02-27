@@ -1,0 +1,18 @@
+<td *ngIf="calendrierEmploye.activities" >
+
+    <tr *ngFor="let activity of calendrierEmploye.activities;" class="card">
+      <th class="mat-cell">Type:{{activity.type}}</th>
+      <th class="mat-cell">Date Debut:{{activity.dateDebut | date:'medium'}}</th>
+      <th class="mat-cell">Date Fin:{{activity.dateFin | date:'medium'}}</th>
+      <th class="mat-cell">Accessible:{{activity.accessible}}</th>
+    </tr>
+
+</td>
+
+<td *ngIf="isResponsable">
+  <a mat-mini-fab (click)="onDeleteCalendrier(calendrierEmploye.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab routerLink="update/{{calendrierEmploye.id}}"><mat-icon> create</mat-icon>
+
+  </a>
+</td>
