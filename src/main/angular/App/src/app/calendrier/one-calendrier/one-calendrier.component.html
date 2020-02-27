@@ -1,6 +1,6 @@
 <td>{{calendrier.employe.nom + "  " + calendrier.employe.prenom}}</td>
 <td>{{calendrier.date | date}}</td>
-<td></td>
+<td *ngIf="calendrier.activities">{{afficher(calendrier.activities)}}</td>
 
 <td *ngIf="isResponsable">
   <a mat-mini-fab (click)="onDeleteCalendrier(calendrier.id)" ><mat-icon> delete</mat-icon>

@@ -18,7 +18,25 @@
       <input matInput type="date" placeholder="Date" formControlName="date">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="onUpdateCalendrier()" type="submit" class="button" [disabled]="!formGroup.valid">Submit</button>
+    <td>
+      <button mat-raised-button color="primary" (click)="affectActivity(id)">Affecter Activity</button>
+    </td>
+    <table border="true" >
+      <tr >
+        <th class="mat-cell">Type</th>
+        <th class="mat-cell">date Debut</th>
+        <th class="mat-cell">date Fin</th>
+        <th class="mat-cell">Responsable</th>
+        <th class="mat-cell">IsPublic</th>
+      </tr>
+      <tbody *ngIf="listActivities">
+
+      <tr *ngFor="let activity of listActivities;" (deleteActivityInCalendrier)="deleteActivityCalendrier($event)" [activityCalendrier]="activity" >
+      </tr>
+      </tbody>
+    </table>
+
+    <button mat-raised-button color="primary" (click)="onUpdateCalendrier()" type="submit" class="button" [disabled]="!formGroup.valid" routerLink="/calendrier/{{idEmployeConnecter}}">Submit</button>
 
     <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
 
