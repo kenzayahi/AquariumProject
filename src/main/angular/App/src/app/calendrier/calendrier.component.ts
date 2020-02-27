@@ -4,7 +4,6 @@ import {RoleEmploye} from '../model/employe';
 import {CalendrierService} from './calendrier.service';
 import {Calendrier} from '../model/calendrier';
 import {EmployeService} from "../employe/employe.service";
-import {error} from "util";
 
 @Component({
   selector: 'app-calendrier',
@@ -55,7 +54,7 @@ export class CalendrierComponent implements OnInit {
     this.calendrierService
       .getcalendriers()
       .subscribe(
-        data=>{this.listCalendrier=data;console.log(data)},
+        data=>{this.listCalendrier=data},
         error => {console.log(error);
         })
   }
@@ -63,7 +62,7 @@ export class CalendrierComponent implements OnInit {
     this.calendrierService
       .getEmployecalendriers(this.idEmploye)
       .subscribe(
-        data=>{this.employeCalendrier=data;console.log(data)},
+        data=>{this.employeCalendrier=data},
         error => {console.log(error);
         })
   }

@@ -4,6 +4,7 @@ import com.upem.fr.model.Calendrier;
 import com.upem.fr.model.Employe;
 import com.upem.fr.service.ActivityService;
 import com.upem.fr.service.CalendrierService;
+import com.upem.fr.service.EmployeService;
 import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -21,6 +21,8 @@ public class CalendrierRessource {
     private CalendrierService calendrierService;
     @Autowired
     private ActivityService activityService;
+    @Autowired
+    private EmployeService employeService;
     @GetMapping("/calendrier")
     public Iterable<Calendrier> getAll() {
         return calendrierService.getAll();
@@ -47,14 +49,23 @@ public class CalendrierRessource {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  employe  "+  idEmploye  +  " inconnu");
         }
     }
+    @GetMapping("calendrier_get_employe/{id}")
+    public Optional<Employe> getEspece(@PathVariable Long id) {
+        try {
+            return employeService.getOne(calendrierService.getOne(id).get().getEmploye().getId());
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
+    }
 
     @DeleteMapping("calendrier/{id}")
     public void delete(@PathVariable Long id) {
         calendrierService.delete(id);
     }
 
-    @PostMapping("calendrier/{id}")
-    public Calendrier update(@PathVariable Long id, @Valid @RequestBody Calendrier calendrier) {
+    @PostMapping("calendrier/{id}/{idEmploye}")
+    public Calendrier update(@PathVariable Long id,@PathVariable Long idEmploye, @Valid @RequestBody Calendrier calendrier) {
+        calendrier.setEmploye(employeService.getOne(idEmploye).get());
         return calendrierService.update(id, calendrier);
     }
 

@@ -3,6 +3,7 @@ import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Employe} from '../model/employe';
 import {Bassin} from "../model/bassin";
+import {Espece} from "../model/espece";
 
 
 type EntityResponseType = HttpResponse<Employe>;

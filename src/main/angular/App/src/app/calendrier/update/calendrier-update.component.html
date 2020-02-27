@@ -8,7 +8,7 @@
     <mat-form-field class="form-element">
       <mat-label>Choose Employe</mat-label>
       <mat-select formControlName="employe">
-        <mat-option *ngFor="let e of employes " [value]="e">
+        <mat-option *ngFor="let e of employes " [value]="e.id">
           {{e.nom}}
         </mat-option>
       </mat-select>

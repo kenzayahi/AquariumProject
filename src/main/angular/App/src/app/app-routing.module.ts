@@ -18,6 +18,7 @@ import {UpdateActivityComponent} from "./activity/update-activity/update-activit
 import {AuthetificationComponent} from "./authetification/authetification.component";
 import {CalendrierComponent} from './calendrier/calendrier.component';
 import {CalendrierEditComponent} from './calendrier/edit/calendrier-edit.component';
+import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
 
 const routes: Routes = [
   {
@@ -94,7 +95,7 @@ const routes: Routes = [
   },
   {
     path: 'calendrier/:idEmploye/update/:id',
-    component: CalendrierComponent
+    component: CalendrierUpdateComponent
   },
 
 

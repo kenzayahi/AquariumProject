@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Calendrier} from '../model/calendrier';
+import {Employe} from "../model/employe";
 
 type EntityResponseType = HttpResponse<Calendrier>;
 
@@ -22,6 +23,10 @@ export class CalendrierService {
     return this.httpClient.get<Calendrier>('/calendrier/' + id);
   }
 
+  getEmployeFromCalendrier(id: number) : Observable<Employe> {
+    return this.httpClient.get<Employe>('/calendrier_get_employe/' + id);
+  }
+
   deleteCalendrier(id: number): Observable<EntityResponseType> {
     return this.httpClient.delete<Calendrier>('/calendrier/' + id, { observe: 'response' });
   }
@@ -36,7 +41,7 @@ export class CalendrierService {
     return this.httpClient.post<Calendrier>('/calendrier', calendrier, { observe: 'response' });
   }
 
-  updateCalendrier(calendrier: Calendrier): Observable<EntityResponseType> {
-    return this.httpClient.post<Calendrier>('/calendrier' + '/' + calendrier.id, calendrier, { observe: 'response' });
+  updateCalendrier(calendrier: Calendrier,idEmploye:number): Observable<EntityResponseType> {
+    return this.httpClient.post<Calendrier>('/calendrier' + '/' + calendrier.id + '/' + idEmploye, calendrier, { observe: 'response' });
   }
 }
