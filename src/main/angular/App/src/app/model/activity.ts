@@ -1,4 +1,5 @@
 import {Employe} from "./employe";
+import {Bassin} from "./bassin";
 export enum TypeActivity {
   nourrissage='nourrissage',
   entretien='entretien',
@@ -13,4 +14,5 @@ export interface Activity{
   type : TypeActivity;
   accessible : boolean;
   responsables : Array<Employe>;
+  bassin:Bassin;
 }

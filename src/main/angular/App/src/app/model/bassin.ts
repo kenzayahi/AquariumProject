@@ -1,4 +1,5 @@
 import {Espece} from "./espece";
+import {Activity} from "./activity";
 
 export enum Etat {
   propre='propre',
@@ -11,4 +12,5 @@ export interface Bassin{
   volumeEau:string;
   etat : Etat;
   especeList:Array<Espece>
+  activities:Array<Activity>
 }

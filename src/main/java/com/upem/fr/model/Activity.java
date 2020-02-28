@@ -2,6 +2,7 @@ package com.upem.fr.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.upem.fr.model.enumeration.TypeActivity;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,9 @@ public class Activity {
     private boolean accessible;
     @ManyToMany
     private List<Employe> responsables;
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JsonIgnoreProperties(value = {"activity"},allowSetters = true)
+    private Bassin bassin;
 
     public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, boolean accessible, List<Employe> responsable) {
         this.id = id;
@@ -39,6 +43,18 @@ public class Activity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isAccessible() {
+        return accessible;
+    }
+
+    public Bassin getBassin() {
+        return bassin;
+    }
+
+    public void setBassin(Bassin bassin) {
+        this.bassin = bassin;
     }
 
     public TypeActivity getType() {

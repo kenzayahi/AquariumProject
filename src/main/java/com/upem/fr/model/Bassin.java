@@ -28,16 +28,9 @@ public class Bassin {
     @OneToMany
     public List<Espece> especeList=new ArrayList<>();
 
-    public List<Espece> getEspeceList() {
-        return especeList;
-    }
-
-    public void setEspece(Espece espece) {
-        this.especeList.add(espece);
-    }
-    public void setEspeceRemove(Espece espece) {
-        this.especeList.remove(espece);
-    }
+    @JsonIgnoreProperties(value = {"bassin"},allowSetters = true)
+    @OneToMany(mappedBy = "bassin",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<Activity>activities= new ArrayList<>();
 
     public Bassin() {
     }
@@ -56,12 +49,31 @@ public class Bassin {
         this.numBassin = numBassin;
     }
 
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Espece> getEspeceList() {
+        return especeList;
+    }
+
+    public void setEspece(Espece espece) {
+        this.especeList.add(espece);
+    }
+    public void setEspeceRemove(Espece espece) {
+        this.especeList.remove(espece);
     }
 
     public int getCapaciteMax() {

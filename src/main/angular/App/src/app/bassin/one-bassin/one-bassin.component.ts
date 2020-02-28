@@ -5,6 +5,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {DialogOverviewComponent} from "../dialog-overview/dialog-overview.component";
 import {Espece} from "../../model/espece";
 import {EspeceService} from "../../espece/espece.service";
+import {Activity} from "../../model/activity";
 
 @Component({
   selector: 'tr [bassin]',
@@ -42,7 +43,15 @@ export class OneBassinComponent implements OnInit {
     }
     return s
   }
-
+  afficherListActivity(activityList: Array<Activity>):string {
+    let s : string = ""
+    for(let i = 0; i < activityList.length; i++){
+      s += activityList[i].type ;
+      if(i != activityList.length - 1)
+        s+= "/ " ;
+    }
+    return s
+  }
   nombreAnimaux(especeList: Array<Espece>) : number {
     let nombre: number = 0;
     for (let i = 0; i < especeList.length; i++) {

@@ -7,6 +7,8 @@ import {Employe} from "../../model/employe";
 import {ActivityService} from "../activity.service";
 import {EmployeService} from "../../employe/employe.service";
 import {DialogActivityComponent} from "../dialog-activity/dialog-activity.component";
+import {BassinService} from "../../bassin/bassin.service";
+import {Bassin} from "../../model/bassin";
 
 @Component({
   selector: 'app-update-activity',
@@ -29,45 +31,56 @@ export class UpdateActivityComponent implements OnInit {
   affectEmploye = new EventEmitter<Boolean>();
 
   typeActivity:TypeActivity;
+  private bassins: Array<Bassin>;
 
 
   constructor(private activityService : ActivityService,
               private route: ActivatedRoute,
               private dialog: MatDialog,
-              private employeService:EmployeService) { }
+              private employeService:EmployeService,
+              private bassinService:BassinService) {
+    this.onGetBassins();
+  }
+
   refreshList(){
     this.activityService.getActivity(this.id).subscribe(data => {
         this.listResponsables=data.responsables;
       }
     );
   }
-
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.activityService.getActivity(this.id).subscribe(data => {
-        this.listResponsables=data.responsables;
-        this.typeActivity=data.type;
-        this.formGroup = new FormGroup({
-          type: new FormControl(data.type),
-          dateDebut: new FormControl(data.dateDebut),
-          dateFin: new FormControl(data.dateFin),
-          accessible: new FormControl(data.accessible),
-        });
-        if(this.typeActivity==TypeActivity.verifier_stock_nouriture){
-          this.onGetGestionnaire()
-        }else{
-          this.onGetSimpleEmploye()
-        }
-      }
-    );
+    this.activityService.getBassinFromActivity(this.id).subscribe(
 
+      data2 => {
+        console.log("data2"+data2.id);
+        this.activityService.getActivity(this.id).subscribe(data => {
+            this.listResponsables=data.responsables;
+            this.typeActivity=data.type;
+            this.formGroup = new FormGroup({
+              type: new FormControl(data.type),
+              dateDebut: new FormControl(data.dateDebut),
+              dateFin: new FormControl(data.dateFin),
+              accessible: new FormControl(data.accessible),
+              bassin:new FormControl(data2.id),
+            });
+            if(this.typeActivity==TypeActivity.verifier_stock_nouriture){
+              this.onGetGestionnaire()
+            }else{
+              this.onGetSimpleEmploye()
+            }
+          }
+        );
+      });
   }
 
   onUpdateActivity() {
     let activity: Activity =  this.formGroup.value;
     activity.id = this.id;
+    let idBassin = this.formGroup.get('bassin').value;
+    activity.bassin = null;
     activity.responsables=this.listResponsables;
-    this.activityService.updateActivity(activity).subscribe(
+    this.activityService.updateActivity(activity,idBassin).subscribe(
       data => this.updateActivity.emit(activity),
       error => console.log(error)
     );
@@ -87,6 +100,14 @@ export class UpdateActivityComponent implements OnInit {
       .subscribe(
         data=>{this.employes=data},
         error => {console.log("errrrrrror"+error);
+        })
+  }
+  onGetBassins(){
+    this.bassinService
+      .getBassins()
+      .subscribe(
+        data=>{this.bassins=data;},
+        error => {console.log(error);
         })
   }
   affecterEmploye(id:any) :void {

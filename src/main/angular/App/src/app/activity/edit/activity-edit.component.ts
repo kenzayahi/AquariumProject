@@ -6,6 +6,8 @@ import {ActivityService} from "../activity.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Employe} from "../../model/employe";
 import {EmployeService} from "../../employe/employe.service";
+import {BassinService} from "../../bassin/bassin.service";
+import {Bassin} from "../../model/bassin";
 
 @Component({
   selector: 'app-edit',
@@ -21,14 +23,17 @@ export class ActivityEditComponent implements OnInit {
 
   @Output()
   createActivity = new EventEmitter<Activity>();
+  private bassins: Array<Bassin>;
 
   constructor(private formBuilder: FormBuilder,
               private activityService: ActivityService,
               private employeService: EmployeService,
+              private bassinService:BassinService,
               protected router: Router,
               protected snackBar: MatSnackBar,
   ) {
     this.onGetEmploye();
+    this.onGetBassins();
   }
 
   ngOnInit() {
@@ -41,12 +46,15 @@ export class ActivityEditComponent implements OnInit {
       'dateDebut': [null, Validators.required],
       'dateFin': [null, Validators.required],
       'accessible': [null, Validators.required],
+      'bassin': [null, Validators.required],
     });
   }
   onCreateActivity(){
     let activity : Activity = this.formGroup.value;
+    let idBassin = activity.bassin.id;
+    activity.bassin = null;
     this.activityService
-      .createActivity(activity)
+      .createActivity(activity,idBassin)
       .subscribe(
         data=>{this.createActivity.emit(this.formGroup.value);
           this.snackBar.open('L"activité  a bien été créer', 'OK', { verticalPosition: 'top' });
@@ -58,6 +66,15 @@ export class ActivityEditComponent implements OnInit {
 
   reset(){
     this.formGroup.reset();
+  }
+
+  onGetBassins(){
+    this.bassinService
+      .getBassins()
+      .subscribe(
+        data=>{this.bassins=data;},
+        error => {console.log(error);
+        })
   }
 
   onGetEmploye(){

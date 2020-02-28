@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Activity} from "../../model/activity";
 import {ActivityService} from "../activity.service";
 import {Employe} from "../../model/employe";
+import {Espece} from "../../model/espece";
+import {Bassin} from "../../model/bassin";
 
 @Component({
   selector: 'tr [activity]',
