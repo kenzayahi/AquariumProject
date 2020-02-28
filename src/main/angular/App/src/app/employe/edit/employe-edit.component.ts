@@ -11,7 +11,7 @@ import {EmployeService} from '../employe.service';
   styleUrls: ['./employe-edit.component.css']
 })
 export class EmployeEditComponent implements OnInit {
-  roleEmploye:[RoleEmploye.gestionnaire,RoleEmploye.simpleemploye,RoleEmploye.responsablebassin];
+  roleEmploye= [RoleEmploye.gestionnaire,RoleEmploye.simpleemploye,RoleEmploye.responsablebassin];
   formGroup: FormGroup;
 
   @Output()

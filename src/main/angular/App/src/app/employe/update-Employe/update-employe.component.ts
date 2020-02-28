@@ -14,7 +14,7 @@ import {DialogOverviewEmployeComponent} from "../dialog-overview-employe/dialog-
   styleUrls: ['./update-employe.component.css']
 })
 export class UpdateEmployeComponent implements OnInit {
-  roleEmploye:[RoleEmploye.gestionnaire,RoleEmploye.simpleemploye,RoleEmploye.responsablebassin];
+  roleEmploye= [RoleEmploye.gestionnaire,RoleEmploye.simpleemploye,RoleEmploye.responsablebassin];
   id:number;
   idBassin : number;
   bassins:Array<Bassin>;
@@ -56,13 +56,21 @@ export class UpdateEmployeComponent implements OnInit {
     console.log(this.listBassin.length);
     let employe: Employe =  this.formGroup.value;
     employe.id = this.id;
+    let role = this.formGroup.get('roleEmploye').value;
+
     if(this.listBassin.length!=0) {
       employe.roleEmploye=RoleEmploye.responsablebassin;
       this.employeService.updateEmploye(employe).subscribe(
         data => this.updateEmploye.emit(employe),
         error => console.log(error)
       );
-    }else{
+    }else if(role==RoleEmploye.gestionnaire){
+      employe.roleEmploye=RoleEmploye.gestionnaire;
+      this.employeService.updateEmploye(employe).subscribe(
+        data => this.updateEmploye.emit(employe),
+        error => console.log(error)
+      );
+    }else {
       employe.roleEmploye=RoleEmploye.simpleemploye;
       this.employeService.updateEmploye(employe).subscribe(
         data => this.updateEmploye.emit(employe),
