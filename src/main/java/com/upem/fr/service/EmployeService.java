@@ -67,11 +67,14 @@ public class EmployeService {
         return simpleEmployes;
     }
 
-    public Employe addActivity(Optional<Employe> employe, Optional<Bassin> bassin) {
-        Employe e = employe.get();
-        e.addBassin(bassin.get());
-        bassin.get().setEmployeResponsable(e);
-        return employeRepository.save(e);
+    public Iterable<Employe> getAllGestionnaireEmployes() {
+        List<Employe>gestEmployes =new ArrayList<>();
+        List<Employe> employes= (List<Employe>) employeRepository.findAll();
+        for(Employe e:employes){
+            if(e.getRoleEmploye()== RoleEmploye.gestionnaire){
+                gestEmployes.add(e);
+            }
+        }
+        return gestEmployes;
     }
-
 }

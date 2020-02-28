@@ -15,7 +15,7 @@ import {DialogActivityComponent} from "../dialog-activity/dialog-activity.compon
 })
 export class UpdateActivityComponent implements OnInit {
 
-  type=[ TypeActivity.bilan,TypeActivity.entretien,TypeActivity.nourrissage];
+  type=[ TypeActivity.bilan_veterinaire,TypeActivity.entretien,TypeActivity.nourrissage,TypeActivity.verifier_stock_nouriture];
   id:number;
   formGroup: FormGroup;
   listResponsables:Array<Employe>;
@@ -27,6 +27,8 @@ export class UpdateActivityComponent implements OnInit {
   deleteActivity = new EventEmitter<Activity>();
   @Output()
   affectEmploye = new EventEmitter<Boolean>();
+
+  typeActivity:TypeActivity;
 
 
   constructor(private activityService : ActivityService,
@@ -41,18 +43,24 @@ export class UpdateActivityComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onGetEmploye();
     this.id = this.route.snapshot.params['id'];
     this.activityService.getActivity(this.id).subscribe(data => {
         this.listResponsables=data.responsables;
+        this.typeActivity=data.type;
         this.formGroup = new FormGroup({
           type: new FormControl(data.type),
           dateDebut: new FormControl(data.dateDebut),
           dateFin: new FormControl(data.dateFin),
           accessible: new FormControl(data.accessible),
         });
+        if(this.typeActivity==TypeActivity.verifier_stock_nouriture){
+          this.onGetGestionnaire()
+        }else{
+          this.onGetSimpleEmploye()
+        }
       }
     );
+
   }
 
   onUpdateActivity() {
@@ -65,9 +73,17 @@ export class UpdateActivityComponent implements OnInit {
     );
 
   }
-  onGetEmploye(){
+  onGetSimpleEmploye(){
     this.employeService
       .getSimpleEmployes()
+      .subscribe(
+        data=>{this.employes=data},
+        error => {console.log("errrrrrror"+error);
+        })
+  }
+  onGetGestionnaire(){
+    this.employeService
+      .getGestionnaireEmployes()
       .subscribe(
         data=>{this.employes=data},
         error => {console.log("errrrrrror"+error);
@@ -90,7 +106,11 @@ export class UpdateActivityComponent implements OnInit {
         .affecteEmploye(id, this.idEmploye)
         .subscribe(
           data=>{this.affectEmploye.emit(true);
-            this.onGetEmploye();
+            if(this.typeActivity==TypeActivity.verifier_stock_nouriture){
+              this.onGetGestionnaire()
+            }else{
+              this.onGetSimpleEmploye()
+            }
             this.refreshList();
           },
           error => {console.log("errrrrrror"+error)}
@@ -105,7 +125,11 @@ export class UpdateActivityComponent implements OnInit {
       .deleteEmploye(this.id,employe.id)
       .subscribe(
         data=> {
-          this.onGetEmploye();
+          if(this.typeActivity==TypeActivity.verifier_stock_nouriture){
+            this.onGetGestionnaire()
+          }else{
+            this.onGetSimpleEmploye()
+          }
           this.refreshList();
 
         },

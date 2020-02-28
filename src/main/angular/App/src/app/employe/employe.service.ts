@@ -22,6 +22,10 @@ export class EmployeService {
     return this.httpClient.get<Array<Employe>>('/simpleEmployes');
   }
 
+  getGestionnaireEmployes() : Observable<Array<Employe>> {
+    return this.httpClient.get<Array<Employe>>('/gestionnaireEmployes');
+  }
+
   getEmploye(id: number) : Observable<Employe> {
     return this.httpClient.get<Employe>('/employes/' + id);
   }

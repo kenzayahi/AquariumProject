@@ -2,7 +2,9 @@ import {Employe} from "./employe";
 export enum TypeActivity {
   nourrissage='nourrissage',
   entretien='entretien',
-  bilan ='bilan'
+  bilan_veterinaire ='bilan_veterinaire',
+  verifier_stock_nouriture ='verifier_stock_nouriture',
+
 }
 export interface Activity{
   id : number;

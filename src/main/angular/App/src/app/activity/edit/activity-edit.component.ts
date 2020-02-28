@@ -6,7 +6,6 @@ import {ActivityService} from "../activity.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Employe} from "../../model/employe";
 import {EmployeService} from "../../employe/employe.service";
-import {Animal} from "../../model/animal";
 
 @Component({
   selector: 'app-edit',
@@ -16,7 +15,7 @@ import {Animal} from "../../model/animal";
 export class ActivityEditComponent implements OnInit {
 
   formGroup: FormGroup;
-  type=[ TypeActivity.bilan,TypeActivity.entretien,TypeActivity.nourrissage];
+  type=[ TypeActivity.bilan_veterinaire,TypeActivity.entretien,TypeActivity.nourrissage,TypeActivity.verifier_stock_nouriture];
 
   employes: Array<Employe>;
 
