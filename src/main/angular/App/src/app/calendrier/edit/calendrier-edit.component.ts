@@ -45,9 +45,9 @@ export class CalendrierEditComponent implements OnInit {
       data => {
         this.employe = data;
         this.role = this.employe.roleEmploye;
-        if (this.role == RoleEmploye.responsableBassin) {
+        if (this.role == RoleEmploye.responsablebassin) {
           this.isResponsable = true;
-        } else if (this.role == RoleEmploye.simpleEmploye) {
+        } else if (this.role == RoleEmploye.simpleemploye) {
           this.isSimpleEmploye = true;
         }
       },

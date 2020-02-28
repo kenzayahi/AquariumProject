@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
-import {Validators} from "@angular/forms";
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Observable} from 'rxjs';
+import {map, shareReplay} from 'rxjs/operators';
 import {Employe, RoleEmploye} from "../model/employe";
 import {Router} from "@angular/router";
 
@@ -13,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class NavBarComponent {
   @Output()
-  private disconnectEvent=new EventEmitter<boolean>()
+  private disconnectEvent=new EventEmitter<boolean>();
   @Input()
   employe:Employe;
 
@@ -41,9 +40,9 @@ export class NavBarComponent {
     console.log(this.idEmploye);
     if(this.role==RoleEmploye.gestionnaire){
       this.isGestionnaire=true;
-    }else if(this.role==RoleEmploye.simpleEmploye){
+    }else if(this.role==RoleEmploye.simpleemploye){
       this.isSimpleEmpoye=true;
-    }else if(this.role==RoleEmploye.responsableBassin){
+    }else if(this.role==RoleEmploye.responsablebassin){
       this.isResponsableBassin=true;
     }
   }

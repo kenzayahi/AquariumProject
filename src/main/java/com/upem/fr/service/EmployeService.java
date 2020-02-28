@@ -2,16 +2,13 @@ package com.upem.fr.service;
 
 import com.upem.fr.model.Bassin;
 import com.upem.fr.model.Employe;
-import com.upem.fr.model.Espece;
 import com.upem.fr.model.enumeration.RoleEmploye;
-import com.upem.fr.repository.AnimalRepository;
 import com.upem.fr.repository.EmployeRepository;
 import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,7 +57,7 @@ public class EmployeService {
         List<Employe>simpleEmployes =new ArrayList<>();
         List<Employe> employes= (List<Employe>) employeRepository.findAll();
         for(Employe e:employes){
-            if(e.getRoleEmploye()== RoleEmploye.simpleEmploye){
+            if(e.getRoleEmploye()== RoleEmploye.simpleemploye){
                 simpleEmployes.add(e);
             }
         }

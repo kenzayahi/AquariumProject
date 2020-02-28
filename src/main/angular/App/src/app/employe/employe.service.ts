@@ -41,10 +41,8 @@ export class EmployeService {
     return this.httpClient.post<Employe>('/employes' + '/' + employe.id, employe, { observe: 'response' });
   }
 
-
   affecteBassin(idEmploye: number, idBassin: number) : Observable<Array<Employe>>{
     return this.httpClient.get<Array<Employe>>('/employesAddBassin/'+ idEmploye+'/'+idBassin);
-
   }
 
   deleteBassin(idEmploye: number, idBassin: number) : Observable<Array<Employe>>{

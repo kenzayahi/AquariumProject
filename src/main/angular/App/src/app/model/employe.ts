@@ -2,8 +2,8 @@ import {Bassin} from "./bassin";
 
 export enum RoleEmploye {
   gestionnaire = 'gestionnaire',
-  simpleEmploye = 'simpleEmploye',
-  responsableBassin='responsableBassin',
+  simpleemploye = 'simpleemploye',
+  responsablebassin='responsablebassin',
 
 }
 export interface Employe{

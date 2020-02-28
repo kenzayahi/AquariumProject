@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
-import {Employe} from '../../model/employe';
+import {Employe, RoleEmploye} from '../../model/employe';
 import {EmployeService} from '../employe.service';
 
 @Component({
@@ -11,7 +11,7 @@ import {EmployeService} from '../employe.service';
   styleUrls: ['./employe-edit.component.css']
 })
 export class EmployeEditComponent implements OnInit {
-
+  roleEmploye:[RoleEmploye.gestionnaire,RoleEmploye.simpleemploye,RoleEmploye.responsablebassin];
   formGroup: FormGroup;
 
   @Output()
@@ -37,7 +37,7 @@ export class EmployeEditComponent implements OnInit {
       'dateNaissance': [null, Validators.required],
       'email': [null, Validators.required],
       'password': [null, Validators.required],
-
+      'roleEmploye': [null, Validators.required],
     });
   }
   onCreateEmploye(){

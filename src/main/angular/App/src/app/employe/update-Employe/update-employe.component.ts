@@ -1,11 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
-import {Employe} from '../../model/employe';
+import {Employe, RoleEmploye} from '../../model/employe';
 import {EmployeService} from '../employe.service';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {BassinService} from "../../bassin/bassin.service";
-import {Espece} from "../../model/espece";
 import {Bassin} from "../../model/bassin";
 import {DialogOverviewEmployeComponent} from "../dialog-overview-employe/dialog-overview-employe.component";
 
@@ -15,6 +14,7 @@ import {DialogOverviewEmployeComponent} from "../dialog-overview-employe/dialog-
   styleUrls: ['./update-employe.component.css']
 })
 export class UpdateEmployeComponent implements OnInit {
+  roleEmploye:[RoleEmploye.gestionnaire,RoleEmploye.simpleemploye,RoleEmploye.responsablebassin];
   id:number;
   idBassin : number;
   bassins:Array<Bassin>;
@@ -36,8 +36,7 @@ export class UpdateEmployeComponent implements OnInit {
     this.onGetBassins();
     this.employeService.getEmploye(this.id).subscribe(data => {
       this.listBassin = data.bassinsresponsable;
-      console.log(data);
-      console.log(this.listBassin)
+      console.log("rooool"+data.roleEmploye);
         this.formGroup = new FormGroup({
           nom: new FormControl(data.nom),
           prenom: new FormControl(data.prenom),
@@ -46,6 +45,7 @@ export class UpdateEmployeComponent implements OnInit {
           numSecurite: new FormControl(data.numSecurite),
           email:new FormControl(data.email),
           password:new FormControl(data.password),
+          roleEmploye:new FormControl(data.roleEmploye),
         });
       }
     );
@@ -53,13 +53,22 @@ export class UpdateEmployeComponent implements OnInit {
 
 
   onUpdateEmploye() {
+    console.log(this.listBassin.length);
     let employe: Employe =  this.formGroup.value;
     employe.id = this.id;
-    this.employeService.updateEmploye(employe).subscribe(
-      data => this.updateEmploye.emit(employe),
-      error => console.log(error)
-    );
-
+    if(this.listBassin.length!=0) {
+      employe.roleEmploye=RoleEmploye.responsablebassin;
+      this.employeService.updateEmploye(employe).subscribe(
+        data => this.updateEmploye.emit(employe),
+        error => console.log(error)
+      );
+    }else{
+      employe.roleEmploye=RoleEmploye.simpleemploye;
+      this.employeService.updateEmploye(employe).subscribe(
+        data => this.updateEmploye.emit(employe),
+        error => console.log(error)
+      );
+    }
   }
 
   affectBassin(id:any) :void {
@@ -105,7 +114,7 @@ export class UpdateEmployeComponent implements OnInit {
     );
   }
 
-  deleteEspeceBassin($event: any) {
+  deleteBassinInEmploye($event: any) {
     let bassin = $event;
     this.employeService
       .deleteBassin(this.id, bassin.id)
