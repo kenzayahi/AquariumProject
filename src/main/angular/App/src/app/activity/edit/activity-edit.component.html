@@ -25,15 +25,6 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
-        <mat-label>Responsable</mat-label>
-        <mat-select formControlName="responsable">
-          <mat-option *ngFor="let e of employes" [value]="e.id">
-            {{e.nom}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="form-element">
         <mat-label>Accessibilité</mat-label>
         <mat-select formControlName="accessible">
           <mat-option [value]="false">

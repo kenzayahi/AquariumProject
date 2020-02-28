@@ -1,11 +1,8 @@
 package com.upem.fr.ressource;
 
-import com.upem.fr.model.Bassin;
 import com.upem.fr.model.Employe;
-import com.upem.fr.model.Espece;
 import com.upem.fr.service.BassinService;
 import com.upem.fr.service.EmployeService;
-import com.upem.fr.service.EspeceService;
 import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

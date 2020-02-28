@@ -1,11 +1,10 @@
 package com.upem.fr.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+
 import com.upem.fr.model.enumeration.TypeActivity;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -19,16 +18,16 @@ public class Activity {
     private Date dateDebut;
     private Date dateFin;
     private boolean accessible;
-    @ManyToOne
-    private Employe responsable;
+    @ManyToMany
+    private List<Employe> responsables;
 
-    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, boolean accessible, Employe responsable) {
+    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, boolean accessible, List<Employe> responsable) {
         this.id = id;
         this.type = type;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.accessible = accessible;
-        this.responsable = responsable;
+        this.responsables = responsable;
     }
 
     public Activity() {
@@ -74,12 +73,18 @@ public class Activity {
         this.accessible = accessible;
     }
 
-    public Employe getResponsable() {
-        return responsable;
+    public List<Employe> getResponsables() {
+        return responsables;
+    }
+    public void setResponsables(List<Employe> responsables) {
+        this.responsables=responsables;
     }
 
-    public void setResponsable(Employe responsable) {
-        this.responsable = responsable;
+    public void addResponsables(Employe responsable) {
+        this.responsables.add(responsable);
+    }
+    public void removeResponsables(Employe responsable) {
+        this.responsables.remove(responsable);
     }
 
     @Override
@@ -92,12 +97,12 @@ public class Activity {
                 dateDebut.equals(activity.dateDebut) &&
                 dateFin.equals(activity.dateFin) &&
                 accessible == ((Activity) o).accessible &&
-                responsable.equals(activity.responsable);
+                responsables.equals(activity.responsables);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, dateDebut, dateFin, accessible, responsable);
+        return Objects.hash(id, type, dateDebut, dateFin, accessible, responsables);
     }
 
     @Override
@@ -108,7 +113,7 @@ public class Activity {
                 ", dateDebut=" + dateDebut +
                 ", dateFin=" + dateFin +
                 ", accessible=" + accessible +
-                ", responsable=" + responsable +
+                ", responsable=" + responsables +
                 '}';
     }
 }

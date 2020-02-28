@@ -15,7 +15,6 @@ export class activityCalendrierComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("une Activity"+activityCalendrierComponent);
   }
 
   onDeleteActivity(id: any) {

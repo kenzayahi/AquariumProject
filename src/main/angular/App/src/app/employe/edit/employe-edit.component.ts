@@ -40,7 +40,7 @@ export class EmployeEditComponent implements OnInit {
 
     });
   }
-  onCreateBassin(){
+  onCreateEmploye(){
     this.employeService
         .createEmploye(this.formGroup.value)
         .subscribe(

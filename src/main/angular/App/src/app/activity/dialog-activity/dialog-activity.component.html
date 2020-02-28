@@ -1,12 +1,12 @@
-<h1 mat-dialog-title>Choose Activity</h1>
+<h1 mat-dialog-title>Choose Responsable</h1>
 
 <div mat-dialog-content>
   <form [formGroup]="formGroup" *ngIf="formGroup" class="form">
 
   <mat-form-field class="form-element">
-    <mat-select formControlName="activity">
-        <mat-option *ngFor="let activity of data" [value]="activity.id">
-          {{activity.type +"/"+activity.responsables.nom}}
+    <mat-select formControlName="employe">
+        <mat-option *ngFor="let employe of data" [value]="employe.id">
+          {{employe.nom +"/"+employe.prenom}}
         </mat-option>
     </mat-select>
   </mat-form-field>

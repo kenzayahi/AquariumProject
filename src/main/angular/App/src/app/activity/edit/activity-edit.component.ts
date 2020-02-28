@@ -41,19 +41,13 @@ export class ActivityEditComponent implements OnInit {
       'type': [null, Validators.required],
       'dateDebut': [null, Validators.required],
       'dateFin': [null, Validators.required],
-      'responsable': [null, Validators.required],
       'accessible': [null, Validators.required],
     });
   }
   onCreateActivity(){
     let activity : Activity = this.formGroup.value;
-    let idREsponsable = this.formGroup.get('responsable').value;
-    activity.responsable = null;
-
-    console.log(activity);
-    console.log(idREsponsable);
     this.activityService
-      .createActivity(activity, idREsponsable)
+      .createActivity(activity)
       .subscribe(
         data=>{this.createActivity.emit(this.formGroup.value);
           this.snackBar.open('L"activité  a bien été créer', 'OK', { verticalPosition: 'top' });
