@@ -1,5 +1,6 @@
 package com.upem.fr.ressource;
 
+import com.upem.fr.model.Bassin;
 import com.upem.fr.model.Employe;
 import com.upem.fr.service.BassinService;
 import com.upem.fr.service.EmployeService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -61,9 +63,14 @@ public class EmployeRessource {
     }
 
     @GetMapping("employesAddBassin/{employesId}/{bassinId}")
-    public Iterable<Employe> affectBassin(@PathVariable Long employesId, @PathVariable Long bassinId) {
-        employeService.addBassin(employeService.getOne(employesId), bassinService.getOne(bassinId));
-        return employeService.getAll();
+    public ResponseEntity<Employe> affectBassin(@PathVariable Long employesId, @PathVariable Long bassinId) {
+        Bassin bassin =bassinService.getOne(bassinId).get();
+        if(bassin.getEmployeResponsable() ==null) {
+             employeService.addBassin(employeService.getOne(employesId), bassinService.getOne(bassinId));
+        }else{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"le bassin "+bassin.numBassin+"a un responsable");
+        }
+        return new ResponseEntity<>(employeService.getOne(employesId).get(),HttpStatus.CREATED);
     }
     @GetMapping("employesRemoveBassin/{employesId}/{bassinId}")
     public Iterable<Employe> deleteBassin(@PathVariable Long employesId, @PathVariable Long bassinId) {

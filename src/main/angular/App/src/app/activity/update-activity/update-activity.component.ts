@@ -59,8 +59,8 @@ export class UpdateActivityComponent implements OnInit {
             this.typeActivity=data.type;
             this.formGroup = new FormGroup({
               type: new FormControl(data.type),
-              dateDebut: new FormControl(data.dateDebut),
-              dateFin: new FormControl(data.dateFin),
+              dateDebut: new FormControl(new Date(data.dateDebut).toISOString().substring(0,10)),
+              dateFin: new FormControl(new Date(data.dateFin).toISOString().substring(0,10)),
               accessible: new FormControl(data.accessible),
               bassin:new FormControl(data2.id),
             });

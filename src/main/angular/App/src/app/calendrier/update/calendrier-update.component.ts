@@ -53,7 +53,7 @@ export class CalendrierUpdateComponent implements OnInit {
           this.listActivities=data.activities;
             this.formGroup = new FormGroup({
               id: new FormControl(this.id),
-              date: new FormControl(data.date),
+              date: new FormControl(new Date(data.date).toISOString().substring(0,10)),
               employe: new FormControl(data2.id),
             });
           }

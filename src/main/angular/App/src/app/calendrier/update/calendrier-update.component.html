@@ -18,10 +18,10 @@
       <input matInput type="date" placeholder="Date" formControlName="date">
     </mat-form-field>
 
-    <td>
+    <br>
       <button mat-raised-button color="primary" (click)="affectActivity(id)">Affecter Activity</button>
-    </td>
-    <table border="true" >
+
+    <table class="center-table" border="true" >
       <tr >
         <th class="mat-cell">Type</th>
         <th class="mat-cell">date Debut</th>
@@ -36,7 +36,7 @@
       </tbody>
     </table>
 
-    <button mat-raised-button color="primary" (click)="onUpdateCalendrier()" type="submit" class="button" [disabled]="!formGroup.valid" routerLink="/calendrier/{{idEmployeConnecter}}">Submit</button>
+    <button mat-raised-button color="primary" (click)="onUpdateCalendrier()" type="submit"  [disabled]="!formGroup.valid" routerLink="/calendrier/{{idEmployeConnecter}}">Submit</button>
 
     <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
 

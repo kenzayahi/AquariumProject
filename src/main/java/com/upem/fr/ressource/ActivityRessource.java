@@ -59,12 +59,12 @@ public class ActivityRessource {
     }
 
     @GetMapping("activitiesResponsable/{activityid}/{employeId}")
-    public Iterable<Activity> affectEspece(@PathVariable Long activityid, @PathVariable Long employeId) {
+    public Iterable<Activity> affectResponsable(@PathVariable Long activityid, @PathVariable Long employeId) {
         activityService.addEmploye(activityService.getOne(activityid), employeService.getOne(employeId));
         return activityService.getAll();
     }
     @GetMapping("deleteResponsable/{activityid}/{employeId}")
-    public Iterable<Activity> deleteEspece(@PathVariable Long activityid, @PathVariable Long employeId) {
+    public Iterable<Activity> deleteResponsable(@PathVariable Long activityid, @PathVariable Long employeId) {
         activityService.removeEmploye(activityService.getOne(activityid), employeService.getOne(employeId));
         return activityService.getAll();
     }

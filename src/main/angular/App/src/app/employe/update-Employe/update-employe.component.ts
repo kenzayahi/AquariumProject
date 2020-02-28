@@ -40,7 +40,7 @@ export class UpdateEmployeComponent implements OnInit {
         this.formGroup = new FormGroup({
           nom: new FormControl(data.nom),
           prenom: new FormControl(data.prenom),
-          dateNaissance: new FormControl(data.dateNaissance),
+          dateNaissance: new FormControl(new Date(data.dateNaissance).toISOString().substring(0,10)),
           adress: new FormControl(data.adress),
           numSecurite: new FormControl(data.numSecurite),
           email:new FormControl(data.email),
