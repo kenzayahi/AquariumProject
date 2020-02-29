@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SecteurService} from "../secteur.service";
-import {Secteur} from "../secteur";
+import {Secteur} from "../../model/secteur";
 import {FormGroup} from "@angular/forms";
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SecteurService} from "./secteur.service";
-import {Secteur} from "./secteur";
+import {Secteur} from "../model/secteur";
 
 @Component({
   selector: 'app-secteur',

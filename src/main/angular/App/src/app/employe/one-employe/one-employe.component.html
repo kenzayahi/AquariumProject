@@ -1,0 +1,15 @@
+<td>{{employe.nom}}</td>
+<td>{{employe.prenom}}</td>
+<td>{{employe.dateNaissance|date}}</td>
+<td>{{employe.numSecurite}}</td>
+<td>{{employe.roleEmploye}}</td>
+<td>{{employe.adress}}</td>
+<td>{{employe.email}}</td>
+
+<td>
+  <a mat-mini-fab (click)="onDeleteEmploye(employe.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab routerLink="update/{{employe.id}}"><mat-icon> create</mat-icon>
+
+  </a>
+</td>

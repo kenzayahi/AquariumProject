@@ -1,0 +1,16 @@
+<td>{{activity.type}}</td>
+<td>Bassin N :{{activity.bassin.numBassin}}</td>
+<td>{{activity.dateDebut |date}}</td>
+<td>{{activity.dateFin |date}}</td>
+<td *ngIf="activity.accessible" > Public</td>
+<td *ngIf="!activity.accessible" > Privé</td>
+<td *ngIf="activity.responsables" >
+<span *ngIf="hasResponsable">{{afficher(activity.responsables)}}</span>
+<span *ngIf="!hasResponsable">
+  <a routerLink="update/{{activity.id}}">{{afficher(activity.responsables)}}</a></span>
+</td>
+<td>
+  <a mat-mini-fab (click)="onDeleteActivity(activity.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab routerLink="update/{{activity.id}}"><mat-icon> create</mat-icon></a>
+</td>

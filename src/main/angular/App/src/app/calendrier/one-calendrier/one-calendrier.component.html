@@ -1,0 +1,11 @@
+<td>{{calendrier.employe.nom + "  " + calendrier.employe.prenom}}</td>
+<td>{{calendrier.date | date}}</td>
+<td *ngIf="calendrier.activities">{{afficher(calendrier.activities)}}</td>
+
+<td *ngIf="isResponsable">
+  <a mat-mini-fab (click)="onDeleteCalendrier(calendrier.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab routerLink="update/{{calendrier.id}}"><mat-icon> create</mat-icon>
+
+  </a>
+</td>

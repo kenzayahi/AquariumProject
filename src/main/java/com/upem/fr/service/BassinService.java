@@ -42,4 +42,9 @@ public class BassinService {
         bassin.setEspece(espece.get());
         return bassinRepository.save(bassin);
     }
+    public Bassin removeEspece(Optional<Bassin> bassin, Optional<Espece> espece) {
+        Bassin b=bassin.get();
+        b.setEspeceRemove(espece.get());
+        return bassinRepository.save(b);
+    }
 }

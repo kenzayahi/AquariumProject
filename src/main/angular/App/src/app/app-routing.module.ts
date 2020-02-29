@@ -14,8 +14,20 @@ import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.compon
 import {SecteurComponent} from "./secteur/secteur.component";
 import {SecteurEditComponent} from "./secteur/edit/secteur-edit.component";
 import {UpdateSecteurComponent} from "./secteur/update-secteur/update-secteur.component";
+import {EmployeEditComponent} from './employe/edit/employe-edit.component';
+import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.component';
+import {ActivityEditComponent} from "./activity/edit/activity-edit.component";
+import {UpdateActivityComponent} from "./activity/update-activity/update-activity.component";
+import {AuthetificationComponent} from "./authetification/authetification.component";
+import {CalendrierComponent} from './calendrier/calendrier.component';
+import {CalendrierEditComponent} from './calendrier/edit/calendrier-edit.component';
+import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
 
 const routes: Routes = [
+  {
+    path: 'authentificate',
+    component: AuthetificationComponent
+  },
   {
     path: 'animal',
     component: AnimalComponent
@@ -57,22 +69,49 @@ const routes: Routes = [
     component: EmployeComponent
   },
   {
+    path: 'employe/edit',
+    component: EmployeEditComponent
+  },
+  {
+    path: 'employe/update/:id',
+    component: UpdateEmployeComponent
+  },
+  {
     path: 'activity',
     component: ActivityComponent
   },
   {
-    path: 'bassin',
+    path: 'activity/edit',
+    component: ActivityEditComponent
+  },
+  {
+    path: 'activity/update/:id',
+    component: UpdateActivityComponent
+  },
+  {
+    path: 'bassin/:role',
     component: BassinComponent
   },
   {
-    path: 'bassin/edit',
+    path: 'bassin/:role/edit',
     component: BassinEditComponent
   },
   {
-    path: 'bassin/update/:id',
+    path: 'bassin/:role/update/:id',
     component: UpdateBassinComponent
   },
-
+  {
+    path: 'calendrier/:idEmploye',
+    component: CalendrierComponent
+  },
+  {
+    path: 'calendrier/:idEmploye/edit',
+    component: CalendrierEditComponent
+  },
+  {
+    path: 'calendrier/:idEmploye/update/:id',
+    component: CalendrierUpdateComponent
+  },
 
 
 ];

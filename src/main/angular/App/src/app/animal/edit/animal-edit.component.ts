@@ -1,10 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AnimalService} from "../animal.service";
-import {Espece} from '../../espece/espece';
+import {Espece} from '../../model/espece';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
-import {Sexe} from '../animal';
+import {Animal, Sexe} from '../../model/animal';
 
 @Component({
   selector: 'app-animal',
@@ -18,7 +18,7 @@ export class AnimalEditComponent implements OnInit {
 
 
   @Output()
-  createAnimal= new EventEmitter<Espece>();
+  createAnimal= new EventEmitter<Animal>();
 
   especes: any;
   constructor(
@@ -27,7 +27,7 @@ export class AnimalEditComponent implements OnInit {
     protected snackBar: MatSnackBar,
     protected router:Router,
   ) {
-    this.especes = this.onGetespeces();
+    this.onGetespeces();
   }
 
   ngOnInit() {
@@ -45,10 +45,13 @@ export class AnimalEditComponent implements OnInit {
     });
   }
   onCreateAnimal(){
+    let animal : Animal = this.formGroup.value;
+    let idEspece = animal.espece.id;
+    animal.espece = null;
     this.animalService
-        .createAnimal(this.formGroup.value)
+        .createAnimal(animal, idEspece)
         .subscribe(
-          data=>{this.createAnimal.emit(this.formGroup.value);
+          data=>{this.createAnimal.emit(animal);
                        this.snackBar.open('L"animal a bien été créer','OK',{verticalPosition:'top'});
                        this.router.navigate(['/animal'])},
           error=>{this.snackBar.open('Error :'+error.toString(),'OK',{verticalPosition:'top'});

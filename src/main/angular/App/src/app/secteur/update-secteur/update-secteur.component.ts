@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
-import {Secteur} from "../secteur";
+import {Secteur} from "../../model/secteur";
 import {SecteurService} from "../secteur.service";
 
 @Component({

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Animal} from '../animal';
+import {Animal} from '../../model/animal';
 import {AnimalService} from '../animal.service';
+import {EspeceService} from "../../espece/espece.service";
 
 @Component({
   selector: 'tr [animal]',
@@ -17,6 +18,9 @@ export class OneAnimalComponent implements OnInit {
 
 
   ngOnInit() {
+    this.animalService.getEspeceFromAnimal(this.animal.id).subscribe(
+      data => this.animal.espece = data
+    )
   }
 
 

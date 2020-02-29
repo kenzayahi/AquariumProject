@@ -36,8 +36,30 @@ import { SecteurComponent } from './secteur/secteur.component';
 import { SecteurEditComponent } from './secteur/edit/secteur-edit.component';
 import { OneSecteurComponent } from './secteur/one-secteur/one-secteur.component';
 import { UpdateSecteurComponent } from './secteur/update-secteur/update-secteur.component';
+import {EmployeEditComponent} from './employe/edit/employe-edit.component';
+import {OneEmployeComponent} from './employe/one-employe/one-employe.component';
+import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.component';
+import { ActivityEditComponent } from './activity/edit/activity-edit.component';
+import { OneActivityComponent } from './activity/one-activity/one-activity.component';
+import { UpdateActivityComponent } from './activity/update-activity/update-activity.component';
+import { AuthetificationComponent } from './authetification/authetification.component';
+import { DialogOverviewComponent } from './bassin/dialog-overview/dialog-overview.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {EspeceBassinComponent} from "./bassin/update-Bassin/one-espece/one-espece.component";
+import { DialogOverviewEmployeComponent } from './employe/dialog-overview-employe/dialog-overview-employe.component';
+import { OneBassinModifComponent } from './employe/update-Employe/one-bassin-modif/one-bassin-modif.component';
+import {CalendrierComponent} from "./calendrier/calendrier.component";
+import {OneCalendrierComponent} from "./calendrier/one-calendrier/one-calendrier.component";
+import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
+import {CalendrierEditComponent} from "./calendrier/edit/calendrier-edit.component";
+import {DialogCalendrierComponent} from "./calendrier/dialog-overview/dialog-calendrier.component";
+import {activityCalendrierComponent} from "./calendrier/update/one-activity/one-activity.component";
+import {DialogActivityComponent} from "./activity/dialog-activity/dialog-activity.component";
+import {activityResponsableComponent} from "./activity/update-activity/one-responsable/one-activity.component";
 
 @NgModule({
+  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent, DialogCalendrierComponent,DialogActivityComponent],
+  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogCalendrierComponent,DialogActivityComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -58,7 +80,27 @@ import { UpdateSecteurComponent } from './secteur/update-secteur/update-secteur.
     SecteurComponent,
     SecteurEditComponent,
     OneSecteurComponent,
-    UpdateSecteurComponent
+    UpdateSecteurComponent,
+    UpdateBassinComponent,
+    EmployeEditComponent,
+    OneEmployeComponent,
+    UpdateEmployeComponent,
+    ActivityEditComponent,
+    OneActivityComponent,
+    UpdateActivityComponent,
+    AuthetificationComponent,
+    DialogOverviewComponent,
+    EspeceBassinComponent,
+    DialogOverviewEmployeComponent,
+    OneBassinModifComponent,
+    CalendrierComponent,
+    CalendrierEditComponent,
+    CalendrierUpdateComponent,
+    OneCalendrierComponent,
+    DialogCalendrierComponent,
+    activityCalendrierComponent,
+    DialogActivityComponent,
+    activityResponsableComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +120,8 @@ import { UpdateSecteurComponent } from './secteur/update-secteur/update-secteur.
     ReactiveFormsModule,
     MatInputModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

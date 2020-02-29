@@ -1,21 +1,21 @@
 <mat-toolbar color="primary">
-  <span class="fill-remaining-space">Update Animal {{id}}</span>
+  <span class="fill-remaining-space">Update Animal {{this.id}}</span>
 </mat-toolbar>
 
-<div class="container">
-  <form [formGroup]="formGroup" (ngSubmit)="onUpdateAnimal()" class="form">
+<div class="container" >
+  <form [formGroup]="formGroup" (ngSubmit)="onUpdateAnimal()" class="form" *ngIf="formGroup">
+
+    <mat-form-field class="form-element">
+      <input  matInput placeholder="Nom" formControlName="nom">
+    </mat-form-field>
 
     <mat-form-field class="form-element">
       <mat-label>Choose Espece</mat-label>
       <mat-select formControlName="espece">
-        <mat-option *ngFor="let espece of especes" [value]="espece">
-          {{espece.menacee}}
+        <mat-option *ngFor="let espece of especes" [value]="espece.id">
+          {{espece.nom}}
         </mat-option>
       </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="form-element">
-      <input matInput placeholder="Nom" formControlName="nom">
     </mat-form-field>
 
 
@@ -42,9 +42,10 @@
       <input matInput type="date" placeholder="Date Départ" formControlName="dateDepart">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" (click)="onUpdateAnimal()" class="button" [disabled]="!formGroup.valid">Submit</button>
+    <button mat-raised-button color="primary" (click)="onUpdateAnimal()" type="submit"  [disabled]="!formGroup.valid"  routerLink="/animal">Submit</button>
 
     <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
+
 
   </form>
 </div>

@@ -1,6 +1,9 @@
 package com.upem.fr.service;
 
 import com.upem.fr.model.Activity;
+import com.upem.fr.model.Bassin;
+import com.upem.fr.model.Employe;
+import com.upem.fr.model.Espece;
 import com.upem.fr.repository.ActivityRepository;
 import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +36,17 @@ public class ActivityService {
         activityRepository.findById(id).orElseThrow(NotFoundException::new);
         activity.setId(id);
         return activityRepository.save(activity);
+    }
+    public Activity addEmploye(Optional<Activity> a, Optional<Employe> e){
+        Activity activity=a.get();
+        if(!activity.getResponsables().contains(e.get())){
+            activity.addResponsables(e.get());
+        }
+        return activityRepository.save(activity);
+    }
+    public Activity removeEmploye(Optional<Activity> activity, Optional<Employe> employe) {
+        Activity a=activity.get();
+        a.removeResponsables(employe.get());
+        return activityRepository.save(a);
     }
 }

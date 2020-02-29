@@ -8,8 +8,8 @@
     <mat-form-field class="form-element">
       <mat-label>Choose Espece</mat-label>
       <mat-select formControlName="espece">
-        <mat-option *ngFor="let espece of especes" [value]="espece.id">
-          {{espece.menacee}}
+        <mat-option *ngFor="let espece of especes" [value]="espece">
+          {{espece.nom}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -42,7 +42,8 @@
       <input matInput type="date" placeholder="Date Départ" formControlName="dateDepart">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit</button>
+    <br>
+    <button mat-raised-button color="primary" type="submit"  [disabled]="!formGroup.valid">Submit</button>
 
     <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
 

@@ -28,5 +28,6 @@ export class AnimalComponent implements OnInit {
       data => this.listAnimaux = data)
 
 
+
   }
 }

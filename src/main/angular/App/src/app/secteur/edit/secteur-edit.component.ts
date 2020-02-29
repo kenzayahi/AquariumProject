@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {Secteur} from "../secteur";
+import {Secteur} from "../../model/secteur";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SecteurService} from "../secteur.service";
 

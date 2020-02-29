@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Secteur} from "./secteur";
-import {Espece} from "../espece/espece";
-import {Bassin} from "../bassin/bassin";
+import {Secteur} from "../model/secteur";
+import {Bassin} from "../model/bassin";
+
 
 type EntityResponseType = HttpResponse<Secteur>;
 
