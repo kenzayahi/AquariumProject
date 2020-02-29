@@ -1,8 +1,11 @@
 import {Employe} from "./employe";
+import {Bassin} from "./bassin";
 export enum TypeActivity {
   nourrissage='nourrissage',
   entretien='entretien',
-  bilan ='bilan'
+  bilan_veterinaire ='bilan_veterinaire',
+  verifier_stock_nouriture ='verifier_stock_nouriture',
+
 }
 export interface Activity{
   id : number;
@@ -10,5 +13,6 @@ export interface Activity{
   dateFin : Date;
   type : TypeActivity;
   accessible : boolean;
-  responsable : Employe;
+  responsables : Array<Employe>;
+  bassin:Bassin;
 }

@@ -12,11 +12,11 @@
 
 .form {
   min-width: 50%;
-  max-width: 50%;
+  max-width: 100%;
 }
 .form-element {
-  padding: 25px 0px 15px 2px;
-  width: 100%;
+  padding: 10px 5px 15px 2px;
+  width: 30%;
 }
 
 .button {
@@ -24,7 +24,7 @@
 }
 mat-card{
   text-align: center;
-  width: 50%;
+  width: 90%;
   padding: 20px;
   margin-top: 30px;
   margin-left: 60px;

@@ -23,6 +23,13 @@ export class BassinService {
   deleteBassin(id: number): Observable<EntityResponseType> {
     return this.httpClient.delete<Bassin>('/bassins/' + id, { observe: 'response' });
   }
+  affecteEspece(idBassin: number,idEspece:number) : Observable<Array<Bassin>> {
+    return this.httpClient.get<Array<Bassin>>('/bassins/'+ idBassin+'/'+idEspece);
+  }
+  deleteEspece(idBassin: number,idEspece:number) : Observable<Array<Bassin>> {
+    return this.httpClient.get<Array<Bassin>>('/deleteEspece/'+ idBassin+'/'+idEspece);
+  }
+
   createBassin(bassin:Bassin): Observable<EntityResponseType> {
     return this.httpClient.post<Bassin>('/bassins', bassin, { observe: 'response' });
   }

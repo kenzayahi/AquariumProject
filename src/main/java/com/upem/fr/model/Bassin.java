@@ -20,21 +20,17 @@ public class Bassin {
     public int capaciteMax;
     public long volumeEau;
     public Etat etat;
-  /*  @JsonBackReference
+   @JsonBackReference
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JsonIgnoreProperties(value = {"bassin"},allowSetters = true)
-    private Employe employeResponsable;*/
+    private Employe employeResponsable;
 
     @OneToMany
     public List<Espece> especeList=new ArrayList<>();
 
-    public List<Espece> getEspeceList() {
-        return especeList;
-    }
-
-    public void setEspece(Espece espece) {
-        this.especeList.add(espece);
-    }
+    @JsonIgnoreProperties(value = {"bassin"},allowSetters = true)
+    @OneToMany(mappedBy = "bassin",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<Activity>activities= new ArrayList<>();
 
     public Bassin() {
     }
@@ -53,12 +49,31 @@ public class Bassin {
         this.numBassin = numBassin;
     }
 
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Espece> getEspeceList() {
+        return especeList;
+    }
+
+    public void setEspece(Espece espece) {
+        this.especeList.add(espece);
+    }
+    public void setEspeceRemove(Espece espece) {
+        this.especeList.remove(espece);
     }
 
     public int getCapaciteMax() {
@@ -85,13 +100,13 @@ public class Bassin {
         this.etat = etat;
     }
 
-   /* public Employe getEmployeResponsable() {
+    public Employe getEmployeResponsable() {
         return employeResponsable;
     }
 
     public void setEmployeResponsable(Employe employeResponsable) {
         this.employeResponsable = employeResponsable;
-    }*/
+    }
 
     public void setEspeceList(List<Espece> especeList) {
         this.especeList = especeList;

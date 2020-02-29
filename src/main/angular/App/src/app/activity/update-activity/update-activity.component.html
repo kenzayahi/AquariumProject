@@ -15,16 +15,21 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
+        <mat-label>Choose Bassin</mat-label>
+        <mat-select formControlName="bassin">
+          <mat-option *ngFor="let bassin of bassins" [value]="bassin.id">
+            {{bassin.numBassin}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
         <input  matInput type="date" placeholder="Date Debut" formControlName="dateDebut">
       </mat-form-field>
 
 
       <mat-form-field class="form-element">
         <input matInput type="date" placeholder="Date Fin" formControlName="dateFin">
-      </mat-form-field>
-
-      <mat-form-field class="form-element">
-        <input matInput type="text" placeholder="Responsable" formControlName="responsable">
       </mat-form-field>
 
       <mat-form-field class="form-element">
@@ -38,7 +43,21 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <br>
+        <button mat-raised-button color="primary" (click)="affecterEmploye(id)">Affecter Responsable</button>
 
+      <table class="center-table" border="true" >
+        <tr >
+          <th class="mat-cell">Nom</th>
+          <th class="mat-cell">Prénom</th>
+          <th class="mat-cell">Role</th>
+        </tr>
+        <tbody *ngIf="listResponsables">
+
+        <tr *ngFor="let responsable of listResponsables;" (deleteResponsableInActivity)="deleteEmployeActivity($event)" [responsableActivity]="responsable" >
+        </tr>
+        </tbody>
+      </table>
 
       <button mat-raised-button color="primary" type="submit" (click)="onUpdateActivity()" [disabled]="!formGroup.valid" routerLink="/activity">
         Submit</button>

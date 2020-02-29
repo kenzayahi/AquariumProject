@@ -16,6 +16,9 @@ import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.co
 import {ActivityEditComponent} from "./activity/edit/activity-edit.component";
 import {UpdateActivityComponent} from "./activity/update-activity/update-activity.component";
 import {AuthetificationComponent} from "./authetification/authetification.component";
+import {CalendrierComponent} from './calendrier/calendrier.component';
+import {CalendrierEditComponent} from './calendrier/edit/calendrier-edit.component';
+import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
 
 const routes: Routes = [
   {
@@ -71,18 +74,29 @@ const routes: Routes = [
     component: UpdateActivityComponent
   },
   {
-    path: 'bassin',
+    path: 'bassin/:role',
     component: BassinComponent
   },
   {
-    path: 'bassin/edit',
+    path: 'bassin/:role/edit',
     component: BassinEditComponent
   },
   {
-    path: 'bassin/update/:id',
+    path: 'bassin/:role/update/:id',
     component: UpdateBassinComponent
   },
-
+  {
+    path: 'calendrier/:idEmploye',
+    component: CalendrierComponent
+  },
+  {
+    path: 'calendrier/:idEmploye/edit',
+    component: CalendrierEditComponent
+  },
+  {
+    path: 'calendrier/:idEmploye/update/:id',
+    component: CalendrierUpdateComponent
+  },
 
 
 ];

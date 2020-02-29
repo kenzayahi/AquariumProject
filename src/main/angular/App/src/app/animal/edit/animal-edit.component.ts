@@ -27,7 +27,7 @@ export class AnimalEditComponent implements OnInit {
     protected snackBar: MatSnackBar,
     protected router:Router,
   ) {
-    this.especes = this.onGetespeces();
+    this.onGetespeces();
   }
 
   ngOnInit() {

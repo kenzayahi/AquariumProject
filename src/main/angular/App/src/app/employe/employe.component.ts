@@ -18,6 +18,7 @@ export class EmployeComponent implements OnInit {
 
   ngOnInit() {
     this.onGetBassin()
+    console.log(this.listEmploye);
   }
   onGetBassin(){
     this.employeService
