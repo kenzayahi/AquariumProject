@@ -22,10 +22,12 @@ import {AuthetificationComponent} from "./authetification/authetification.compon
 import {CalendrierComponent} from './calendrier/calendrier.component';
 import {CalendrierEditComponent} from './calendrier/edit/calendrier-edit.component';
 import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
-import {AccuielComponent} from "./accuiel/accuiel.component";
 import {SecteurVisitComponent} from "./secteur-visit/secteur-visit.component";
 import {BassinsVisitComponent} from "./secteur-visit/bassins/bassins-visit.component";
 import {AnimauxVisitComponent} from "./secteur-visit/animaux-visit/animaux-visit.component";
+import {AccueilComponent} from "./accueil/accueil.component";
+import {EspeceVisiteurComponent} from "./espece-visiteur/espece-visiteur.component";
+import {AnimauxEspeceComponent} from "./espece-visiteur/animaux-espece/animaux-espece.component";
 
 const routes: Routes = [
   {
@@ -118,10 +120,10 @@ const routes: Routes = [
   },
   {
     path: 'accueil',
-    component: AccuielComponent
+    component: AccueilComponent
   },
   {
-    path: 'secteurVisit/true',
+    path: 'secteurVisit',
     component: SecteurVisitComponent
   },
   {
@@ -131,7 +133,15 @@ const routes: Routes = [
   {
     path: 'animauxVisit/:id',
     component: AnimauxVisitComponent
-  }
+  },
+  {
+    path: 'especeVisiteur',
+    component: EspeceVisiteurComponent
+  },
+  {
+    path: 'animauxEspeceVisit/:id',
+    component: AnimauxEspeceComponent
+  },
 
 ];
 

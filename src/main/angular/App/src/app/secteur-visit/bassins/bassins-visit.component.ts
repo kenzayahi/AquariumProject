@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SecteurService} from "../../secteur/secteur.service";
 import {ActivatedRoute} from "@angular/router";
-import {BassinService} from "../../bassin/bassin.service";
-import {MatDialog} from "@angular/material/dialog";
-import {FormControl, FormGroup} from "@angular/forms";
 import {Bassin} from "../../model/bassin";
 
 @Component({
@@ -15,7 +12,7 @@ export class BassinsVisitComponent implements OnInit {
   idSecteur:number;
   listBassin: Array<Bassin>;
   constructor(private secteurService : SecteurService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,) { }
   ngOnInit() {
     this.idSecteur = this.route.snapshot.params['id'];
     this.secteurService.getSecteur(this.idSecteur).subscribe(data => {

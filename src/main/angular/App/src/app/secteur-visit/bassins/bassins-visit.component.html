@@ -1,6 +1,4 @@
 
-<mat-toolbar color="primary">
-</mat-toolbar>
 <div *ngIf="listBassin">
   <div *ngFor="let bassin of listBassin;">
     <mat-card class="card" >
@@ -9,7 +7,6 @@
       <p>Capacité Max:{{bassin.capaciteMax}}</p>
       <p>Volume Eau:{{bassin.volumeEau}}</p>
       <p> <a routerLink="/animauxVisit/{{idSecteur}}">Voir les animaux </a>
-      <p> <a routerLink="/activityBassinsVisit/{{bassin.id}}">Voir Activité </a></p>
 
     </mat-card>
     <br>
