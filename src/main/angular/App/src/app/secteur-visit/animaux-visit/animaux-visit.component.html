@@ -1,6 +1,6 @@
-
+<p>  <a mat-fab routerLink="/secteurVisit"><mat-icon>assignment_return</mat-icon></a></p>
 <div *ngIf="listAnimaux">
-  <div *ngFor="let animal of listAnimaux;">
+  <div class="test"*ngFor="let animal of listAnimaux;">
     <mat-card class="card" >
       <p>Animal :{{animal.nom}}</p>
       <p>Espece:{{animal.espece}}</p>
@@ -11,6 +11,5 @@
     </mat-card>
     <br>
   </div>
-  <a mat-fab routerLink="/secteurVisit/true"><mat-icon>assignment_return</mat-icon></a>
 </div>
 

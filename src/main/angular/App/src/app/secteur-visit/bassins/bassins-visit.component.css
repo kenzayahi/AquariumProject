@@ -1,5 +1,18 @@
 .card{
   text-align:center;
+  background-image: url("assets/img/back3.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 140%;
+  background-position: center;
+
+}
+
+
+div.test {
+  list-style: none;
+  display: block;
+  float: left;
   width: 20%;
-  background-color: crimson;
+  margin-left: 20px;
+  margin-top: 20px;
 }

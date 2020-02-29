@@ -30,6 +30,9 @@
       <span class="disconnect">
         <a (click)="desconnect()"><img width="75%" src="assets/img/logout.png" alt="logout" /></a>
       </span>
+      <div class="home" *ngIf="route.url== '/'">
+        Bienvenu
+      </div>
     </mat-toolbar>
 
     <router-outlet></router-outlet>
