@@ -60,6 +60,9 @@ import {DialogSecteurComponent} from "./secteur/dialog-secteur/dialog-secteur.co
 import {secteurBassinComponent} from "./secteur/update-secteur/one-bassin/one-activity.component";
 import { AccuielComponent } from './accuiel/accuiel.component';
 import { NavVisiteurComponent } from './nav-visiteur/nav-visiteur.component';
+import { SecteurVisitComponent } from './secteur-visit/secteur-visit.component';
+import { BassinsVisitComponent } from './secteur-visit/bassins/bassins-visit.component';
+import { AnimauxVisitComponent } from './secteur-visit/animaux-visit/animaux-visit.component';
 
 @NgModule({
   exports: [DialogOverviewComponent, DialogOverviewEmployeComponent, DialogCalendrierComponent,DialogActivityComponent,DialogSecteurComponent],
@@ -108,7 +111,10 @@ import { NavVisiteurComponent } from './nav-visiteur/nav-visiteur.component';
     DialogSecteurComponent,
     secteurBassinComponent,
     AccuielComponent,
-    NavVisiteurComponent
+    NavVisiteurComponent,
+    SecteurVisitComponent,
+    BassinsVisitComponent,
+    AnimauxVisitComponent
 
   ],
   imports: [

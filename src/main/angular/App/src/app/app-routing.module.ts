@@ -23,6 +23,9 @@ import {CalendrierComponent} from './calendrier/calendrier.component';
 import {CalendrierEditComponent} from './calendrier/edit/calendrier-edit.component';
 import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
 import {AccuielComponent} from "./accuiel/accuiel.component";
+import {SecteurVisitComponent} from "./secteur-visit/secteur-visit.component";
+import {BassinsVisitComponent} from "./secteur-visit/bassins/bassins-visit.component";
+import {AnimauxVisitComponent} from "./secteur-visit/animaux-visit/animaux-visit.component";
 
 const routes: Routes = [
   {
@@ -117,6 +120,18 @@ const routes: Routes = [
     path: 'accueil',
     component: AccuielComponent
   },
+  {
+    path: 'secteurVisit/true',
+    component: SecteurVisitComponent
+  },
+  {
+    path: 'BassinsVisit/:id',
+    component: BassinsVisitComponent
+  },
+  {
+    path: 'animauxVisit/:id',
+    component: AnimauxVisitComponent
+  }
 
 ];
 
