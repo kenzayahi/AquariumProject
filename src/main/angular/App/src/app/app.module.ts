@@ -56,10 +56,12 @@ import {DialogCalendrierComponent} from "./calendrier/dialog-overview/dialog-cal
 import {activityCalendrierComponent} from "./calendrier/update/one-activity/one-activity.component";
 import {DialogActivityComponent} from "./activity/dialog-activity/dialog-activity.component";
 import {activityResponsableComponent} from "./activity/update-activity/one-responsable/one-activity.component";
+import {DialogSecteurComponent} from "./secteur/dialog-secteur/dialog-secteur.component";
+import {secteurBassinComponent} from "./secteur/update-secteur/one-bassin/one-activity.component";
 
 @NgModule({
-  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent, DialogCalendrierComponent,DialogActivityComponent],
-  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogCalendrierComponent,DialogActivityComponent],
+  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent, DialogCalendrierComponent,DialogActivityComponent,DialogSecteurComponent],
+  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogCalendrierComponent,DialogActivityComponent,DialogSecteurComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -100,7 +102,10 @@ import {activityResponsableComponent} from "./activity/update-activity/one-respo
     DialogCalendrierComponent,
     activityCalendrierComponent,
     DialogActivityComponent,
-    activityResponsableComponent
+    activityResponsableComponent,
+    DialogSecteurComponent,
+    secteurBassinComponent
+
   ],
   imports: [
     BrowserModule,

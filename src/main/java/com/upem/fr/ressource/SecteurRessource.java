@@ -1,5 +1,7 @@
 package com.upem.fr.ressource;
 
+import com.upem.fr.model.Bassin;
+import com.upem.fr.model.Employe;
 import com.upem.fr.model.Secteur;
 import com.upem.fr.service.BassinService;
 import com.upem.fr.service.SecteurService;
@@ -49,8 +51,14 @@ public class SecteurRessource {
         return secteurService.update(id, secteur);
     }
 
-    @GetMapping("secteurs/{secteurId}/{bassinId}")
-    public void affectBassin(@PathVariable Long secteurId, @PathVariable Long bassinId) {
+    @GetMapping("secteurBassin/{secteurId}/{bassinId}")
+    public Iterable<Secteur> affectBassintosecteur(@PathVariable Long secteurId, @PathVariable Long bassinId) {
         secteurService.addBassin(secteurService.getOne(secteurId), bassinService.getOne(bassinId));
+        return secteurService.getAll();
+    }
+    @GetMapping("deleteBassinSecteur/{secteurId}/{bassinId}")
+    public Iterable<Secteur> deleteBassinInSecteur(@PathVariable Long secteurId, @PathVariable Long bassinId) {
+        secteurService.removeBassin(secteurService.getOne(secteurId), bassinService.getOne(bassinId));
+        return secteurService.getAll();
     }
 }

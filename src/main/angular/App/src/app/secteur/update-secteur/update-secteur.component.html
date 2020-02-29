@@ -4,7 +4,7 @@
 <mat-card>
 
   <div class="container" >
-    <form [formGroup]="formGroup" (ngSubmit)="onUpdateEspece()" class="form" >
+    <form [formGroup]="formGroup" class="form" *ngIf="formGroup">
 
       <mat-form-field class="form-element">
         <input  matInput placeholder="Nom" formControlName="nom">
@@ -14,7 +14,24 @@
         <input matInput type="text" placeholder="Localisation" formControlName="localisation">
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" (click)="onUpdateEspece()" [disabled]="!formGroup.valid" routerLink="/secteur">Submit</button>
+      <br>
+      <button mat-raised-button color="primary" (click)="affecterBassin(id)">Affecter Bassin</button>
+
+      <table class="center-table" border="true" >
+        <tr >
+          <th class="mat-cell">Num Bassin</th>
+          <th class="mat-cell">Capacite Max</th>
+          <th class="mat-cell">Etat</th>
+          <th class="mat-cell">Volume Eau</th>
+        </tr>
+        <tbody *ngIf="listBassin">
+
+        <tr *ngFor="let bassin of listBassin;" (deleteBassinInSecteur)="deleteBassinSecteur($event)" [bassinSecteur]="bassin" >
+        </tr>
+        </tbody>
+      </table>
+
+      <button mat-raised-button color="primary" type="submit" (click)="onUpdateSecteur()" [disabled]="!formGroup.valid" routerLink="/secteur">Submit</button>
 
 
     </form>

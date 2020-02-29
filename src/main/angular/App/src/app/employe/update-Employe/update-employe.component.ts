@@ -36,7 +36,6 @@ export class UpdateEmployeComponent implements OnInit {
     this.onGetBassins();
     this.employeService.getEmploye(this.id).subscribe(data => {
       this.listBassin = data.bassinsresponsable;
-      console.log("rooool"+data.roleEmploye);
         this.formGroup = new FormGroup({
           nom: new FormControl(data.nom),
           prenom: new FormControl(data.prenom),

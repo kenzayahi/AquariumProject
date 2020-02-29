@@ -3,6 +3,7 @@ import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Secteur} from "../model/secteur";
 import {Bassin} from "../model/bassin";
+import {Activity} from "../model/activity";
 
 
 type EntityResponseType = HttpResponse<Secteur>;
@@ -33,11 +34,10 @@ export class SecteurService {
     return this.httpClient.post<Secteur>('/secteurs' + '/' + secteur.id, secteur, { observe: 'response' });
   }
 
-  getBassins() : Observable<Array<Bassin>> {
-    return this.httpClient.get<Array<Bassin>>('/bassins')
+  affecteBassin(idSecteur: number,idBassin:number) : Observable<Array<Secteur>> {
+    return this.httpClient.get<Array<Secteur>>('/secteurBassin/'+ idSecteur+'/'+idBassin);
   }
-
-  addBassin(idSecteur:number,idBassin:number){
-    this.httpClient.get('/secteurs' + '/' + idSecteur +'/' +idBassin,{ observe: 'response' });
+  deleteBassin(idSecteur: number,idBassin:number) : Observable<Array<Secteur>> {
+    return this.httpClient.get<Array<Secteur>>('/deleteBassinSecteur/'+ idSecteur+'/'+idBassin);
   }
 }

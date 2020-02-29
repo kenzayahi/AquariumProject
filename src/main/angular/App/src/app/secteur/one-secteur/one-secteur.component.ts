@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SecteurService} from "../secteur.service";
 import {Secteur} from "../../model/secteur";
 import {FormGroup} from "@angular/forms";
+import {Bassin} from "../../model/bassin";
 
 @Component({
   selector: 'tr [secteur]',
@@ -18,13 +19,17 @@ export class OneSecteurComponent implements OnInit {
   @Output()
   addBassin=new EventEmitter<Secteur>();
 
-  listBassin: any;
   formGroup: FormGroup;
-  constructor(private secteurService: SecteurService) {
-    this.listBassin=this.onGetBassins();
+  private hasBassin: boolean;
+  constructor(private secteurService: SecteurService,private ref: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+     if(this.secteur.bassinList.length!=0){
+       this.hasBassin=false;
+     }else{
+       this.hasBassin=true;
+     }
   }
 
   onDeleteSecteur(id: any){
@@ -35,23 +40,23 @@ export class OneSecteurComponent implements OnInit {
         error => {console.log(error);
         })
   }
-  onGetBassins(){
-    this.secteurService
-      .getBassins()
-      .subscribe(
-        data=>{this.listBassin=data;},
-        error => {console.log(error);
-        })
-  }
 
-  onAddBassin(idsecteur: number,idBassin:number) {
-    this.secteurService.addBassin(idsecteur,idBassin);
-    this.secteurService
-        .getSecteur(idsecteur)
-        .subscribe(
-        data=> {this.addBassin.emit(data);console.log("add bassin",data)},
-        error => {console.log(error);
-        })
 
+  afficher(bassinList: Array<Bassin>):string {
+    let s : string = "";
+    if(bassinList.length !== 0){
+      for(let i = 0; i < bassinList.length; i++){
+        this.hasBassin=true;
+        this.ref.markForCheck();
+        s += bassinList[i].numBassin ;
+        if(i != bassinList.length - 1)
+          s+= "/ " ;
+      }
+    }else{
+      this.hasBassin=false;
+      this.ref.markForCheck();
+      s="Affecter un Bassin";
+    }
+    return s
   }
 }
