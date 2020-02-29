@@ -1,0 +1,51 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 160px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+mat-card{
+  background: grey;
+
+}
+.mat-card-cvr{
+  width: 100%;
+  text-align:center;
+}
+.card{
+  margin: 0 auto;
+  width: 40%;
+}
+
+.main-div{
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-toolbar .span{
+  display: inline-block;
+  position: absolute;
+  color: white;
+  text-decoration: none;
+  right: 7%;
+}
+mat-toolbar .disconnect{
+  display: inline-block;
+  position: absolute;
+  right : 0;
+  color: white;
+  text-decoration: none;
+}

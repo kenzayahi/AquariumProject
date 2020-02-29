@@ -22,6 +22,7 @@ import {AuthetificationComponent} from "./authetification/authetification.compon
 import {CalendrierComponent} from './calendrier/calendrier.component';
 import {CalendrierEditComponent} from './calendrier/edit/calendrier-edit.component';
 import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
+import {AccuielComponent} from "./accuiel/accuiel.component";
 
 const routes: Routes = [
   {
@@ -112,7 +113,10 @@ const routes: Routes = [
     path: 'calendrier/:idEmploye/update/:id',
     component: CalendrierUpdateComponent
   },
-
+  {
+    path: 'accueil',
+    component: AccuielComponent
+  },
 
 ];
 

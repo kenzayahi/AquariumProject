@@ -15,6 +15,9 @@ export class AuthetificationComponent implements OnInit {
   @Output()
   loginEvent=new EventEmitter<Employe>();
 
+  @Output()
+  visiteurEvent=new EventEmitter<boolean>();
+
   constructor(   private formBuilder: FormBuilder,
                  private authentificationService:AuthentificationService,
                  private snackBar: MatSnackBar) { }
@@ -36,4 +39,7 @@ export class AuthetificationComponent implements OnInit {
       );
   }
 
+  visiteurLogin() {
+    this.visiteurEvent.emit(true);
+  }
 }

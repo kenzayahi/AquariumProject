@@ -58,6 +58,8 @@ import {DialogActivityComponent} from "./activity/dialog-activity/dialog-activit
 import {activityResponsableComponent} from "./activity/update-activity/one-responsable/one-activity.component";
 import {DialogSecteurComponent} from "./secteur/dialog-secteur/dialog-secteur.component";
 import {secteurBassinComponent} from "./secteur/update-secteur/one-bassin/one-activity.component";
+import { AccuielComponent } from './accuiel/accuiel.component';
+import { NavVisiteurComponent } from './nav-visiteur/nav-visiteur.component';
 
 @NgModule({
   exports: [DialogOverviewComponent, DialogOverviewEmployeComponent, DialogCalendrierComponent,DialogActivityComponent,DialogSecteurComponent],
@@ -104,7 +106,9 @@ import {secteurBassinComponent} from "./secteur/update-secteur/one-bassin/one-ac
     DialogActivityComponent,
     activityResponsableComponent,
     DialogSecteurComponent,
-    secteurBassinComponent
+    secteurBassinComponent,
+    AccuielComponent,
+    NavVisiteurComponent
 
   ],
   imports: [

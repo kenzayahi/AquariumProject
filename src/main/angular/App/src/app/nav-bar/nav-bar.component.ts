@@ -16,6 +16,9 @@ export class NavBarComponent {
   @Input()
   employe:Employe;
 
+  @Input()
+  isVisiteur:boolean;
+
   isGestionnaire= false;
   isSimpleEmpoye= false;
   isResponsableBassin=false;

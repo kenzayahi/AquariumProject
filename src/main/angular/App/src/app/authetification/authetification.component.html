@@ -16,6 +16,9 @@
           <mat-icon matPrefix>https</mat-icon>
         </mat-form-field>
       </p>
+      <p >
+        <a mat-list-item (click)="visiteurLogin()">Connecter en tanque Visiteur</a>
+      </p>
       <button  mat-raised-button type="submit" class="button" [disabled]="!formGroup.valid">Se connecter</button>
     </form>
   </div>

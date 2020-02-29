@@ -11,6 +11,7 @@ export class AppComponent {
   isConnected=false;
   roleEmploye: any;
   employeConnecter:Employe;
+  isVisiteur :boolean=false;
 
   getAthentification($event: Employe) {
      this.employeConnecter=$event;
@@ -21,6 +22,15 @@ export class AppComponent {
   disconnect($event: boolean) {
     if($event==true){
       this.isConnected=false;
+      this.isVisiteur=false;
+    }
+  }
+
+
+  toVisite($event: boolean) {
+    if($event==true){
+      this.isVisiteur=true;
+      this.isConnected=true;
     }
   }
 }
