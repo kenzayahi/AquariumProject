@@ -48,14 +48,13 @@ import {CalendrierComponent} from "./calendrier/calendrier.component";
 import {OneCalendrierComponent} from "./calendrier/one-calendrier/one-calendrier.component";
 import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
 import {CalendrierEditComponent} from "./calendrier/edit/calendrier-edit.component";
-import {DialogCalendrierComponent} from "./calendrier/dialog-overview/dialog-calendrier.component";
-import {activityCalendrierComponent} from "./calendrier/update/one-activity/one-activity.component";
 import {DialogActivityComponent} from "./activity/dialog-activity/dialog-activity.component";
 import {activityResponsableComponent} from "./activity/update-activity/one-responsable/one-activity.component";
 
+// @ts-ignore
 @NgModule({
-  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent, DialogCalendrierComponent,DialogActivityComponent],
-  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogCalendrierComponent,DialogActivityComponent],
+  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogActivityComponent],
+  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogActivityComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -88,8 +87,6 @@ import {activityResponsableComponent} from "./activity/update-activity/one-respo
     CalendrierEditComponent,
     CalendrierUpdateComponent,
     OneCalendrierComponent,
-    DialogCalendrierComponent,
-    activityCalendrierComponent,
     DialogActivityComponent,
     activityResponsableComponent
   ],

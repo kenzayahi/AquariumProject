@@ -1,8 +1,6 @@
 package com.upem.fr.service;
 
-import com.upem.fr.model.Activity;
 import com.upem.fr.model.Calendrier;
-import com.upem.fr.model.Employe;
 import com.upem.fr.repository.CalendrierRepository;
 import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +33,5 @@ public class CalendrierService {
         calendrierRepository.findById(id).orElseThrow(NotFoundException::new);
         calendrier.setId(id);
         return calendrierRepository.save(calendrier);
-    }
-
-    public Calendrier addActivity(Optional<Calendrier> c, Optional<Activity> activity){
-        Calendrier calendrier=c.get();
-        calendrier.setActivities(activity.get());
-        return calendrierRepository.save(calendrier);
-    }
-    public Calendrier removeActivity(Optional<Calendrier> c, Optional<Activity> activity) {
-        Calendrier calendrier=c.get();
-        calendrier.setActivityRemove(activity.get());
-        return calendrierRepository.save(calendrier);
-    }
-
-    public Iterable<Calendrier> getAllByEmploye(long idEmploye) {
-        return Optional.ofNullable(calendrierRepository.findAllByEmploye_Id(idEmploye)).orElseThrow(NotFoundException::new);
-
     }
 }

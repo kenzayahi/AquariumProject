@@ -31,7 +31,6 @@ export class CalendrierComponent implements OnInit {
   ngOnInit() {
     this.init();
     this.onGetCalendrier();
-    this.onGetEmployeCalendrier();
   }
     init() {
     this.idEmploye = this.route.snapshot.params['idEmploye'];
@@ -55,14 +54,6 @@ export class CalendrierComponent implements OnInit {
       .getcalendriers()
       .subscribe(
         data=>{this.listCalendrier=data},
-        error => {console.log(error);
-        })
-  }
-  onGetEmployeCalendrier(){
-    this.calendrierService
-      .getEmployecalendriers(this.idEmploye)
-      .subscribe(
-        data=>{this.employeCalendrier=data},
         error => {console.log(error);
         })
   }
