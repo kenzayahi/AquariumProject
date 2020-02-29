@@ -5,13 +5,14 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item  routerLink="/">Accueil</a>
-      <a mat-list-item  routerLink="/animal">Animal</a>
-      <a mat-list-item routerLink="/espece">Especes</a>
-      <a mat-list-item routerLink="/bassin">Bassin</a>
-      <a mat-list-item routerLink="/secteur">Secteur</a>
-      <a mat-list-item routerLink="/employe">Employe</a>
-
+      <div *ngIf="isSimpleEmpoye"><a mat-list-item  routerLink="/">Accueil</a></div>
+      <div *ngIf="isResponsableBassin"><a mat-list-item routerLink="/secteur">Gestion Secteur</a></div>
+      <div *ngIf="isResponsableBassin"><a mat-list-item routerLink="/espece">Gestion Especes</a></div>
+      <div *ngIf="isResponsableBassin"><a mat-list-item  routerLink="/animal">Gestion Animal</a></div>
+      <div *ngIf="isResponsableBassin || isGestionnaire"><a mat-list-item routerLink="/bassin/{{role}}">Gestion Bassin</a></div>
+      <div *ngIf="isGestionnaire ||isResponsableBassin"><a mat-list-item routerLink="/employe">Gestion Employe</a></div>
+      <div *ngIf="isResponsableBassin"><a mat-list-item routerLink="/activity">Activity</a></div>
+      <div *ngIf="isResponsableBassin ||isSimpleEmpoye"><a mat-list-item routerLink="/calendrier/{{idEmploye}}">Calendrier</a></div>
 
     </mat-nav-list>
   </mat-sidenav>
@@ -26,11 +27,18 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <img
-        width="40"
+        width="50"
         alt="Logo"
         src="../assets/fish_13458.ico"
-      />    </mat-toolbar>
-
+      />
+      <span class="span" >
+        <a routerLink="/employe/update/{{idEmploye}}">{{prenom}}</a><a routerLink="/employe/update/{{idEmploye}}">{{nom}}</a>
+      </span>
+      <br>
+      <span class="disconnect">
+        <a (click)="desconnect()"><img width="75%" src="assets/img/logout.png" alt="logout" /></a>
+      </span>
+    </mat-toolbar>
 
       <router-outlet></router-outlet>
 

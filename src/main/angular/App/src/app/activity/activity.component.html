@@ -1,1 +1,24 @@
-<p>activity works!</p>
+
+<mat-toolbar color="primary">
+  <a mat-fab routerLink="/activity/edit"><mat-icon> add</mat-icon></a>
+  <span class="fill-remaining-space">Activity</span>
+
+</mat-toolbar>
+
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">Type</th>
+      <th class="mat-cell">Bassin</th>
+      <th class="mat-cell">date Debut</th>
+      <th class="mat-cell">date Fin</th>
+      <th class="mat-cell">IsPublic</th>
+      <th class="mat-cell">List Responsable</th>
+    </tr>
+    <tbody *ngIf="listActivity">
+
+    <tr *ngFor="let activity of listActivity;" [activity]="activity" (deleteActivity)="refresh($event)">
+    </tr>
+    </tbody>
+  </table>
+</mat-card>

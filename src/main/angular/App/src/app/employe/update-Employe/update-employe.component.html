@@ -4,7 +4,7 @@
 <mat-card>
 
   <div class="container" >
-    <form [formGroup]="formGroup" (ngSubmit)="onUpdateEmploye()" class="form" >
+    <form [formGroup]="formGroup" class="form" *ngIf="formGroup" >
 
       <mat-form-field class="form-element">
         <input  matInput placeholder="Nom" formControlName="nom">
@@ -20,12 +20,48 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
+        <mat-label>Choose Role Employe</mat-label>
+        <mat-select formControlName="roleEmploye">
+          <mat-option *ngFor="let r of roleEmploye" [value]="r.toString()">
+            {{r.toString()}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
         <input matInput placeholder="Adress" formControlName="adress">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput  placeholder="Email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput type="password" placeholder="Password" formControlName="password">
       </mat-form-field>
 
       <mat-form-field class="form-element">
         <input matInput type="date" placeholder="Date Naissance" formControlName="dateNaissance">
       </mat-form-field>
+
+      <br>
+        <button mat-raised-button color="primary" (click)="affectBassin(id)">Affecter Bassin</button>
+
+      <table class="center-table" border="true" >
+        <tr >
+          <th class="mat-cell">Numéro</th>
+          <th class="mat-cell">Capacité max</th>
+          <th class="mat-cell">Etat</th>
+          <th class="mat-cell">Nombre d'espèces</th>
+          <th class="mat-cell">Volume d'eau</th>
+        </tr>
+        <tbody *ngIf="listBassin">
+
+        <tr *ngFor="let bassin of listBassin;" (deleteBassinInEmploye)="deleteBassinInEmploye($event)" [bassinEmployes]="bassin" >
+        </tr>
+        </tbody>
+      </table>
+
 
       <button mat-raised-button color="primary" type="submit" (click)="onUpdateEmploye()" [disabled]="!formGroup.valid" routerLink="/employe">Submit</button>
 

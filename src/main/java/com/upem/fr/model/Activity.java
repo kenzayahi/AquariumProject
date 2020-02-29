@@ -1,11 +1,11 @@
 package com.upem.fr.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.upem.fr.model.enumeration.TypeActivity;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -18,17 +18,20 @@ public class Activity {
     private TypeActivity type;
     private Date dateDebut;
     private Date dateFin;
-    private Boolean isPublic;
-    @ManyToOne
-    private Employe responsable;
+    private boolean accessible;
+    @ManyToMany
+    private List<Employe> responsables;
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JsonIgnoreProperties(value = {"activity"},allowSetters = true)
+    private Bassin bassin;
 
-    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, Boolean isPublic, Employe responsable) {
+    public Activity(Long id, TypeActivity type, Date dateDebut, Date dateFin, boolean accessible, List<Employe> responsable) {
         this.id = id;
         this.type = type;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.isPublic = isPublic;
-        this.responsable = responsable;
+        this.accessible = accessible;
+        this.responsables = responsable;
     }
 
     public Activity() {
@@ -40,6 +43,18 @@ public class Activity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isAccessible() {
+        return accessible;
+    }
+
+    public Bassin getBassin() {
+        return bassin;
+    }
+
+    public void setBassin(Bassin bassin) {
+        this.bassin = bassin;
     }
 
     public TypeActivity getType() {
@@ -66,20 +81,26 @@ public class Activity {
         this.dateFin = dateFin;
     }
 
-    public Boolean getPublic() {
-        return isPublic;
+    public boolean getAccessible() {
+        return accessible;
     }
 
-    public void setPublic(Boolean aPublic) {
-        isPublic = aPublic;
+    public void setAccessible(boolean accessible) {
+        this.accessible = accessible;
     }
 
-    public Employe getResponsable() {
-        return responsable;
+    public List<Employe> getResponsables() {
+        return responsables;
+    }
+    public void setResponsables(List<Employe> responsables) {
+        this.responsables=responsables;
     }
 
-    public void setResponsable(Employe responsable) {
-        this.responsable = responsable;
+    public void addResponsables(Employe responsable) {
+        this.responsables.add(responsable);
+    }
+    public void removeResponsables(Employe responsable) {
+        this.responsables.remove(responsable);
     }
 
     @Override
@@ -91,13 +112,13 @@ public class Activity {
                 type == activity.type &&
                 dateDebut.equals(activity.dateDebut) &&
                 dateFin.equals(activity.dateFin) &&
-                isPublic.equals(activity.isPublic) &&
-                responsable.equals(activity.responsable);
+                accessible == ((Activity) o).accessible &&
+                responsables.equals(activity.responsables);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, dateDebut, dateFin, isPublic, responsable);
+        return Objects.hash(id, type, dateDebut, dateFin, accessible, responsables);
     }
 
     @Override
@@ -107,8 +128,8 @@ public class Activity {
                 ", type=" + type +
                 ", dateDebut=" + dateDebut +
                 ", dateFin=" + dateFin +
-                ", isPublic=" + isPublic +
-                ", responsable=" + responsable +
+                ", accessible=" + accessible +
+                ", responsable=" + responsables +
                 '}';
     }
 }

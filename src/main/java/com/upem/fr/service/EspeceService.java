@@ -1,5 +1,6 @@
 package com.upem.fr.service;
 
+import com.upem.fr.model.Animal;
 import com.upem.fr.model.Espece;
 import com.upem.fr.repository.EspeceRepository;
 import com.upem.fr.service.errors.NotFoundException;
@@ -34,4 +35,11 @@ public class EspeceService {
         espece.setId(id);
         return especeRepository.save(espece);
     }
+
+    public Espece addAnimalToList(Optional<Espece> e,Animal animal){
+        Espece espece=e.get();
+        espece.addAnimalList(animal);
+        return especeRepository.save(espece);
+    }
+
 }

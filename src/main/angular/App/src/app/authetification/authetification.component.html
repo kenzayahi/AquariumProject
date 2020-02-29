@@ -1,0 +1,22 @@
+<div class="bodyPage">
+  <div class="card">
+    <form   [formGroup]="formGroup"  (ngSubmit)="login()">
+      <mat-icon>account_circle</mat-icon>
+      <p class="field">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input formControlName="login" matInput placeholder="Login">
+          <mat-icon matPrefix>@</mat-icon>
+        </mat-form-field>
+      </p >
+      <p class="field">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input formControlName="password" type="password" class="field" matInput placeholder="Placeholder">
+          <mat-icon matPrefix>https</mat-icon>
+        </mat-form-field>
+      </p>
+      <button  mat-raised-button type="submit" class="button" [disabled]="!formGroup.valid">Se connecter</button>
+    </form>
+  </div>
+</div>
