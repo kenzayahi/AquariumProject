@@ -10,7 +10,6 @@
       <div *ngIf="isResponsableBassin"><a mat-list-item  routerLink="/animal">Gestion Animal</a></div>
       <div *ngIf="isResponsableBassin || isGestionnaire"><a mat-list-item routerLink="/bassin/{{role}}">Gestion Bassin</a></div>
       <div *ngIf="isGestionnaire ||isResponsableBassin"><a mat-list-item routerLink="/employe">Gestion Employe</a></div>
-      <div *ngIf="isGestionnaire"><a mat-list-item routerLink="/gestionNouriture">Gestion Nouriture</a></div>
       <div *ngIf="isResponsableBassin"><a mat-list-item routerLink="/activity">Activity</a></div>
       <div *ngIf="isResponsableBassin ||isSimpleEmpoye"><a mat-list-item routerLink="/calendrier/{{idEmploye}}">Calendrier</a></div>
 
@@ -34,7 +33,7 @@
         src="../assets/fish_13458.ico"
       />
       <span class="span" >
-        <a routerLink="/profil">{{prenom}}</a><a routerLink="/profil">{{nom}}</a>
+        <a routerLink="/employe/update/{{idEmploye}}">{{prenom}}</a><a routerLink="/employe/update/{{idEmploye}}">{{nom}}</a>
       </span>
       <br>
       <span class="disconnect">

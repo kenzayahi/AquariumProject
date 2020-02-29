@@ -52,6 +52,7 @@ export class ActivityEditComponent implements OnInit {
   onCreateActivity(){
     let activity : Activity = this.formGroup.value;
     let idBassin = activity.bassin.id;
+    console.log("id bassin"+idBassin);
     activity.bassin = null;
     this.activityService
       .createActivity(activity,idBassin)
