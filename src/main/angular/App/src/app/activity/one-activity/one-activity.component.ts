@@ -49,4 +49,15 @@ export class OneActivityComponent implements OnInit {
     return s
   }
 
+  formatDate(nombre : number, chiffre : number) {
+
+    var temp = '' + nombre;
+    while ((temp.length < chiffre) && (temp = '0' + temp)) {
+    }
+    return temp;
+  }
+
+  printHours(d: Date) {
+    return this.formatDate(new Date(d).getHours(), 2) + ":" + this.formatDate(new Date(d).getMinutes(), 2);
+  }
 }

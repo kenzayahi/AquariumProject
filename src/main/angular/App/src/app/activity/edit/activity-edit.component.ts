@@ -44,13 +44,25 @@ export class ActivityEditComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       'type': [null, Validators.required],
       'dateDebut': [null, Validators.required],
-      'dateFin': [null, Validators.required],
+      'heureDebut': [null, Validators.required],
+      'heureFin': [null, Validators.required],
       'accessible': [null, Validators.required],
       'bassin': [null, Validators.required],
     });
   }
   onCreateActivity(){
     let activity : Activity = this.formGroup.value;
+    let debut = new Date(activity.dateDebut);
+    let tab = this.formGroup.get('heureDebut').value.split(":");
+    debut.setHours(tab[0]);
+    debut.setMinutes(tab[1]);
+    activity.dateDebut = debut;
+
+    let fin = new Date(activity.dateDebut);
+    tab = this.formGroup.get('heureFin').value.split(":");
+    fin.setHours(tab[0]);
+    fin.setMinutes(tab[1]);
+    activity.dateFin = fin;
     let idBassin = activity.bassin.id;
     console.log("id bassin"+idBassin);
     activity.bassin = null;

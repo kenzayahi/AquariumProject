@@ -60,7 +60,8 @@ export class UpdateActivityComponent implements OnInit {
             this.formGroup = new FormGroup({
               type: new FormControl(data.type),
               dateDebut: new FormControl(new Date(data.dateDebut).toISOString().substring(0,10)),
-              dateFin: new FormControl(new Date(data.dateFin).toISOString().substring(0,10)),
+              heureDebut : new FormControl(this.printHours(data.dateDebut)),
+              heureFin : new FormControl(this.printHours(data.dateFin)),
               accessible: new FormControl(data.accessible),
               bassin:new FormControl(data2.id),
             });
@@ -77,6 +78,18 @@ export class UpdateActivityComponent implements OnInit {
   onUpdateActivity() {
     let activity: Activity =  this.formGroup.value;
     activity.id = this.id;
+
+    let debut = new Date(activity.dateDebut);
+    let tab = this.formGroup.get('heureDebut').value.split(":");
+    debut.setHours(tab[0]);
+    debut.setMinutes(tab[1]);
+    activity.dateDebut = debut;
+
+    let fin = new Date(activity.dateDebut);
+    tab = this.formGroup.get('heureFin').value.split(":");
+    fin.setHours(tab[0]);
+    fin.setMinutes(tab[1]);
+    activity.dateFin = fin;
     let idBassin = this.formGroup.get('bassin').value;
     activity.bassin = null;
     activity.responsables=this.listResponsables;
@@ -156,6 +169,17 @@ export class UpdateActivityComponent implements OnInit {
         },
         error => {console.log(error);
         })
+  }
+  formatDate(nombre : number, chiffre : number) {
+
+    var temp = '' + nombre;
+    while ((temp.length < chiffre) && (temp = '0' + temp)) {
+    }
+    return temp;
+  }
+
+  printHours(d: Date) {
+    return this.formatDate(new Date(d).getHours(), 2) + ":" + this.formatDate(new Date(d).getMinutes(), 2);
   }
 
 }

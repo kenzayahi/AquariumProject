@@ -1,7 +1,7 @@
 <td>{{activity.type}}</td>
 <td>Bassin N :{{activity.bassin.numBassin}}</td>
-<td>{{activity.dateDebut |date}}</td>
-<td>{{activity.dateFin |date}}</td>
+<td>{{activity.dateDebut |date}} à {{printHours(activity.dateDebut)}}</td>
+<td>{{activity.dateFin |date}} à {{printHours(activity.dateFin)}}</td>
 <td *ngIf="activity.accessible" > Public</td>
 <td *ngIf="!activity.accessible" > Privé</td>
 <td *ngIf="activity.responsables" >
