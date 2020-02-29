@@ -6,6 +6,9 @@ import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,5 +36,22 @@ public class CalendrierService {
         calendrierRepository.findById(id).orElseThrow(NotFoundException::new);
         calendrier.setId(id);
         return calendrierRepository.save(calendrier);
+    }
+
+    public Optional<Calendrier> findBySemaineAndAnnee(Long numSemaine, Long annee) {
+        Iterable l = calendrierRepository.findAll();
+        Iterator<Calendrier> iterator = l.iterator();
+
+        List<Calendrier> lst = new ArrayList<>();
+        while (iterator.hasNext()) {
+            lst.add(iterator.next());
+        }
+
+        for(int i = 0; i < lst.size();i++){
+            if(lst.get(i).getNumSemaine() == numSemaine && lst.get(i).getAnnee() == annee){
+                return Optional.of(lst.get(i));
+            }
+        }
+        return Optional.empty();
     }
 }

@@ -16,12 +16,14 @@ public class Calendrier {
     @GeneratedValue(strategy = AUTO)
     private Long id;
     private long numSemaine;
+    private long annee;
 
     @OneToMany
     private List<Activity>activities= new ArrayList<>();
 
     public Calendrier() {
     }
+
 
     public Long getId() {
         return id;
@@ -37,6 +39,14 @@ public class Calendrier {
 
     public void setNumSemaine(long numSemaine) {
         this.numSemaine = numSemaine;
+    }
+
+    public long getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(long annee) {
+        this.annee = annee;
     }
 
     public List<Activity> getActivities() {
