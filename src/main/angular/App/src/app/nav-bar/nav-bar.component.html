@@ -5,7 +5,8 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <div *ngIf="isSimpleEmpoye"><a mat-list-item  routerLink="/">Accueil</a></div>
+      <div *ngIf="isSimpleEmpoye"><a mat-list-item  routerLink="/accueil">Accueil</a></div>
+      <div *ngIf="isResponsableBassin"><a mat-list-item routerLink="/secteur">Gestion Secteur</a></div>
       <div *ngIf="isResponsableBassin"><a mat-list-item routerLink="/espece">Gestion Especes</a></div>
       <div *ngIf="isResponsableBassin"><a mat-list-item  routerLink="/animal">Gestion Animal</a></div>
       <div *ngIf="isResponsableBassin || isGestionnaire"><a mat-list-item routerLink="/bassin/{{role}}">Gestion Bassin</a></div>
@@ -41,6 +42,9 @@
       </span>
     </mat-toolbar>
 
+    <div class="home" *ngIf="route.url== '/'">
+      Bienvenu
+    </div>
       <router-outlet></router-outlet>
 
   </mat-sidenav-content>

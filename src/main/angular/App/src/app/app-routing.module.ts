@@ -11,6 +11,9 @@ import {UpdateAnimalComponent} from './animal/update-animal/update-animal.compon
 import {BassinComponent} from "./bassin/bassin.component";
 import {BassinEditComponent} from "./bassin/edit/bassin-edit.component";
 import {UpdateBassinComponent} from "./bassin/update-Bassin/update-bassin.component";
+import {SecteurComponent} from "./secteur/secteur.component";
+import {SecteurEditComponent} from "./secteur/edit/secteur-edit.component";
+import {UpdateSecteurComponent} from "./secteur/update-secteur/update-secteur.component";
 import {EmployeEditComponent} from './employe/edit/employe-edit.component';
 import {UpdateEmployeComponent} from './employe/update-Employe/update-employe.component';
 import {ActivityEditComponent} from "./activity/edit/activity-edit.component";
@@ -19,6 +22,12 @@ import {AuthetificationComponent} from "./authetification/authetification.compon
 import {CalendrierComponent} from './calendrier/calendrier.component';
 import {CalendrierEditComponent} from './calendrier/edit/calendrier-edit.component';
 import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
+import {SecteurVisitComponent} from "./secteur-visit/secteur-visit.component";
+import {BassinsVisitComponent} from "./secteur-visit/bassins/bassins-visit.component";
+import {AnimauxVisitComponent} from "./secteur-visit/animaux-visit/animaux-visit.component";
+import {AccueilComponent} from "./accueil/accueil.component";
+import {EspeceVisiteurComponent} from "./espece-visiteur/espece-visiteur.component";
+import {AnimauxEspeceComponent} from "./espece-visiteur/animaux-espece/animaux-espece.component";
 
 const routes: Routes = [
   {
@@ -36,6 +45,18 @@ const routes: Routes = [
   {
     path: 'animal/update/:id',
     component: UpdateAnimalComponent
+  },
+  {
+    path: 'secteur',
+    component: SecteurComponent
+  },
+  {
+    path: 'secteur/edit',
+    component: SecteurEditComponent
+  },
+  {
+    path: 'secteur/update/:id',
+    component: UpdateSecteurComponent
   },
   {
     path: 'espece',
@@ -97,7 +118,30 @@ const routes: Routes = [
     path: 'calendrier/:idEmploye/update/:id',
     component: CalendrierUpdateComponent
   },
-
+  {
+    path: 'accueil',
+    component: AccueilComponent
+  },
+  {
+    path: 'secteurVisit',
+    component: SecteurVisitComponent
+  },
+  {
+    path: 'BassinsVisit/:id',
+    component: BassinsVisitComponent
+  },
+  {
+    path: 'animauxVisit/:id',
+    component: AnimauxVisitComponent
+  },
+  {
+    path: 'especeVisiteur',
+    component: EspeceVisiteurComponent
+  },
+  {
+    path: 'animauxEspeceVisit/:id',
+    component: AnimauxEspeceComponent
+  },
 
 ];
 

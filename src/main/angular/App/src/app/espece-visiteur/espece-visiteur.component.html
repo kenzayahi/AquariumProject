@@ -1,0 +1,18 @@
+
+<div *ngIf="listEspeces">
+  <div class="test"  *ngFor="let espece of listEspeces;">
+    <mat-card class="card" >
+      <p><b>Espèce:</b>{{espece.nom}}</p>
+      <p><b>Esperance de Vie:</b>{{espece.esperanceVie}}</p>
+      <p><b>Régime Alimentaire:</b>{{espece.regimeAlimentaire}}</p>
+      <p><b>Degré de Menace:</b>{{espece.menacee}}</p>
+      <p><b>Nombres animaux: </b>{{espece.animalList.length}}</p>
+
+      <p > <a routerLink="/animauxEspeceVisit/{{espece.id}}">Voir les animaux </a>
+
+      </p>
+    </mat-card>
+    <br>
+  </div>
+</div>
+

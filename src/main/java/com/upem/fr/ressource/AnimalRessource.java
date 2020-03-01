@@ -7,6 +7,7 @@ import com.upem.fr.service.EspeceService;
 import com.upem.fr.service.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,10 +26,10 @@ public class AnimalRessource {
     }
 
     @PostMapping("/animaux/{id}")
-    public Animal create(@Valid   @RequestBody Animal animal, @PathVariable Long id) {
+    public ResponseEntity<Animal> create(@Valid   @RequestBody Animal animal, @PathVariable Long id) {
         Optional<Espece>optionalEspece=(especeService.getOne(id));
         animal.setEspece(optionalEspece.get());
-        return animalService.create(animal);
+        return new ResponseEntity<>(animalService.create(animal), HttpStatus.CREATED);
     }
 
     @GetMapping("animaux/{id}")
@@ -51,13 +52,22 @@ public class AnimalRessource {
 
     @DeleteMapping("animaux/{id}")
     public void delete(@PathVariable Long id) {
-        animalService.delete(id);
+        try {
+            animalService.delete(id);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
 
     @PostMapping("animaux/{id}/{id2}")
     public Animal update( @Valid @PathVariable Long id, @Valid @PathVariable Long id2, @RequestBody Animal animal) {
-        animal.espece = especeService.getOne(id2).get();
-        return animalService.update(id, animal);
+        try {
+            animal.espece = especeService.getOne(id2).get();
+            return animalService.update(id, animal);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND," Animal avec l'id  "+  id  +
+                    " inconnu ou  bien Espece avec l'id"+id2+"inconnu");
+        }
     }
 }

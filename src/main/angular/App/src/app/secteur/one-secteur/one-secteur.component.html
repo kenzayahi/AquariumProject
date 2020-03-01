@@ -1,0 +1,14 @@
+<td>{{secteur.nom}}</td>
+<td>{{secteur.localisation}}</td>
+<td>{{secteur.bassinList.length}}</td>
+<td *ngIf="secteur.bassinList" >
+  <span *ngIf="hasBassin">{{afficher(secteur.bassinList)}}</span>
+  <span *ngIf="!hasBassin">
+  <a routerLink="update/{{secteur.id}}">{{afficher(secteur.bassinList)}}</a></span>
+</td><td>
+  <a mat-mini-fab (click)="onDeleteSecteur(secteur.id)" ><mat-icon> delete</mat-icon>
+  </a>
+  <a mat-mini-fab routerLink="update/{{secteur.id}}"><mat-icon> create</mat-icon>
+
+  </a>
+</td>
