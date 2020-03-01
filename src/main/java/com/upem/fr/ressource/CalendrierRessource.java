@@ -1,5 +1,6 @@
 package com.upem.fr.ressource;
 
+import com.upem.fr.model.Activity;
 import com.upem.fr.model.Calendrier;
 import com.upem.fr.service.CalendrierService;
 import com.upem.fr.service.errors.NotFoundException;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
@@ -19,6 +21,13 @@ public class CalendrierRessource {
     @GetMapping("/calendrier")
     public Iterable<Calendrier> getAll() {
         return calendrierService.getAll();
+    }
+    @GetMapping("calendrierOf/{semaine}/{annee}/{idEmploye}")
+    public Iterable<Activity> getActivitesOf(@PathVariable Long semaine, @PathVariable Long annee, @PathVariable Long idEmploye){
+        if(!calendrierService.findBySemaineAndAnnee(semaine, annee).isPresent()) {
+            return new ArrayList<>();
+        }
+        return calendrierService.findActivitesOf(semaine, annee, idEmploye);
     }
 
     @PostMapping("/calendrier")
