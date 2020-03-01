@@ -54,12 +54,20 @@ public class EmployeRessource {
 
     @DeleteMapping("employes/{id}")
     public void delete(@PathVariable Long id) {
-        employeService.delete(id);
+        try {
+            employeService.delete(id);;
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
     @PostMapping("employes/{id}")
     public Employe update(@PathVariable Long id, @Valid @RequestBody Employe employe) {
-        return employeService.update(id, employe);
+        try {
+            return employeService.update(id, employe);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
     @GetMapping("employesAddBassin/{employesId}/{bassinId}")
@@ -74,7 +82,12 @@ public class EmployeRessource {
     }
     @GetMapping("employesRemoveBassin/{employesId}/{bassinId}")
     public Iterable<Employe> deleteBassin(@PathVariable Long employesId, @PathVariable Long bassinId) {
-        employeService.removeBassin(employesId, bassinService.getOne(bassinId));
-        return employeService.getAll();
+        try {
+            employeService.removeBassin(employesId, bassinService.getOne(bassinId));
+            return employeService.getAll();
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  employesId  +  " inconnu"
+            +"or l'id"+bassinId);
+        }
     }
 }
