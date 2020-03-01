@@ -3,9 +3,11 @@ package com.upem.fr.ressource;
 import com.upem.fr.model.Activity;
 import com.upem.fr.model.Animal;
 import com.upem.fr.model.Bassin;
+import com.upem.fr.model.Calendrier;
 import com.upem.fr.repository.ActivityRepository;
 import com.upem.fr.service.ActivityService;
 import com.upem.fr.service.BassinService;
+import com.upem.fr.service.CalendrierService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,8 @@ class ActivityRessourceTest {
     @MockBean
     private ActivityService activityService;
     @MockBean
+    private CalendrierService calendrierService;
+    @MockBean
     private BassinService bassinService;
     @MockBean
     private ActivityRepository activityRepository;
@@ -50,16 +54,23 @@ class ActivityRessourceTest {
 
     @Test
     void create() {
-        Activity activity= new Activity(nourrissage, true);
+        Activity activity= new Activity(nourrissage, false);
         activity.setId(1L);
-        Activity activity2= new Activity(nourrissage, true);
+        Activity activity2= new Activity(nourrissage, false);
         activity2.setId(1L);
         Bassin bassin = new Bassin(10,1000,propre);
         bassin.setId(2L);
         activity2.setBassin(bassin);
-        when(activityService.create(activity)).thenReturn(activity2);
+
+        Calendrier calendrier=new Calendrier(1,2000);
+        calendrier.setId(3L);
+
+        when(activityService.create(activity,calendrier)).thenReturn(activity2);
         when(bassinService.getOne(2L)).thenReturn(Optional.of(bassin));
-        Activity result = this.restTemplate.postForObject("http://localhost:" + port + "/activitiesCreate/2", activity, Activity.class);
+        when(calendrierService.findBySemaineAndAnnee(3L,2000L)).thenReturn(Optional.of(calendrier));
+
+        Activity result = this.restTemplate.postForObject("http://localhost:" + port + "/activitiesCreate/2/3/2000", activity, Activity.class);
+        System.out.println(result);
         assertEquals(activity2, result);
     }
 
@@ -96,21 +107,27 @@ class ActivityRessourceTest {
     void update() {
         Activity activity= new Activity(nourrissage, true);
         activity.setId(1L);
-        when(activityService.create(activity)).thenReturn(activity);
+        Calendrier calendrier=new Calendrier(1,2000);
+        calendrier.setId(3L);
+
+        when(activityService.create(activity,calendrier)).thenReturn(activity);
         Activity activity2= new Activity(entretien, true);
         activity2.setId(2L);
         Bassin bassin = new Bassin(10,1000,propre);
         bassin.setId(9L);
         activity2.setBassin(bassin);
 
-        when(activityService.update(1L, activity2)).thenReturn(activity2);
+        when(activityService.update(1L, activity2,Optional.of(calendrier),Optional.of(calendrier))).thenReturn(activity2);
         when(bassinService.getOne(9L)).thenReturn(Optional.of(bassin));
+        when(bassinService.getOne(9L)).thenReturn(Optional.of(bassin));
+        when(calendrierService.findBySemaineAndAnnee(3L,2000L)).thenReturn(Optional.of(calendrier));
 
-        this.restTemplate.postForObject("http://localhost:" + port + "/activities", activity, Activity.class);
+        this.restTemplate.postForObject("http://localhost:" + port + "/activities/3/2000", activity, Activity.class);
         HttpEntity<Activity> request = new HttpEntity<>(activity2);
 
-        Activity result = this.restTemplate.exchange("http://localhost:" + port + "/activities/1/9",
+        Activity result = this.restTemplate.exchange("http://localhost:" + port + "/activities/1/9/3/2000/3/2000",
                 HttpMethod.POST, request, Activity.class).getBody();
+        System.out.println(result);
 
         assertEquals(result, activity2);
     }
@@ -121,8 +138,11 @@ class ActivityRessourceTest {
         Bassin bassin = new Bassin(10,1000,propre);
         bassin.setId(9L);
         activity2.setBassin(bassin);
+        Calendrier calendrier=new Calendrier(1,2000);
+        calendrier.setId(3L);
 
-        when(activityService.create(activity2)).thenReturn(activity2);
+
+        when(activityService.create(activity2,calendrier)).thenReturn(activity2);
         when(bassinService.getOne(9L)).thenReturn(Optional.of(bassin));
         when(activityService.getOne(1L)).thenReturn(Optional.of(activity2));
 

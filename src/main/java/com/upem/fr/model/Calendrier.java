@@ -23,6 +23,10 @@ public class Calendrier {
 
     public Calendrier() {
     }
+    public Calendrier(long numSemaine,long annee) {
+        this.annee=annee;
+        this.numSemaine=numSemaine;
+    }
 
 
     public Long getId() {
