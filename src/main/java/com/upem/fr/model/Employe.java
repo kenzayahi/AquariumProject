@@ -143,7 +143,6 @@ public class Employe {
                 getNom().equals(employe.getNom()) &&
                 getPrenom().equals(employe.getPrenom()) &&
                 getAdress().equals(employe.getAdress()) &&
-                getDateNaissance().equals(employe.getDateNaissance()) &&
                 getEmail().equals(employe.getEmail()) &&
                 getPassword().equals(employe.getPassword());
     }
