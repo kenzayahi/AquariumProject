@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Calendrier} from '../model/calendrier';
-import {Employe} from "../model/employe";
 
 type EntityResponseType = HttpResponse<Calendrier>;
 
@@ -15,6 +14,9 @@ export class CalendrierService {
 
   getcalendriers() : Observable<Array<Calendrier>> {
     return this.httpClient.get<Array<Calendrier>>('/calendrier');
+  }
+  getEmployecalendriers(idEmploye:number) : Observable<Array<Calendrier>> {
+    return this.httpClient.get<Array<Calendrier>>('/employeCalendrier/'+idEmploye);
   }
 
   getCalendrier(id: number) : Observable<Calendrier> {

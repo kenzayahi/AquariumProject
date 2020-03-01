@@ -30,7 +30,7 @@ export class CalendrierComponent implements OnInit {
 
   ngOnInit() {
     this.init();
-    this.onGetCalendrier();
+    console.log(this.role);
   }
     init() {
     this.idEmploye = this.route.snapshot.params['idEmploye'];
@@ -43,6 +43,14 @@ export class CalendrierComponent implements OnInit {
         } else if (this.role == RoleEmploye.simpleemploye) {
           this.isSimpleEmploye = true;
         }
+        console.log("init Role=>"+this.role);
+        if(this.isResponsable){
+          this.onGetCalendrier();
+        }else if(this.isSimpleEmploye){
+          this.onGetEmployeCalendrier();
+        }
+        console.log("employeCalendrier=>"+this.employeCalendrier);
+        console.log("listCalendrier=>"+this.listCalendrier);
       },
       error => {
         console.log(error);
@@ -54,6 +62,14 @@ export class CalendrierComponent implements OnInit {
       .getcalendriers()
       .subscribe(
         data=>{this.listCalendrier=data},
+        error => {console.log(error);
+        })
+  }
+  onGetEmployeCalendrier(){
+    this.calendrierService
+      .getEmployecalendriers(this.idEmploye)
+      .subscribe(
+        data=>{this.employeCalendrier=data},
         error => {console.log(error);
         })
   }

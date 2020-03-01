@@ -11,14 +11,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Iterator;
 
 @SpringBootApplication
-public class AquariumProjectApplication {
+public class AquariumProjectApplication implements CommandLineRunner {
     @Autowired
 	private EmployeService employeService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AquariumProjectApplication.class, args);
 	}
-	/*@Override
 	public void run(String... args) throws Exception {
 		int sum=0;
 		Iterator<Employe> employes=employeService.getAll().iterator();
@@ -34,6 +33,6 @@ public class AquariumProjectApplication {
 
 
 		}
-	}*/
+	}
 
 }
