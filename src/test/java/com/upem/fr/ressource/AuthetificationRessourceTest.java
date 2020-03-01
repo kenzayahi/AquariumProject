@@ -1,13 +1,8 @@
 package com.upem.fr.ressource;
 
-import com.upem.fr.model.Animal;
 import com.upem.fr.model.Employe;
 import com.upem.fr.model.enumeration.RoleEmploye;
-import com.upem.fr.repository.AnimalRepository;
-import com.upem.fr.service.AnimalService;
 import com.upem.fr.service.AuthentificationService;
-import com.upem.fr.service.EmployeService;
-import com.upem.fr.service.EspeceService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
