@@ -5,6 +5,7 @@
                [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
+      <div *ngIf="isVisiteur"><a mat-list-item routerLink="/">Accueil</a></div>
       <div *ngIf="isVisiteur"><a mat-list-item routerLink="/secteurVisit">Secteur</a></div>
       <div *ngIf="isVisiteur"><a mat-list-item  routerLink="/especeVisiteur">Espèces</a></div>
 
@@ -30,11 +31,10 @@
       <span class="disconnect">
         <a (click)="desconnect()"><img width="75%" src="assets/img/logout.png" alt="logout" /></a>
       </span>
-      <div class="home" *ngIf="route.url== '/'">
-        Bienvenu
-      </div>
     </mat-toolbar>
-
+    <div class="home" *ngIf="route.url== '/'">
+      Bienvenu
+    </div>
     <router-outlet></router-outlet>
 
   </mat-sidenav-content>

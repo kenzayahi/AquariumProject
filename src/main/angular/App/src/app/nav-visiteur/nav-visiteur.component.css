@@ -5,7 +5,7 @@
 .sidenav {
   width: 160px;
   background-image: url("assets/img/background3.jpg");;
-  background-size: 200% 100% ;
+  background-size: 100% 100% ;
   background-position: right;
 }
 
@@ -56,7 +56,7 @@ div.home{
   min-height: 100vh;
   text-align: center;
   font-size: 75px;
-  background-image: url("assets/img/home2.jpg");
+  background-image: url("assets/img/backnav3.jpg");
   background-size: 100% 100%;
   vertical-align:middle;
 }
