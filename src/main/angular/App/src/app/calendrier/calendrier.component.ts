@@ -5,6 +5,7 @@ import {CalendrierService} from './calendrier.service';
 import {Calendrier} from '../model/calendrier';
 import {EmployeService} from "../employe/employe.service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Activity} from "../model/activity";
 
 @Component({
   selector: 'app-calendrier',
@@ -18,7 +19,7 @@ export class CalendrierComponent implements OnInit {
   annees = [2019, 2020, 2021];
   semaines = [];
   formGroup : FormGroup;
-  activities = [];
+  activities :Array<Activity> ;
 
   constructor(private calendrierService: CalendrierService,
               private route:ActivatedRoute,
@@ -39,7 +40,6 @@ export class CalendrierComponent implements OnInit {
     this.init();
     for(let i = 0; i < 54; i++)
       this.semaines.push(i);
-    console.log(this.role);
   }
     init() {
       this.formGroup = this.formBuilder.group({
@@ -57,14 +57,11 @@ export class CalendrierComponent implements OnInit {
         } else if (this.role == RoleEmploye.simpleemploye) {
           this.isSimpleEmploye = true;
         }
-        console.log("init Role=>"+this.role);
         if(this.isResponsable){
           this.onGetCalendrier();
         }else if(this.isSimpleEmploye){
          // this.onGetEmployeCalendrier();
         }
-        console.log("employeCalendrier=>"+this.employeCalendrier);
-        console.log("listCalendrier=>"+this.listCalendrier);
       },
       error => {
         console.log(error);
@@ -86,7 +83,7 @@ export class CalendrierComponent implements OnInit {
         this.listCalendrier = data;
       });
   }
-  getBeginWeek(semaine, annee){
+  getBeginWeek(semaine, annee):Date{
     if(semaine == 0){
       let begin = new Date();
       begin.setFullYear(annee, 0, 1);
@@ -107,7 +104,7 @@ export class CalendrierComponent implements OnInit {
     return begin;
   }
 
-  getEndWeek(begin, semaine, annee){
+  getEndWeek(begin, semaine, annee):Date{
     if(semaine == 0){
       let firstDay = begin.getDay();
       let lgth = (8 - firstDay);

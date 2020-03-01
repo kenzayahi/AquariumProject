@@ -1,24 +1,35 @@
 
 <form [formGroup]="formGroup" *ngIf="formGroup">
-
-  <div class="item">
-    <label>
-      Année :
-      <select formControlName="annee">
-        <option *ngFor="let annee of annees" [value]="annee" >{{annee}}</option>
-      </select>
-    </label>
-  </div>
-  <div class="item">
-    <label>
-      Semaine :
-      <select formControlName="semaine">
-        <option *ngFor="let semaine of semaines" [value]="semaine" >{{getBeginWeek(semaine, formGroup.get('annee').value)}} - {{getEndWeek(getBeginWeek(semaine, formGroup.get('annee').value), semaine, formGroup.get('annee').value)}}</option>
-      </select>
-    </label>
-  </div>
+  <mat-form-field class="form-element">
+    <mat-label>      Année :</mat-label>
+    <mat-select formControlName="annee">
+      <mat-option *ngFor="let annee of annees" [value]="annee" >
+        {{annee}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="form-element">
+    <mat-label>      Semaine :</mat-label>
+    <mat-select formControlName="semaine">
+      <mat-option *ngFor="let semaine of semaines" [value]="semaine" >
+        {{getBeginWeek(semaine, formGroup.get('annee').value) |date}} /
+        {{getEndWeek(getBeginWeek(semaine, formGroup.get('annee').value), semaine, formGroup.get('annee').value) |date}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <div class="button">
-    <button (click)="onSubmit()" type="submit" class="button" [disabled]="!formGroup.valid">Recherche</button>
+    <button (click)="onSubmit()" type="submit" [disabled]="!formGroup.valid">Recherche</button>
   </div>
 </form>
+<div *ngIf="activities">
+  <div class="test" *ngFor="let activity of activities;">
+      <mat-card class="card" >
+        <p>Activity :{{activity.type}}</p>
+        <p>Bassin N:{{activity.bassin.numBassin}}</p>
+        <p>Date Début :{{activity.dateDebut}}</p>
+        <p>Date Fin:{{activity.dateFin}}</p>
+      </mat-card>
+    </div>
+</div>

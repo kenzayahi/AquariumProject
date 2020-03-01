@@ -16,9 +16,6 @@ export class CalendrierService {
   getcalendriers() : Observable<Array<Calendrier>> {
     return this.httpClient.get<Array<Calendrier>>('/calendrier');
   }
-  getEmployecalendriers(idEmploye:number) : Observable<Array<Calendrier>> {
-    return this.httpClient.get<Array<Calendrier>>('/employeCalendrier/'+idEmploye);
-  }
   getActivityOf(semaine: number, annee: number, idEmploye: number) : Observable<Array<Activity>>{
     let s : number = semaine;
     s++;
