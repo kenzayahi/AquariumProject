@@ -43,22 +43,40 @@ public class SecteurRessource {
 
     @DeleteMapping("secteurs/{id}")
     public void delete(@PathVariable Long id) {
-        secteurService.delete(id);
+        try {
+            secteurService.delete(id);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
     @PostMapping("secteurs/{id}")
     public Secteur update(@Valid @PathVariable Long id, @RequestBody Secteur secteur) {
-        return secteurService.update(id, secteur);
+        try {
+            return secteurService.update(id, secteur);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
     @GetMapping("secteurBassin/{secteurId}/{bassinId}")
     public Iterable<Secteur> affectBassintosecteur(@PathVariable Long secteurId, @PathVariable Long bassinId) {
-        secteurService.addBassin(secteurService.getOne(secteurId), bassinService.getOne(bassinId));
-        return secteurService.getAll();
+        try {
+            secteurService.addBassin(secteurService.getOne(secteurId), bassinService.getOne(bassinId));
+            return secteurService.getAll();
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"SecteurId "+  secteurId  +
+                    " inconnu or BassinId"+bassinId+"inconnu");
+        }
     }
     @GetMapping("deleteBassinSecteur/{secteurId}/{bassinId}")
     public Iterable<Secteur> deleteBassinInSecteur(@PathVariable Long secteurId, @PathVariable Long bassinId) {
-        secteurService.removeBassin(secteurService.getOne(secteurId), bassinService.getOne(bassinId));
-        return secteurService.getAll();
+        try {
+            secteurService.removeBassin(secteurService.getOne(secteurId), bassinService.getOne(bassinId));
+            return secteurService.getAll();
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"SecteurId "+  secteurId  +
+                    " inconnu or BassinId"+bassinId+"inconnu");
+        }
     }
 }

@@ -42,6 +42,9 @@
       </span>
     </mat-toolbar>
 
+    <div class="home" *ngIf="route.url== '/'">
+      Bienvenu
+    </div>
       <router-outlet></router-outlet>
 
   </mat-sidenav-content>

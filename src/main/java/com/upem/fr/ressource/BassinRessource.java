@@ -42,22 +42,40 @@ public class BassinRessource {
 
     @DeleteMapping("bassins/{id}")
     public void delete(@PathVariable Long id) {
-        bassinService.delete(id);
+        try {
+            bassinService.delete(id);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
     @PostMapping("bassins/{id}")
     public Bassin update(@Valid @PathVariable Long id, @RequestBody Bassin bassin) {
-        return bassinService.update(id, bassin);
+        try {
+            return bassinService.update(id, bassin);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
     @GetMapping("bassins/{bassinId}/{especeId}")
     public Iterable<Bassin> affectEspece(@PathVariable Long bassinId, @PathVariable Long especeId) {
-        bassinService.addEspece(bassinService.getOne(bassinId), especeService.getOne(especeId));
-        return bassinService.getAll();
+        try {
+            bassinService.addEspece(bassinService.getOne(bassinId), especeService.getOne(especeId));
+            return bassinService.getAll();
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Bassin avec l'id  "+  bassinId  +
+                    " inconnu ou Espèce avec l'id"+especeId+"inconnu");
+        }
     }
     @GetMapping("deleteEspece/{bassinId}/{especeId}")
     public Iterable<Bassin> deleteEspece(@PathVariable Long bassinId, @PathVariable Long especeId) {
-        bassinService.removeEspece(bassinService.getOne(bassinId), especeService.getOne(especeId));
-        return bassinService.getAll();
+        try {
+            bassinService.removeEspece(bassinService.getOne(bassinId), especeService.getOne(especeId));
+            return bassinService.getAll();
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Bassin avec l'id  "+  bassinId  +
+                    " inconnu ou Espèce avec l'id"+especeId+"inconnu");
+        }
     }
 }

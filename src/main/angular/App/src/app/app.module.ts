@@ -64,10 +64,9 @@ import {AccueilComponent} from "./accueil/accueil.component";
 import { EspeceVisiteurComponent } from './espece-visiteur/espece-visiteur.component';
 import {AnimauxEspeceComponent} from "./espece-visiteur/animaux-espece/animaux-espece.component";
 
-// @ts-ignore
 @NgModule({
-  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogActivityComponent],
-  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogActivityComponent],
+  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogActivityComponent,DialogSecteurComponent],
+  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogActivityComponent,DialogSecteurComponent],
   declarations: [
     AppComponent,
     NavBarComponent,

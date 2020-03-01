@@ -39,11 +39,19 @@ public class EspeceRessource {
 
     @DeleteMapping("especes/{id}")
     public void delete(@PathVariable Long id) {
-        ecpeceService.delete(id);
+        try {
+            ecpeceService.delete(id);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
     @PostMapping("especes/{id}")
     public Espece update(@PathVariable Long id,@Valid @RequestBody Espece espece) {
-        return ecpeceService.update(id, espece);
+        try {
+            return ecpeceService.update(id, espece);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 }

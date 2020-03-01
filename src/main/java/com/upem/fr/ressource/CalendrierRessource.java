@@ -53,12 +53,20 @@ public class CalendrierRessource {
 
     @DeleteMapping("calendrier/{id}")
     public void delete(@PathVariable Long id) {
-        calendrierService.delete(id);
+        try {
+            calendrierService.delete(id);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
     @PostMapping("calendrier/{id}")
     public Calendrier update(@PathVariable Long id, @Valid @RequestBody Calendrier calendrier) {
-        return calendrierService.update(id, calendrier);
+        try {
+            return calendrierService.update(id, calendrier);
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+        }
     }
 
 

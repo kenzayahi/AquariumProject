@@ -67,29 +67,39 @@ public class ActivityRessource {
     public Activity update(@Valid @PathVariable Long id, @RequestBody Activity activity, @PathVariable long idBassin,
                            @PathVariable Long numSemaineAncienne, @PathVariable Long anneeAncienne,
                            @PathVariable Long numSemaineNouvelle, @PathVariable Long anneeNouvelle) {
-
-
-
-        Optional<Calendrier> c = calendrierService.findBySemaineAndAnnee(numSemaineNouvelle, anneeNouvelle);
-        if(!c.isPresent()){
-            Calendrier cal = new Calendrier();
-            cal.setNumSemaine(numSemaineNouvelle);
-            cal.setAnnee(anneeNouvelle);
-            calendrierService.create(cal);
+        try {
+            Optional<Calendrier> c = calendrierService.findBySemaineAndAnnee(numSemaineNouvelle, anneeNouvelle);
+            if(!c.isPresent()){
+                Calendrier cal = new Calendrier();
+                cal.setNumSemaine(numSemaineNouvelle);
+                cal.setAnnee(anneeNouvelle);
+                calendrierService.create(cal);
+            }
+            activity.setBassin(bassinService.getOne(idBassin).get());
+            return activityService.update(id, activity, calendrierService.findBySemaineAndAnnee(numSemaineAncienne, anneeAncienne),
+                    calendrierService.findBySemaineAndAnnee(numSemaineNouvelle, anneeNouvelle));        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
         }
-        activity.setBassin(bassinService.getOne(idBassin).get());
-        return activityService.update(id, activity, calendrierService.findBySemaineAndAnnee(numSemaineAncienne, anneeAncienne), calendrierService.findBySemaineAndAnnee(numSemaineNouvelle, anneeNouvelle));
     }
 
     @GetMapping("activitiesResponsable/{activityid}/{employeId}")
     public Iterable<Activity> affectResponsable(@PathVariable Long activityid, @PathVariable Long employeId) {
-        activityService.addEmploye(activityService.getOne(activityid), employeService.getOne(employeId));
-        return activityService.getAll();
+        try {
+            activityService.addEmploye(activityService.getOne(activityid), employeService.getOne(employeId));
+            return activityService.getAll();
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  activityid  +  " inconnu ou l'id"+ employeId+"inconnu"
+            );
+        }
     }
     @GetMapping("deleteResponsable/{activityid}/{employeId}")
     public Iterable<Activity> deleteResponsable(@PathVariable Long activityid, @PathVariable Long employeId) {
-        activityService.removeEmploye(activityService.getOne(activityid), employeService.getOne(employeId));
-        return activityService.getAll();
+        try {
+            activityService.removeEmploye(activityService.getOne(activityid), employeService.getOne(employeId));
+            return activityService.getAll();
+        }catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  activityid  +  " inconnu ou l'id"+employeId+"inconnu");
+        }
     }
 
     @GetMapping("activity_get_bassin/{id}")
