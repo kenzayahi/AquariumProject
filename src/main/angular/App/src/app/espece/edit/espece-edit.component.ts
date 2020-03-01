@@ -42,7 +42,7 @@ export class EspeceEditComponent implements OnInit {
         .createEspece(this.formGroup.value)
         .subscribe(
           data=>{this.createEspece.emit(this.formGroup.value);
-            this.snackBar.open('L"Espèce a bien été créer', 'OK', { verticalPosition: 'top' });
+            this.snackBar.open('L"Espèce a bien été créer', 'OK', { verticalPosition: 'top',duration:4000});
             this.router.navigate(['/espece'])},
           error=>console.log(error)
         );

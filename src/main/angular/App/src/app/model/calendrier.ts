@@ -1,9 +1,8 @@
-import {Employe} from './employe';
 import {Activity} from "./activity";
 
 export interface Calendrier{
+  annee: number;
   id : number;
-  date : Date;
-  employe :Employe;
+  numSemaine: number;
   activities :Array<Activity>;
 }

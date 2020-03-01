@@ -52,8 +52,6 @@ import {CalendrierComponent} from "./calendrier/calendrier.component";
 import {OneCalendrierComponent} from "./calendrier/one-calendrier/one-calendrier.component";
 import {CalendrierUpdateComponent} from "./calendrier/update/calendrier-update.component";
 import {CalendrierEditComponent} from "./calendrier/edit/calendrier-edit.component";
-import {DialogCalendrierComponent} from "./calendrier/dialog-overview/dialog-calendrier.component";
-import {activityCalendrierComponent} from "./calendrier/update/one-activity/one-activity.component";
 import {DialogActivityComponent} from "./activity/dialog-activity/dialog-activity.component";
 import {activityResponsableComponent} from "./activity/update-activity/one-responsable/one-activity.component";
 import {DialogSecteurComponent} from "./secteur/dialog-secteur/dialog-secteur.component";
@@ -66,9 +64,10 @@ import {AccueilComponent} from "./accueil/accueil.component";
 import { EspeceVisiteurComponent } from './espece-visiteur/espece-visiteur.component';
 import {AnimauxEspeceComponent} from "./espece-visiteur/animaux-espece/animaux-espece.component";
 
+// @ts-ignore
 @NgModule({
-  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent, DialogCalendrierComponent,DialogActivityComponent,DialogSecteurComponent],
-  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogCalendrierComponent,DialogActivityComponent,DialogSecteurComponent],
+  exports: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogActivityComponent],
+  entryComponents: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogActivityComponent],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -106,8 +105,6 @@ import {AnimauxEspeceComponent} from "./espece-visiteur/animaux-espece/animaux-e
     CalendrierEditComponent,
     CalendrierUpdateComponent,
     OneCalendrierComponent,
-    DialogCalendrierComponent,
-    activityCalendrierComponent,
     DialogActivityComponent,
     activityResponsableComponent,
     DialogSecteurComponent,

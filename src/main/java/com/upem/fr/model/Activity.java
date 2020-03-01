@@ -34,6 +34,11 @@ public class Activity {
         this.responsables = responsable;
     }
 
+    public Activity(TypeActivity type,boolean accessible) {
+        this.type = type;
+        this.accessible=accessible;
+    }
+
     public Activity() {
     }
 
@@ -110,10 +115,7 @@ public class Activity {
         Activity activity = (Activity) o;
         return id.equals(activity.id) &&
                 type == activity.type &&
-                dateDebut.equals(activity.dateDebut) &&
-                dateFin.equals(activity.dateFin) &&
-                accessible == ((Activity) o).accessible &&
-                responsables.equals(activity.responsables);
+                accessible == ((Activity) o).accessible ;
     }
 
     @Override

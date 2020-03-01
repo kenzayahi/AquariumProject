@@ -52,7 +52,7 @@ export class AnimalEditComponent implements OnInit {
         .createAnimal(animal, idEspece)
         .subscribe(
           data=>{this.createAnimal.emit(animal);
-                       this.snackBar.open('L"animal a bien été créer','OK',{verticalPosition:'top'});
+                       this.snackBar.open('L"animal a bien été créer','OK',{verticalPosition:'top',duration:4000});
                        this.router.navigate(['/animal'])},
           error=>{this.snackBar.open('Error :'+error.toString(),'OK',{verticalPosition:'top'});
                         console.log(error)}

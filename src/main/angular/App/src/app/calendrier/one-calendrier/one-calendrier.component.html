@@ -1,5 +1,5 @@
-<td>{{calendrier.employe.nom + "  " + calendrier.employe.prenom}}</td>
-<td>{{calendrier.date | date}}</td>
+<td>{{calendrier.numSemaine}}</td>
+<td>{{calendrier.annee}}</td>
 <td *ngIf="calendrier.activities">{{afficher(calendrier.activities)}}</td>
 
 <td *ngIf="isResponsable">

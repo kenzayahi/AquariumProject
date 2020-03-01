@@ -5,7 +5,7 @@ import {Calendrier} from "../../model/calendrier";
 import {CalendrierService} from "../calendrier.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {EmployeService} from "../../employe/employe.service";
-import {Employe, RoleEmploye} from "../../model/employe";
+import {RoleEmploye} from "../../model/employe";
 
 @Component({
   selector: 'app-edit',
@@ -15,7 +15,6 @@ import {Employe, RoleEmploye} from "../../model/employe";
 export class CalendrierEditComponent implements OnInit {
 
   formGroup: FormGroup;
-  employes: Array<Employe>;
 
   @Output()
   createCalendrier= new EventEmitter<Calendrier>();
@@ -36,14 +35,12 @@ export class CalendrierEditComponent implements OnInit {
 
   ngOnInit() {
     this.init();
-    this.onGetsimpleEmploye();
     this.createForm();
   }
   init() {
     this.idEmploye = this.route.snapshot.params['idEmploye'];
     this.employe = this.employeService.getEmploye(this.idEmploye).subscribe(
       data => {
-        this.employe = data;
         this.role = this.employe.roleEmploye;
         if (this.role == RoleEmploye.responsablebassin) {
           this.isResponsable = true;
@@ -59,8 +56,7 @@ export class CalendrierEditComponent implements OnInit {
 
   createForm() {
     this.formGroup = this.formBuilder.group({
-      'employe': [null, Validators.required],
-      'date': [null, Validators.required],
+      'numSemaine': [null, Validators.required],
     });
   }
   onCreateCalendrier(){
@@ -76,14 +72,6 @@ export class CalendrierEditComponent implements OnInit {
 
   reset(){
     this.formGroup.reset();
-  }
-  onGetsimpleEmploye(){
-    this.employeService
-      .getSimpleEmployes()
-      .subscribe(
-        data=>{this.employes=data;console.log(data)},
-        error => {console.log(error);
-        })
   }
 
 }
