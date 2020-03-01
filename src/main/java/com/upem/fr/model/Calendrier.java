@@ -1,8 +1,10 @@
 package com.upem.fr.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,19 +15,19 @@ public class Calendrier {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;
-    private Date date;
-    @OneToOne
-    private Employe employe;
+    private long numSemaine;
+    private long annee;
 
     @OneToMany
     private List<Activity>activities= new ArrayList<>();
 
     public Calendrier() {
     }
-
-    public Calendrier(long jourMois, long mois, long année, List<Activity> activities) {
-        this.activities = activities;
+    public Calendrier(long numSemaine,long annee) {
+        this.annee=annee;
+        this.numSemaine=numSemaine;
     }
+
 
     public Long getId() {
         return id;
@@ -35,32 +37,28 @@ public class Calendrier {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public long getNumSemaine() {
+        return numSemaine;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setNumSemaine(long numSemaine) {
+        this.numSemaine = numSemaine;
+    }
+
+    public long getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(long annee) {
+        this.annee = annee;
     }
 
     public List<Activity> getActivities() {
         return activities;
     }
 
-    public void setActivities(Activity  activity) {
-        this.activities.add(activity);
-    }
-
-    public void setActivityRemove(Activity activity) {
-        this.activities.remove(activity);
-    }
-
-    public Employe getEmploye() {
-        return employe;
-    }
-
-    public void setEmploye(Employe employe) {
-        this.employe = employe;
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
     }
 
     @Override
@@ -69,23 +67,12 @@ public class Calendrier {
         if (!(o instanceof Calendrier)) return false;
         Calendrier that = (Calendrier) o;
         return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getDate(), that.getDate()) &&
-                Objects.equals(getEmploye(), that.getEmploye()) &&
                 Objects.equals(getActivities(), that.getActivities());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDate(), getEmploye(), getActivities());
+        return Objects.hash(getId(), getActivities());
     }
 
-    @Override
-    public String toString() {
-        return "Calendrier{" +
-                "id=" + id +
-                ", date=" + date +
-                ", employe=" + employe +
-                ", activities=" + activities +
-                '}';
-    }
 }

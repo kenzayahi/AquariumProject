@@ -45,7 +45,7 @@ export class BassinEditComponent implements OnInit {
         .createBassin(this.formGroup.value)
         .subscribe(
           data=>{this.createBassin.emit(this.formGroup.value);
-            this.snackBar.open('Le Bassin a bien été créer', 'OK', { verticalPosition: 'top' });
+            this.snackBar.open('Le Bassin a bien été créer', 'OK', { verticalPosition: 'top',duration:4000});
             this.router.navigate(['/bassin/'+this.role])},
           error=>console.log(error)
         );

@@ -22,15 +22,16 @@ export class ActivityService {
     return this.httpClient.get<Activity>('/activities/' + id);
   }
 
-  deleteActivity(id: number): Observable<EntityResponseType> {
-    return this.httpClient.delete<Activity>('/activities/' + id, { observe: 'response' });
+  deleteActivity(id: number, numSemaine : number, annee : number): Observable<EntityResponseType> {
+    return this.httpClient.delete<Activity>('/activities/' + id + '/' + numSemaine + '/' + annee, { observe: 'response' });
   }
-  createActivity(activity:Activity,idBassin:number): Observable<EntityResponseType> {
-    return this.httpClient.post<Activity>('/activitiesCreate/'+idBassin, activity, { observe: 'response' });
+  createActivity(activity:Activity,idBassin:number, numSemaine : number, annee : number): Observable<EntityResponseType> {
+    return this.httpClient.post<Activity>('/activitiesCreate/'+idBassin + '/'+ numSemaine+ '/' + annee, activity, { observe: 'response' });
   }
 
-  updateActivity(activity: Activity,idBassin:number): Observable<EntityResponseType> {
-      return this.httpClient.post<Activity>('/activities' + '/' + activity.id +"/"+idBassin, activity, { observe: 'response' });
+  updateActivity(activity: Activity,idBassin:number, oldWeek : number, oldYear : number, newWeek : number, newYear : number): Observable<EntityResponseType> {
+
+    return this.httpClient.post<Activity>('/activities' + '/' + activity.id +"/"+idBassin + '/' + oldWeek + '/' + oldYear + '/' + newWeek + '/' + newYear, activity, { observe: 'response' });
   }
   affecteEmploye(idActivity: number,idEmploye:number) : Observable<Array<Activity>> {
     return this.httpClient.get<Array<Activity>>('/activitiesResponsable/'+ idActivity+'/'+idEmploye);

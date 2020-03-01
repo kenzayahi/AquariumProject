@@ -4,6 +4,9 @@
 
 .sidenav {
   width: 160px;
+  background-image: url("../../assets/img/background3.jpg");;
+  background-size: 200% 100% ;
+  background-position: right;
 }
 
 .sidenav .mat-toolbar {
