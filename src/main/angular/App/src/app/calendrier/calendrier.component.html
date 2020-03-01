@@ -1,4 +1,6 @@
-
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">Calendrier</span>
+</mat-toolbar>
 <form [formGroup]="formGroup" *ngIf="formGroup">
   <mat-form-field class="form-element">
     <mat-label>      Année :</mat-label>
@@ -8,7 +10,6 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <br>
   <mat-form-field class="form-element">
     <mat-label>      Semaine :</mat-label>
     <mat-select formControlName="semaine">
@@ -19,17 +20,21 @@
     </mat-select>
   </mat-form-field>
 
-  <div class="button">
-    <button (click)="onSubmit()" type="submit" [disabled]="!formGroup.valid">Recherche</button>
-  </div>
+    <button mat-raised-button color="primary" (click)="onSubmit()" type="submit" [disabled]="!formGroup.valid">Rechercher</button>
 </form>
 <div *ngIf="activities">
   <div class="test" *ngFor="let activity of activities;">
       <mat-card class="card" >
-        <p>Activity :{{activity.type}}</p>
-        <p>Bassin N:{{activity.bassin.numBassin}}</p>
-        <p>Date Début :{{activity.dateDebut}}</p>
-        <p>Date Fin:{{activity.dateFin}}</p>
+        <p><b>{{activity.type}}</b></p>
+        <p><b>Bassin N:{{activity.bassin.numBassin}}</b></p>
+        <p>Le  :{{activity.dateDebut |date}}</p>
+        <p class="colorHeure">De :{{activity.dateDebut| date:'shortTime'}}</p>
+        <p class="colorHeure">à  :{{activity.dateFin |date:'shortTime'}}</p>
+        <p *ngIf="isResponsable &&activity.responsables">
+          <b>les Responsables sont : </b>
+          <span>{{afficherResponsable(activity.responsables)}}</span>
+        </p>
+
       </mat-card>
     </div>
 </div>

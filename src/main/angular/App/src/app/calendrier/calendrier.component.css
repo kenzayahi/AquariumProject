@@ -23,9 +23,12 @@
   width: 100%;
 }
 .card{
-  text-align:center;
+  text-align:left;
+  font-size: 100%;
+  font-family: cursive;
+  background-image: url("../../assets/img/calendar.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 140%;
+  background-size: 120% 140%;
   background-position: center;
 }
 
@@ -37,4 +40,7 @@ div.test {
   background-color:rosybrown;
   margin-left: 20px;
   margin-top: 20px;
+}
+p.colorHeure{
+  color: red;
 }

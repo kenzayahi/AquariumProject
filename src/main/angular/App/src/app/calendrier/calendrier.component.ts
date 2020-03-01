@@ -1,11 +1,12 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {RoleEmploye} from '../model/employe';
+import {Employe, RoleEmploye} from '../model/employe';
 import {CalendrierService} from './calendrier.service';
 import {Calendrier} from '../model/calendrier';
 import {EmployeService} from "../employe/employe.service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Activity} from "../model/activity";
+import {Espece} from "../model/espece";
 
 @Component({
   selector: 'app-calendrier',
@@ -132,15 +133,34 @@ export class CalendrierComponent implements OnInit {
     return end;
 
   }
-
   onSubmit() {
-    this.calendrierService.getActivityOf(this.formGroup.get('semaine').value , this.formGroup.get('annee').value, this.idEmploye).subscribe(
-      data =>{
-        this.activities = data;
-        console.log(this.activities)
-      }
-    )
+    if (this.isResponsable) {
+      this.calendrierService.getActivityOfEveryone(this.formGroup.get('semaine').value, this.formGroup.get('annee').value).subscribe(
+
+        data => this.activities = data
+      )
+
+    } else {
+      this.calendrierService.getActivityOf(this.formGroup.get('semaine').value, this.formGroup.get('annee').value, this.idEmploye).subscribe(
+        data => {
+          this.activities = data;
+          console.log(this.activities)
+        }
+      )
+    }
   }
 
 
+  afficherResponsable(responsableList:Array<Employe>) {
+      let s : string = "";
+      for(let i = 0; i < responsableList.length; i++){
+        s +="\n";
+        s += responsableList[i].nom+" " ;
+        s +=" "+responsableList[i].prenom;
+        if(i != responsableList.length - 1)
+          s+= "/ " ;
+      }
+      return s
+
+  }
 }

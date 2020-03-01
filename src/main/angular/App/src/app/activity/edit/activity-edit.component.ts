@@ -70,8 +70,7 @@ export class ActivityEditComponent implements OnInit {
       .createActivity(activity,idBassin, this.getWeek(activity.dateDebut), activity.dateDebut.getFullYear())
       .subscribe(
         data=>{this.createActivity.emit(this.formGroup.value);
-          this.snackBar.open('L"activité  a bien été créer', 'OK', { verticalPosition: 'top' });
-          console.log(data);
+          this.snackBar.open('L"activité  a bien été créer', 'OK', { verticalPosition: 'top',duration:4000});
           this.router.navigate(['/activity'])},
         error=>console.log(error)
       );

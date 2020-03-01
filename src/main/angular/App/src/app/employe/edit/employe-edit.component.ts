@@ -45,7 +45,7 @@ export class EmployeEditComponent implements OnInit {
         .createEmploye(this.formGroup.value)
         .subscribe(
           data=>{this.createEmploye.emit(this.formGroup.value);
-            this.snackBar.open('L"employe a bien été créer', 'OK', { verticalPosition: 'top' });
+            this.snackBar.open('L"employe a bien été créer', 'OK', { verticalPosition: 'top',duration:4000 });
             this.router.navigate(['/employe'])},
           error=>console.log(error)
         );

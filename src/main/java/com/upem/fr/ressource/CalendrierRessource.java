@@ -29,6 +29,13 @@ public class CalendrierRessource {
         }
         return calendrierService.findActivitesOf(semaine, annee, idEmploye);
     }
+    @GetMapping("calendrierOf/{semaine}/{annee}")
+    public Iterable<Activity> getActivitesOfEveryone(@PathVariable Long semaine, @PathVariable Long annee){
+        if(!calendrierService.findBySemaineAndAnnee(semaine, annee).isPresent()) {
+            return new ArrayList<>();
+        }
+        return calendrierService.findBySemaineAndAnnee(semaine, annee).get().getActivities();
+    }
 
     @PostMapping("/calendrier")
     public ResponseEntity<Calendrier> create(@Valid @RequestBody Calendrier calendrier) {
