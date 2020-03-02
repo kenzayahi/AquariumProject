@@ -13,7 +13,7 @@ pipeline {
         }
         stage ('Shutdown Current App') {
             steps {
-                bat'sh -c "curl -x POST http://localhost:8080/actuator/shutdown"'
+                bat'sh -c "curl -X POST http://localhost:8080/actuator/shutdown"'
             }
         }
         stage ('Deploy App') {
