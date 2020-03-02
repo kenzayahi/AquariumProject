@@ -14,7 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
 
-            "outputPath": "../../../../target/classes/ressources",
+            "outputPath": "dist/Aqua",
 
             "index": "src/index.html",
             "main": "src/main.ts",
