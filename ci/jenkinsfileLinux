@@ -28,6 +28,11 @@ pipeline {
 
             }
         }
+        stage ('Build front') {
+            steps {
+                sh'sh -c "ng build --watch'
+            }
+        }
         stage ('Deploy App') {
             steps {
                 sh'sh -c "java -jar  /home/2inl2/kyahi/Documents/application/bin/fr-0.0.1-SNAPSHOT.jar"'
