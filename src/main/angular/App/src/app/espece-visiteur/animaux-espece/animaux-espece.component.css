@@ -1,0 +1,21 @@
+.card{
+  text-align:center;
+  background-image: url("assets/img/back3.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+
+}
+
+
+div.test {
+  list-style: none;
+  display: block;
+  float: left;
+  width: 20%;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+p.color{
+  color: red;
+}

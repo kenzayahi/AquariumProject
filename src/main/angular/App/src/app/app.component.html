@@ -1,7 +1,8 @@
 <div *ngIf="!isConnected">
-  <app-authetification (loginEvent)="getAthentification($event)"></app-authetification>
+  <app-authetification (visiteurEvent)="toVisite($event)" (loginEvent)="getAthentification($event)"></app-authetification>
 </div>
 
 <div *ngIf=" isConnected">
-  <app-nav-bar (disconnectEvent)="disconnect($event)" [employe]="employeConnecter"></app-nav-bar>
+  <app-nav-bar (disconnectEvent)="disconnect($event)" [employe]="employeConnecter" ></app-nav-bar>
 </div>
+

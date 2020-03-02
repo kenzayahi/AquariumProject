@@ -33,31 +33,53 @@ public class BassinRessource {
 
     @GetMapping("bassins/{id}")
     public Optional<Bassin> getOne(@PathVariable Long id) {
-        try {
-            return bassinService.getOne(id);
-        }catch (NotFoundException e){
+        if(!bassinService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        return bassinService.getOne(id);
+
     }
 
     @DeleteMapping("bassins/{id}")
     public void delete(@PathVariable Long id) {
-        bassinService.delete(id);
+        if(!bassinService.getOne(id).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+
+            bassinService.delete(id);
+
     }
 
     @PostMapping("bassins/{id}")
     public Bassin update(@Valid @PathVariable Long id, @RequestBody Bassin bassin) {
+        if(!bassinService.getOne(id).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+
         return bassinService.update(id, bassin);
+
     }
 
     @GetMapping("bassins/{bassinId}/{especeId}")
     public Iterable<Bassin> affectEspece(@PathVariable Long bassinId, @PathVariable Long especeId) {
+        if(!bassinService.getOne(bassinId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  bassinId  +  " inconnu");
+
+        if(!especeService.getOne(especeId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  especeId  +  " inconnu");
+
         bassinService.addEspece(bassinService.getOne(bassinId), especeService.getOne(especeId));
-        return bassinService.getAll();
+            return bassinService.getAll();
+
     }
     @GetMapping("deleteEspece/{bassinId}/{especeId}")
     public Iterable<Bassin> deleteEspece(@PathVariable Long bassinId, @PathVariable Long especeId) {
+        if(!bassinService.getOne(bassinId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  bassinId  +  " inconnu");
+
+        if(!especeService.getOne(especeId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  especeId  +  " inconnu");
+
         bassinService.removeEspece(bassinService.getOne(bassinId), especeService.getOne(especeId));
-        return bassinService.getAll();
+            return bassinService.getAll();
+
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -72,7 +73,14 @@ class ActivityRessourceTest {
         Activity result = this.restTemplate.postForObject("http://localhost:" + port + "/activitiesCreate/2/3/2000", activity, Activity.class);
         System.out.println(result);
         assertEquals(activity2, result);
+
+        HttpEntity<Activity> request = new HttpEntity<>(activity);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activitiesCreate/2/3/2000",
+                HttpMethod.POST, request, Activity.class).getStatusCode(), HttpStatus.CREATED);
     }
+
+
 
     @Test
     void getOne() {
@@ -80,8 +88,20 @@ class ActivityRessourceTest {
         activity.setId(1L);
         when(activityService.getOne(1L)).thenReturn(Optional.of(activity));
         HttpEntity<Activity> request = new HttpEntity<>(activity);
+
         this.restTemplate.exchange("http://localhost:" + port + "/activities",
                 HttpMethod.POST, request, Activity.class);
+
+
+
+
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activities/1",
+                HttpMethod.GET, request, Activity.class).getStatusCode(), HttpStatus.OK);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activities/656",
+                HttpMethod.GET, request, Activity.class).getStatusCode(), HttpStatus.NOT_FOUND);
+
         Activity resultGet = this.restTemplate.getForObject("http://localhost:" + port + "/activities/1", Activity.class);
         assertEquals(activity, resultGet);
     }
@@ -101,6 +121,13 @@ class ActivityRessourceTest {
                 HttpMethod.DELETE, null, Activity.class).getBody();
         List activityListAfter = this.restTemplate.getForObject("http://localhost:" + port + "/activities", List.class);
         assertEquals(activityListAfter.size(), activityListBefore.size());
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activities/1/1/1",
+                HttpMethod.DELETE, request, Activity.class).getStatusCode(), HttpStatus.OK);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activities/656/1/1",
+                HttpMethod.DELETE, request, Activity.class).getStatusCode(), HttpStatus.NOT_FOUND);
+
    }
 
     @Test
@@ -117,6 +144,7 @@ class ActivityRessourceTest {
         bassin.setId(9L);
         activity2.setBassin(bassin);
 
+        when(activityService.getOne(1L)).thenReturn(Optional.of(activity));
         when(activityService.update(1L, activity2,Optional.of(calendrier),Optional.of(calendrier))).thenReturn(activity2);
         when(bassinService.getOne(9L)).thenReturn(Optional.of(bassin));
         when(bassinService.getOne(9L)).thenReturn(Optional.of(bassin));
@@ -127,7 +155,13 @@ class ActivityRessourceTest {
 
         Activity result = this.restTemplate.exchange("http://localhost:" + port + "/activities/1/9/3/2000/3/2000",
                 HttpMethod.POST, request, Activity.class).getBody();
-        System.out.println(result);
+
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activities/1/9/3/2000/3/2000",
+                HttpMethod.POST, request, Activity.class).getStatusCode(), HttpStatus.OK);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activities/61/69/63/20006/63/2006",
+                HttpMethod.POST, request, Activity.class).getStatusCode(), HttpStatus.NOT_FOUND);
 
         assertEquals(result, activity2);
     }
@@ -154,5 +188,12 @@ class ActivityRessourceTest {
                 HttpMethod.GET, request, Bassin.class).getBody();
 
         assertEquals(result,bassin);
+
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activity_get_bassin/1",
+                HttpMethod.GET, request, Activity.class).getStatusCode(), HttpStatus.OK);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activity_get_bassin/12",
+                HttpMethod.GET, request, Activity.class).getStatusCode(), HttpStatus.NOT_FOUND);
     }
 }

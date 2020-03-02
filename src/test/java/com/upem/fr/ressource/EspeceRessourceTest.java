@@ -91,6 +91,8 @@ class EspeceRessourceTest {
         when(especeService.create(espece)).thenReturn(espece);
         Espece espece2 = new Espece("Poisson", piscivore, 5);
         espece2.setId(1L);
+        when(especeService.getOne(1L)).thenReturn(Optional.of(espece));
+
         when(especeService.update(1L, espece2)).thenReturn(espece2);
         this.restTemplate.postForObject("http://localhost:" + port + "/especes", espece, Espece.class);
         HttpEntity<Espece> request = new HttpEntity<>(espece2);

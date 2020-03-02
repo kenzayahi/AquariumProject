@@ -30,20 +30,30 @@ public class EspeceRessource {
 
     @GetMapping("especes/{id}")
     public Optional<Espece> getOne(@PathVariable Long id) {
-        try {
-            return ecpeceService.getOne(id);
-        }catch (NotFoundException e){
+        if(!ecpeceService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        return ecpeceService.getOne(id);
+
     }
 
     @DeleteMapping("especes/{id}")
     public void delete(@PathVariable Long id) {
+        if(!ecpeceService.getOne(id).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+
+
         ecpeceService.delete(id);
+
     }
 
     @PostMapping("especes/{id}")
     public Espece update(@PathVariable Long id,@Valid @RequestBody Espece espece) {
+        if(!ecpeceService.getOne(id).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+
+
         return ecpeceService.update(id, espece);
+
     }
 }

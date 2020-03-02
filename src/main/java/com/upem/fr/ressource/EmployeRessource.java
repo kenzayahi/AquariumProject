@@ -45,29 +45,29 @@ public class EmployeRessource {
 
     @GetMapping("employes/{id}")
     public Optional<Employe> getOne(@PathVariable Long id) {
-        try {
-            return employeService.getOne(id);
-        }catch (NotFoundException e){
+        if(!employeService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        return employeService.getOne(id);
+
     }
 
     @DeleteMapping("employes/{id}")
     public void delete(@PathVariable Long id) {
-        try {
-            employeService.delete(id);;
-        }catch (NotFoundException e){
+        if(!employeService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        employeService.delete(id);;
+
     }
 
     @PostMapping("employes/{id}")
     public Employe update(@PathVariable Long id, @Valid @RequestBody Employe employe) {
-        try {
-            return employeService.update(id, employe);
-        }catch (NotFoundException e){
+        if(!employeService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        return employeService.update(id, employe);
+
     }
 
     @GetMapping("employesAddBassin/{employesId}/{bassinId}")
@@ -78,16 +78,19 @@ public class EmployeRessource {
         }else{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"le bassin "+bassin.numBassin+"a un responsable");
         }
-        return new ResponseEntity<>(employeService.getOne(employesId).get(),HttpStatus.CREATED);
+        return new ResponseEntity<>(employeService.getOne(employesId).get(),HttpStatus.NOT_FOUND);
     }
     @GetMapping("employesRemoveBassin/{employesId}/{bassinId}")
     public Iterable<Employe> deleteBassin(@PathVariable Long employesId, @PathVariable Long bassinId) {
-        try {
-            employeService.removeBassin(employesId, bassinService.getOne(bassinId));
+        if(!employeService.getOne(employesId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  employesId  +  " inconnu");
+
+
+        if(!bassinService.getOne(bassinId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  bassinId  +  " inconnu");
+
+        employeService.removeBassin(employesId, bassinService.getOne(bassinId));
             return employeService.getAll();
-        }catch (NotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  employesId  +  " inconnu"
-            +"or l'id"+bassinId);
-        }
+
     }
 }

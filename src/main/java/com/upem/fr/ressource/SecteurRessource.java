@@ -1,5 +1,7 @@
 package com.upem.fr.ressource;
 
+import com.upem.fr.model.Bassin;
+import com.upem.fr.model.Employe;
 import com.upem.fr.model.Secteur;
 import com.upem.fr.service.BassinService;
 import com.upem.fr.service.SecteurService;
@@ -32,25 +34,58 @@ public class SecteurRessource {
 
     @GetMapping("secteurs/{id}")
     public Optional<Secteur> getOne(@PathVariable Long id) {
-        try {
-            return secteurService.getOne(id);
-        }catch (NotFoundException e){
+        if(!secteurService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+
+        return secteurService.getOne(id);
+
     }
 
     @DeleteMapping("secteurs/{id}")
     public void delete(@PathVariable Long id) {
+        if(!secteurService.getOne(id).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+
+
         secteurService.delete(id);
+
     }
 
     @PostMapping("secteurs/{id}")
     public Secteur update(@Valid @PathVariable Long id, @RequestBody Secteur secteur) {
+        if(!secteurService.getOne(id).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+
+
         return secteurService.update(id, secteur);
+
     }
 
-    @GetMapping("secteurs/{secteurId}/{bassinId}")
-    public void affectBassin(@PathVariable Long secteurId, @PathVariable Long bassinId) {
+    @GetMapping("secteurBassin/{secteurId}/{bassinId}")
+    public Iterable<Secteur> affectBassintosecteur(@PathVariable Long secteurId, @PathVariable Long bassinId) {
+        if(!secteurService.getOne(secteurId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  secteurId  +  " inconnu");
+
+        if(!bassinService.getOne(bassinId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  bassinId  +  " inconnu");
+
+
         secteurService.addBassin(secteurService.getOne(secteurId), bassinService.getOne(bassinId));
+        return secteurService.getAll();
+
+    }
+    @GetMapping("deleteBassinSecteur/{secteurId}/{bassinId}")
+    public Iterable<Secteur> deleteBassinInSecteur(@PathVariable Long secteurId, @PathVariable Long bassinId) {
+        if(!secteurService.getOne(secteurId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  secteurId  +  " inconnu");
+
+        if(!bassinService.getOne(bassinId).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  bassinId  +  " inconnu");
+
+
+        secteurService.removeBassin(secteurService.getOne(secteurId), bassinService.getOne(bassinId));
+        return secteurService.getAll();
+
     }
 }

@@ -60,6 +60,13 @@ public class Secteur {
         this.localisation = localisation;
     }
 
+    public void addBassin(Bassin bassin) {
+        this.bassinList.add(bassin);
+    }
+    public void removeBassin(Bassin bassin) {
+        this.bassinList.remove(bassin);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

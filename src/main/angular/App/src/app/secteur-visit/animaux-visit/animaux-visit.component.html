@@ -1,0 +1,15 @@
+<p>  <a mat-fab color="primary"  routerLink="/secteurVisit"><mat-icon>assignment_return</mat-icon></a></p>
+<div *ngIf="listAnimaux">
+  <div class="test"*ngFor="let animal of listAnimaux;">
+    <mat-card class="card" >
+      <p class="color">Animal :{{animal.nom}}</p>
+      <p>Espece:{{animal.espece}}</p>
+      <p>Sexe:{{animal.sexe}}</p>
+      <p>Signe Distinctif:{{animal.signedistinctif}}</p>
+      <p>Date D'arrivée:{{animal.dateArrivee}}</p>
+      <p>Date Prévu de départ:{{animal.dateDepart}}</p>
+    </mat-card>
+    <br>
+  </div>
+</div>
+

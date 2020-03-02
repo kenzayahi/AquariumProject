@@ -4,7 +4,7 @@
 <mat-card>
 
   <div class="container" >
-    <form [formGroup]="formGroup" (ngSubmit)="onUpdateActivity()" class="form" *ngIf="formGroup">
+    <form [formGroup]="formGroup" class="form" *ngIf="formGroup">
       <mat-form-field class="form-element">
         <mat-label>Type</mat-label>
         <mat-select formControlName="type">
@@ -62,7 +62,7 @@
         </tbody>
       </table>
 
-      <button mat-raised-button color="primary" type="submit" (click)="onUpdateActivity()" [disabled]="!formGroup.valid" routerLink="/activity">
+      <button mat-raised-button color="primary" type="submit" (click)="onUpdateActivity()" [disabled]="!formGroup.valid" >
         Submit</button>
 
 

@@ -99,6 +99,7 @@ class SecteurRessourceTest {
 
         Secteur secteur2 = new Secteur("Poissons-tropicaux", "Nord");
         secteur2.setId(1L);
+        when(secteurService.getOne(1L)).thenReturn(Optional.of(secteur));
 
         when(secteurService.create(secteur)).thenReturn(secteur);
         when(secteurService.update(1L, secteur2)).thenReturn(secteur2);

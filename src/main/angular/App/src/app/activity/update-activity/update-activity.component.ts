@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {Activity, TypeActivity} from "../../model/activity";
 import {Employe} from "../../model/employe";
@@ -38,6 +38,7 @@ export class UpdateActivityComponent implements OnInit {
   constructor(private activityService : ActivityService,
               private route: ActivatedRoute,
               private dialog: MatDialog,
+              protected router: Router,
               private employeService:EmployeService,
               private bassinService:BassinService) {
     this.onGetBassins();
@@ -96,7 +97,11 @@ export class UpdateActivityComponent implements OnInit {
     activity.bassin = null;
     activity.responsables=this.listResponsables;
     this.activityService.updateActivity(activity,idBassin, this.getWeek(this.firstDate), new Date(this.firstDate).getFullYear(), this.getWeek(activity.dateDebut), new Date(activity.dateDebut).getFullYear()).subscribe(
-      data => this.updateActivity.emit(activity),
+      data => {
+        this.updateActivity.emit(activity);
+        this.router.navigate(['/activity'])
+
+       },
       error => console.log(error)
     );
 

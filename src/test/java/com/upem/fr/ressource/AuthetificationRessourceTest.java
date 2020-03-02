@@ -1,5 +1,6 @@
 package com.upem.fr.ressource;
 
+import com.upem.fr.model.Animal;
 import com.upem.fr.model.Employe;
 import com.upem.fr.model.enumeration.RoleEmploye;
 import com.upem.fr.service.AuthentificationService;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
@@ -40,5 +42,11 @@ class AuthetificationRessourceTest {
                 HttpMethod.POST, request, Employe.class);
         Employe resultGet = this.restTemplate.getForObject("http://localhost:" + port + "/authentificate/kenza/yahi", Employe.class);
         assertEquals(employe, resultGet);
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/authentificate/kenza/yahi",
+                HttpMethod.GET, request, Employe.class).getStatusCode(), HttpStatus.OK);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/authentificate/kenza/yahieeaz",
+                HttpMethod.GET, request, Employe.class).getStatusCode(), HttpStatus.NOT_FOUND);
+
     }
 }

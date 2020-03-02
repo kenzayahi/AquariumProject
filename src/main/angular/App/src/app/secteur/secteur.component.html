@@ -1,0 +1,23 @@
+
+<mat-toolbar color="primary">
+  <a mat-fab routerLink="/secteur/edit"><mat-icon> add</mat-icon></a>
+  <span class="fill-remaining-space">Secteur</span>
+
+</mat-toolbar>
+
+<mat-card class="card">
+  <table border="true" >
+    <tr >
+      <th class="mat-cell">Nom</th>
+      <th class="mat-cell">Localisation</th>
+      <th class="mat-cell">Nombres Bassins</th>
+      <th class="mat-cell">list Bassin</th>
+    </tr>
+    <tbody *ngIf="listSecteurs">
+
+    <tr *ngFor="let secteur of listSecteurs;" [secteur]="secteur"
+        (deleteSecteur)="refresh($event)" (addBassin)="refreshBassin($event)">
+    </tr>
+    </tbody>
+  </table>
+</mat-card>

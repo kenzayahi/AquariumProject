@@ -18,11 +18,12 @@ public class AuthetificationRessource {
 
     @GetMapping("/authentificate/{login}/{password}")
     public Optional<Employe> authentificate(@PathVariable String login, @PathVariable String password){
-        try{
-           return Optional.of(authentificationService.getEmploye(login, password).get());
-        }catch(Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"wrong login and password");
-        }
+
+        if(!authentificationService.getEmploye(login, password).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND," wrong login and password");
+
+        return Optional.of(authentificationService.getEmploye(login, password).get());
+
     }
 
 

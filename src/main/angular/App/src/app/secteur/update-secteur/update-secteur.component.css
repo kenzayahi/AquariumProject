@@ -1,0 +1,36 @@
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.container {
+  padding: 90px;
+  width: 80%;
+}
+
+.form {
+  min-width: 50%;
+  max-width: 100%;
+}
+.form-element {
+  padding: 10px 5px 15px 2px;
+  width: 30%;
+}
+
+.button {
+  width: 100%;
+}
+mat-card{
+  text-align: center;
+  width: 90%;
+  padding: 20px;
+  margin-top: 30px;
+  margin-left: 60px;
+
+}
+table.center-table{
+  margin-right: auto;
+  margin-left: auto;
+}

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {EspeceService} from "../espece.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Espece, RegimeAlimentaire} from "../../model/espece";
@@ -17,7 +17,7 @@ export class UpdateEspeceComponent implements OnInit {
   formGroup: FormGroup;
   @Output()
   updateEspece=new EventEmitter<Espece>();
-  constructor(private especeService : EspeceService, private route: ActivatedRoute) { }
+  constructor(private especeService : EspeceService, private route: ActivatedRoute, protected router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -39,7 +39,10 @@ export class UpdateEspeceComponent implements OnInit {
     let espece: Espece =  this.formGroup.value;
     espece.id = this.id;
     this.especeService.updateEspece(espece).subscribe(
-      data => this.updateEspece.emit(espece),
+      data => {
+        this.updateEspece.emit(espece);
+        this.router.navigate(['/espece']);
+      },
       error => console.log(error)
     );
 

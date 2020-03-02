@@ -111,6 +111,8 @@ class EmployeRessourceTest {
         when(employeService.create(employe)).thenReturn(employe);
         Employe employe2=new Employe("Yahi", "Kenza", "1 rue de l'eglise", "kenza@gmail.com", "kenza", RoleEmploye.gestionnaire);
         employe2.setId(2L);
+        when(employeService.getOne(1L)).thenReturn(Optional.of(employe));
+
         when(employeService.update(1L, employe2)).thenReturn(employe2);
         this.restTemplate.postForObject("http://localhost:" + port + "/employes", employe, Employe.class);
         HttpEntity<Employe> request = new HttpEntity<>(employe2);
