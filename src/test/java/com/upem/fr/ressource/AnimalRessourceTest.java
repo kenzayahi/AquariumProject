@@ -1,5 +1,6 @@
 package com.upem.fr.ressource;
 
+import com.upem.fr.model.Activity;
 import com.upem.fr.model.Animal;
 import com.upem.fr.model.Espece;
 import com.upem.fr.repository.AnimalRepository;
@@ -14,6 +15,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -58,6 +60,10 @@ class AnimalRessourceTest {
         when(especeService.getOne(2L)).thenReturn(Optional.of(espece));
         Animal result = this.restTemplate.postForObject("http://localhost:" + port + "/animaux/"+espece.getId(), animal, Animal.class);
         assertEquals(animal, result);
+        HttpEntity<Animal> request = new HttpEntity<>(animal);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/animaux/" + espece.getId(),
+                HttpMethod.POST, request, Animal.class).getStatusCode(), HttpStatus.CREATED);
     }
 
     @Test
@@ -71,6 +77,14 @@ class AnimalRessourceTest {
                 HttpMethod.POST, request, Animal.class);
         Animal resultGet = this.restTemplate.getForObject("http://localhost:" + port + "/animaux/1", Animal.class);
         assertEquals(animal, resultGet);
+
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/animaux/1",
+                HttpMethod.GET, request, Animal.class).getStatusCode(), HttpStatus.OK);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/animaux/656",
+                HttpMethod.GET, request, Animal.class).getStatusCode(), HttpStatus.NOT_FOUND);
+
     }
 
     @Test
@@ -89,6 +103,14 @@ class AnimalRessourceTest {
         List animalListAfter = this.restTemplate.getForObject("http://localhost:" + port + "/animaux", List.class);
         assertEquals(animalListAfter.size(), animalListBefore.size());
 
+
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/animaux/1",
+                HttpMethod.DELETE, request, Animal.class).getStatusCode(), HttpStatus.OK);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/animaux/656",
+                HttpMethod.DELETE, request, Animal.class).getStatusCode(), HttpStatus.NOT_FOUND);
+
     }
 
     @Test
@@ -100,6 +122,7 @@ class AnimalRessourceTest {
         when(animalService.create(animal)).thenReturn(animal);
         Animal animal2 = new Animal(espece,"Requin", male, "aucun");
         animal2.setId(2L);
+        when(animalService.getOne(1L)).thenReturn(Optional.of(animal));
         when(animalService.update(1L, animal2)).thenReturn(animal2);
         when(especeService.getOne(8L)).thenReturn(Optional.of(espece));
         this.restTemplate.postForObject("http://localhost:" + port + "/animaux", animal, Animal.class);
@@ -109,6 +132,13 @@ class AnimalRessourceTest {
                 HttpMethod.POST, request, Animal.class).getBody();
 
         assertEquals(result, animal2);
+
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/animaux/1/8",
+                HttpMethod.POST, request, Animal.class).getStatusCode(), HttpStatus.OK);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/animaux/221/8",
+                HttpMethod.POST, request, Animal.class).getStatusCode(), HttpStatus.NOT_FOUND);
 
     }
 }

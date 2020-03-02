@@ -123,11 +123,13 @@ public class ActivityRessource {
     @GetMapping("activity_get_bassin/{id}")
     public Optional<Bassin> getBassin(@PathVariable Long id) {
 
+        if(!activityService.getOne(id).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+
+
         if(!bassinService.getOne(activityService.getOne(id).get().getBassin().getId()).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  activityService.getOne(id).get().getBassin().getId()  +  " inconnu");
 
-        if(!activityService.getOne(id).isPresent())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
 
         return bassinService.getOne(activityService.getOne(id).get().getBassin().getId());
 
