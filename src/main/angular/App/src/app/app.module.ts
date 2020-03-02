@@ -56,13 +56,14 @@ import {DialogActivityComponent} from "./activity/dialog-activity/dialog-activit
 import {activityResponsableComponent} from "./activity/update-activity/one-responsable/one-activity.component";
 import {DialogSecteurComponent} from "./secteur/dialog-secteur/dialog-secteur.component";
 import {secteurBassinComponent} from "./secteur/update-secteur/one-bassin/one-activity.component";
-import {NavVisiteurComponent} from './nav-visiteur/nav-visiteur.component';
 import {SecteurVisitComponent} from './secteur-visit/secteur-visit.component';
 import {BassinsVisitComponent} from './secteur-visit/bassins/bassins-visit.component';
 import {AnimauxVisitComponent} from './secteur-visit/animaux-visit/animaux-visit.component';
 import {AccueilComponent} from "./accueil/accueil.component";
 import { EspeceVisiteurComponent } from './espece-visiteur/espece-visiteur.component';
 import {AnimauxEspeceComponent} from "./espece-visiteur/animaux-espece/animaux-espece.component";
+import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
+import {NavService} from "./nav-bar/nav.service";
 
 @NgModule({
   exports: [DialogOverviewComponent, DialogOverviewEmployeComponent,DialogActivityComponent,DialogSecteurComponent],
@@ -109,12 +110,12 @@ import {AnimauxEspeceComponent} from "./espece-visiteur/animaux-espece/animaux-e
     DialogSecteurComponent,
     secteurBassinComponent,
     AccueilComponent,
-    NavVisiteurComponent,
     SecteurVisitComponent,
     BassinsVisitComponent,
     AnimauxVisitComponent,
     EspeceVisiteurComponent,
-    AnimauxEspeceComponent
+    AnimauxEspeceComponent,
+    MenuListItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,7 +138,7 @@ import {AnimauxEspeceComponent} from "./espece-visiteur/animaux-espece/animaux-e
     MatTableModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [NavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

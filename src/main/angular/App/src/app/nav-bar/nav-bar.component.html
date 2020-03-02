@@ -5,17 +5,12 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <div *ngIf="isSimpleEmpoye"><a mat-list-item  routerLink="/accueil">Accueil</a></div>
-      <div *ngIf="isResponsableBassin"><a mat-list-item routerLink="/secteur">Gestion Secteur</a></div>
+      <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+     <!-- <div><a mat-list-item routerLink="/">Accueil</a></div>
       <div *ngIf="isResponsableBassin"><a mat-list-item routerLink="/espece">Gestion Especes</a></div>
       <div *ngIf="isResponsableBassin"><a mat-list-item  routerLink="/animal">Gestion Animal</a></div>
-      <div *ngIf="isResponsableBassin || isGestionnaire"><a mat-list-item routerLink="/bassin/{{role}}">Gestion Bassin</a></div>
-      <div *ngIf="isGestionnaire ||isResponsableBassin"><a mat-list-item routerLink="/employe">Gestion Employe</a></div>
-      <div *ngIf="isResponsableBassin"><a mat-list-item routerLink="/activity">Activity</a></div>
-      <div *ngIf="isResponsableBassin ||isSimpleEmpoye"><a mat-list-item routerLink="/calendrier/{{idEmploye}}">Calendrier</a></div>
-
-
-
+      <div *ngIf="isResponsableBassin ||isSimpleEmpoye||isGestionnaire"><a mat-list-item routerLink="/calendrier/{{idEmploye}}">Calendrier</a></div>
+    -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
