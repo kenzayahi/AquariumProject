@@ -30,7 +30,7 @@ pipeline {
         }
         stage ('Build front') {
             steps {
-                sh'sh -c "ng build --watch'
+                sh'sh -c "ng build --watch"'
             }
         }
         stage ('Deploy App') {
