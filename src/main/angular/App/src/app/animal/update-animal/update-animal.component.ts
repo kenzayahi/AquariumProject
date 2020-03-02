@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Animal, Sexe} from '../../model/animal';
 import {AnimalService} from '../animal.service';
@@ -22,6 +22,7 @@ export class UpdateAnimalComponent implements OnInit {
   updateAnimal=new EventEmitter<Animal>();
   constructor(
     private animalService : AnimalService,
+    protected router:Router,
     private route: ActivatedRoute)
   {
     this.especes = this.onGetespeces();
@@ -62,7 +63,10 @@ export class UpdateAnimalComponent implements OnInit {
     let idEspece = this.formGroup.get('espece').value;
           animal.espece = null;
         this.animalService.updateAnimal(animal, idEspece).subscribe(
-          data => this.updateAnimal.emit(animal),
+          data => {
+            this.updateAnimal.emit(animal);
+            this.router.navigate(['/animal']);
+          },
           error => console.log(error)
         );
 

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Employe, RoleEmploye} from '../../model/employe';
 import {EmployeService} from '../employe.service';
@@ -28,6 +28,7 @@ export class UpdateEmployeComponent implements OnInit {
   private listBassin: Array<Bassin>;
   constructor(private employeService : EmployeService,
               private dialog: MatDialog,
+              protected router: Router,
               private bassinService : BassinService,
               private route: ActivatedRoute) { }
 
@@ -60,19 +61,28 @@ export class UpdateEmployeComponent implements OnInit {
     if(this.listBassin.length!=0) {
       employe.roleEmploye=RoleEmploye.responsablebassin;
       this.employeService.updateEmploye(employe).subscribe(
-        data => this.updateEmploye.emit(employe),
+        data => {
+          this.updateEmploye.emit(employe);
+          this.router.navigate(['/employe']);
+        },
         error => console.log(error)
       );
     }else if(role==RoleEmploye.gestionnaire){
       employe.roleEmploye=RoleEmploye.gestionnaire;
       this.employeService.updateEmploye(employe).subscribe(
-        data => this.updateEmploye.emit(employe),
+        data => {
+          this.updateEmploye.emit(employe);
+          this.router.navigate(['/employe']);
+        },
         error => console.log(error)
       );
     }else {
       employe.roleEmploye=RoleEmploye.simpleemploye;
       this.employeService.updateEmploye(employe).subscribe(
-        data => this.updateEmploye.emit(employe),
+        data => {
+          this.updateEmploye.emit(employe);
+          this.router.navigate(['/employe']);
+        },
         error => console.log(error)
       );
     }

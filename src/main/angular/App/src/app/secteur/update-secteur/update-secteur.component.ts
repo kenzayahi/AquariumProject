@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Secteur} from "../../model/secteur";
 import {SecteurService} from "../secteur.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
@@ -27,6 +27,7 @@ export class UpdateSecteurComponent implements OnInit {
 
   constructor(private secteurService : SecteurService,
               private route: ActivatedRoute,
+              protected router: Router,
               private bassinService:BassinService,
               private dialog:MatDialog) { }
 
@@ -47,7 +48,7 @@ export class UpdateSecteurComponent implements OnInit {
     secteur.id = this.id;
     secteur.bassinList=this.listBassin;
     this.secteurService.updateSecteur(secteur).subscribe(
-      data => {this.updateSecteur.emit(secteur);console.log("update"+data)},
+      data => {this.updateSecteur.emit(secteur);console.log("update"+data);this.router.navigate(['/secteur'])},
       error => console.log(error)
     );
   }

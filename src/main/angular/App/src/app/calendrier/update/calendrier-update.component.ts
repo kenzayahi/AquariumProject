@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Calendrier} from "../../model/calendrier";
 import {CalendrierService} from "../calendrier.service";
 import {EmployeService} from "../../employe/employe.service";
@@ -29,6 +29,7 @@ export class CalendrierUpdateComponent implements OnInit {
   constructor(
     private calendrierService : CalendrierService,
     private route: ActivatedRoute,
+    protected router: Router,
     private employeService:EmployeService,
     private activityService:ActivityService)
   {
@@ -62,7 +63,9 @@ export class CalendrierUpdateComponent implements OnInit {
     calendrier.id = this.id;
     calendrier.activities=this.listActivities;
     this.calendrierService.updateCalendrier(calendrier).subscribe(
-      data => {this.updateCalendrier.emit(calendrier)},
+      data => {this.updateCalendrier.emit(calendrier);
+        this.router.navigate(['/calendrier/' + this.idEmployeConnecter])
+      },
         error => console.log(error)
     );
   }
