@@ -34,40 +34,42 @@ public class AnimalRessource {
 
     @GetMapping("animaux/{id}")
     public Optional<Animal> getOne(@PathVariable Long id) {
-        try {
-            return animalService.getOne(id);
-        }catch (NotFoundException e){
+        if(!animalService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        return animalService.getOne(id);
+
     }
 
     @GetMapping("animaux_get_espece/{id}")
     public Optional<Espece> getEspece(@PathVariable Long id) {
-        try {
-            return especeService.getOne(animalService.getOne(id).get().getEspece().getId());
-        }catch (NotFoundException e){
+        if(!animalService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        return especeService.getOne(animalService.getOne(id).get().getEspece().getId());
+
     }
 
     @DeleteMapping("animaux/{id}")
     public void delete(@PathVariable Long id) {
-        try {
-            animalService.delete(id);
-        }catch (NotFoundException e){
+        if(!animalService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        animalService.delete(id);
+
     }
 
 
     @PostMapping("animaux/{id}/{id2}")
     public Animal update( @Valid @PathVariable Long id, @Valid @PathVariable Long id2, @RequestBody Animal animal) {
-        try {
-            animal.espece = especeService.getOne(id2).get();
-            return animalService.update(id, animal);
-        }catch (NotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND," Animal avec l'id  "+  id  +
-                    " inconnu ou  bien Espece avec l'id"+id2+"inconnu");
-        }
+        if(!animalService.getOne(id).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+
+        if(!especeService.getOne(id2).isPresent())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
+
+        animal.espece = especeService.getOne(id2).get();
+        return animalService.update(id, animal);
+
     }
 }

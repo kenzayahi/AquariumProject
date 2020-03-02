@@ -17,6 +17,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -72,7 +73,14 @@ class ActivityRessourceTest {
         Activity result = this.restTemplate.postForObject("http://localhost:" + port + "/activitiesCreate/2/3/2000", activity, Activity.class);
         System.out.println(result);
         assertEquals(activity2, result);
+
+        HttpEntity<Activity> request = new HttpEntity<>(activity);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activitiesCreate/2/3/2000",
+                HttpMethod.POST, request, Activity.class).getStatusCode(), HttpStatus.CREATED);
     }
+
+
 
     @Test
     void getOne() {
@@ -80,8 +88,20 @@ class ActivityRessourceTest {
         activity.setId(1L);
         when(activityService.getOne(1L)).thenReturn(Optional.of(activity));
         HttpEntity<Activity> request = new HttpEntity<>(activity);
+
         this.restTemplate.exchange("http://localhost:" + port + "/activities",
                 HttpMethod.POST, request, Activity.class);
+
+
+
+
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activities/1",
+                HttpMethod.GET, request, Activity.class).getStatusCode(), HttpStatus.OK);
+
+        assertEquals(this.restTemplate.exchange("http://localhost:" + port + "/activities/656",
+                HttpMethod.GET, request, Activity.class).getStatusCode(), HttpStatus.NOT_FOUND);
+
         Activity resultGet = this.restTemplate.getForObject("http://localhost:" + port + "/activities/1", Activity.class);
         assertEquals(activity, resultGet);
     }

@@ -44,29 +44,29 @@ public class CalendrierRessource {
 
     @GetMapping("calendrier/{id}")
     public Optional<Calendrier> getOne(@PathVariable Long id) {
-        try {
-            return calendrierService.getOne(id);
-        }catch (NotFoundException e){
+        if(!calendrierService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        return calendrierService.getOne(id);
+
     }
 
     @DeleteMapping("calendrier/{id}")
     public void delete(@PathVariable Long id) {
-        try {
-            calendrierService.delete(id);
-        }catch (NotFoundException e){
+        if(!calendrierService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        calendrierService.delete(id);
+
     }
 
     @PostMapping("calendrier/{id}")
     public Calendrier update(@PathVariable Long id, @Valid @RequestBody Calendrier calendrier) {
-        try {
-            return calendrierService.update(id, calendrier);
-        }catch (NotFoundException e){
+        if(!calendrierService.getOne(id).isPresent())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"  l'id  "+  id  +  " inconnu");
-        }
+
+        return calendrierService.update(id, calendrier);
+
     }
 
 
