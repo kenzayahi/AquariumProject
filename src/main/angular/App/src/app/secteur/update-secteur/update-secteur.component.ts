@@ -48,7 +48,7 @@ export class UpdateSecteurComponent implements OnInit {
     secteur.id = this.id;
     secteur.bassinList=this.listBassin;
     this.secteurService.updateSecteur(secteur).subscribe(
-      data => {this.updateSecteur.emit(secteur);console.log("update"+data);this.router.navigate(['/secteur'])},
+      data => {this.updateSecteur.emit(secteur);this.router.navigate(['/secteur'])},
       error => console.log(error)
     );
   }
