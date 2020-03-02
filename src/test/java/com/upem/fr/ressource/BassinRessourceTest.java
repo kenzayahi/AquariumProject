@@ -83,6 +83,8 @@ class BassinRessourceTest {
         bassin2.setId(1L);
 
         when(bassinService.create(bassin)).thenReturn(bassin);
+        when(bassinService.getOne(1L)).thenReturn(Optional.of(bassin));
+
         when(bassinService.update(1L, bassin2)).thenReturn(bassin2);
 
         this.restTemplate.postForObject("http://localhost:" + port + "/bassins", bassin, Bassin.class);
