@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script{
                     try {
-                        sh'sh -c "curl -x POST http://localhost:8080/actuator/shutdown"'
+                        sh'sh -c "curl -X POST http://localhost:8080/actuator/shutdown"'
                     }catch(Exception e){
                         //do nothing
                     }
@@ -35,7 +35,7 @@ pipeline {
         }
         stage ('Deploy App') {
             steps {
-                sh'sh -c "java -jar  /home/2inl2/kyahi/Documents/application/bin/fr-0.0.1-SNAPSHOT.jar"'
+                sh'sh -c "java -jar  /home/2inl2/kyahi/Documents/application/bin/fr-0.0.1-SNAPSHOT.jar  >   /home/2inl2/kyahi/Documents/application/bin/out.log &"'
             }
         }
     }
